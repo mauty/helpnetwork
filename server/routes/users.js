@@ -1,11 +1,6 @@
 const express = require('express');
 const router = express.Router();
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
-
 /*Get route to see our own profile*/
 router.get('/profile', async function(req, res) {
   // TODO: Get the ID from the session
