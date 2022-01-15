@@ -5,29 +5,29 @@ const NavBar = (props) => {
   
   return (
     <ul>
-      <li>
+      <li class="mt-8">
         <Link href="/">
-          <a>Home</a>
+          <a><button class="btn btn-primary btn-active">Home</button></a>
         </Link>
       </li>
-      <li>
+      <li class="mt-8">
         <Link href="/points">
-          <a>Points</a>
+          <a><button class="btn btn-md">Points</button></a>
         </Link>
       </li>
-      <li>
+      <li class="mt-8">
         <Link href="/requests/new">
-          <a>New Request</a>
+          <a><button class="btn btn-primary">New Request</button></a>
         </Link>
       </li>
-      <li>
+      <li class="mt-8">
         <Link href="/messages">
-          <a>Messages</a>
+          <a><button class="btn btn-md">Messages</button></a>
         </Link>
       </li>
-      <li>
+      <li class="mt-8">
         <Link href="/profile">
-          <a>Profile</a>
+          <a><button class="btn btn-md">Profile</button></a>
         </Link>
       </li>
     </ul>
