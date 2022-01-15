@@ -1,5 +1,7 @@
+const { PrismaClient } = require('@prisma/client');
 const express = require('express');
 const router = express.Router();
+const prisma = PrismaClient();
 
 /*Get route to see our own profile*/
 router.get('/profile', async function(req, res) {
