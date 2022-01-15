@@ -11,18 +11,18 @@ datasource db {
 }
 
 model Person {
-  id                Int                 @id @default(autoincrement())
-  createdAt         DateTime            @default(now())
-  email             String              @unique
-  first_name        String?
-  last_name         String?
-  safety_details    String?
-  points            Int                 @default(0)
-  Helper            Request[]           @relation("helper_id")
-  Requester         Request[]           @relation("requester_id")
-  Personal_resource Personal_resource[]
-  Sender            Conversation[]      @relation("sender_id")
-  Receiver          Conversation[]      @relation("receiver_id")
+  id                 Int                 @id @default(autoincrement())
+  createdAt          DateTime            @default(now())
+  email              String              @unique
+  first_name         String?
+  last_name          String?
+  safety_details     String?
+  points             Int                 @default(0)
+  Helper             Request[]           @relation("helper_id")
+  Requester          Request[]           @relation("requester_id")
+  personal_resources Personal_resource[]
+  Sender             Conversation[]      @relation("sender_id")
+  Receiver           Conversation[]      @relation("receiver_id")
 }
 
 model Request {
@@ -39,11 +39,10 @@ model Request {
   points_value      Int            @default(0)
   helper_id         Int
   requester_id      Int
-  resource_id       Int
   helper            Person         @relation(name: "helper_id", fields: [helper_id], references: [id])
   requester         Person         @relation(name: "requester_id", fields: [requester_id], references: [id])
-  resource          Resource       @relation(fields: [resource_id], references: [id])
-  Conversation      Conversation[]
+  conversations     Conversation[]
+  requested_resources Requested_resource[]
 }
 
 model Resource {
@@ -52,8 +51,16 @@ model Resource {
   category          String
   detail            String?
   image             String?
-  Request           Request[]
-  Personal_resource Personal_resource[]
+  personal_resources Personal_resource[]
+  requested_resources Requested_resource[]
+}
+
+model Requested_resource {
+  id          Int      @id @default(autoincrement())
+  request_id  Int
+  resource_id Int
+  request     Request @relation(fields: [request_id], references: [id])
+  resource    Resource @relation(fields: [resource_id], references: [id])
 }
 
 model Personal_resource {
