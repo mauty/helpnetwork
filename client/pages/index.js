@@ -4,9 +4,6 @@ import styles from '../styles/Home.module.css'
 
 export default function Home() {
   return (
-<<<<<<< HEAD
-    <div></div>
-=======
 <div className="min-w-32 bg-white min-h-48 p-3 mb-4 font-medium">
   <div className="w-32 flex-none rounded-t lg:rounded-t-none lg:rounded-l text-center shadow-lg ">
     <div className="block rounded-t overflow-hidden  text-center ">
@@ -31,6 +28,5 @@ export default function Home() {
     </div>
   </div>
 </div>
->>>>>>> 7655c3aa78d142369468377c9c1f7f49981b1a27
   )
 }
