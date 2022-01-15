@@ -79,8 +79,7 @@ model Conversation {
   request      Request @relation(fields: [request_id], references: [id])
   sender       Person  @relation(name: "sender_id", fields: [helper_id], references: [id])
   receiver     Person  @relation(name: "receiver_id", fields: [requester_id], references: [id])
-
-  Message Message[]
+  messages     Message[]
 }
 
 model Message {
