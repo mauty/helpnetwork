@@ -11,11 +11,75 @@ datasource db {
 }
 
 model Person {
-  id             Int      @id @default(autoincrement())
-  createdAt      DateTime @default(now())
-  email          String   @unique
-  first_name     String?
-  last_name      String?
-  safety_details String?
-  points         Int      @default(0)
+  id                Int                 @id @default(autoincrement())
+  createdAt         DateTime            @default(now())
+  email             String              @unique
+  first_name        String?
+  last_name         String?
+  safety_details    String?
+  points            Int                 @default(0)
+  Helper            Request[]           @relation("helper_id")
+  Requester         Request[]           @relation("requester_id")
+  Personal_resource Personal_resource[]
+  Sender            Conversation[]      @relation("sender_id")
+  Receiver          Conversation[]      @relation("receiver_id")
+}
+
+model Request {
+  id                Int            @id @default(autoincrement())
+  request_details   String
+  category          String
+  map_id            String
+  request_claimed   Boolean        @default(false)
+  request_completed Boolean        @default(false)
+  createdAt         DateTime       @default(now())
+  time_sensitive    Boolean        @default(false)
+  start_time        DateTime       @default(now())
+  end_time          DateTime?      @default(now())
+  points_value      Int            @default(0)
+  helper_id         Int
+  requester_id      Int
+  resource_id       Int
+  helper            Person         @relation(name: "helper_id", fields: [helper_id], references: [id])
+  requester         Person         @relation(name: "requester_id", fields: [requester_id], references: [id])
+  resource          Resource       @relation(fields: [resource_id], references: [id])
+  Conversation      Conversation[]
+}
+
+model Resource {
+  id                Int                 @id @default(autoincrement())
+  name              String
+  category          String
+  detail            String?
+  image             String?
+  Request           Request[]
+  Personal_resource Personal_resource[]
+}
+
+model Personal_resource {
+  id          Int      @id @default(autoincrement())
+  person_id   Int
+  resource_id Int
+  person      Person   @relation(fields: [person_id], references: [id])
+  resource    Resource @relation(fields: [resource_id], references: [id])
+}
+
+model Conversation {
+  id          Int     @id @default(autoincrement())
+  sender_id   Int
+  receiver_id Int
+  request_id  Int
+  request     Request @relation(fields: [request_id], references: [id])
+  sender      Person  @relation(name: "sender_id", fields: [sender_id], references: [id])
+  receiver    Person  @relation(name: "receiver_id", fields: [receiver_id], references: [id])
+
+  Message Message[]
+}
+
+model Message {
+  id              Int          @id @default(autoincrement())
+  body            String
+  timestamp       DateTime     @default(now())
+  conversation_id Int
+  conversation    Conversation @relation(fields: [conversation_id], references: [id])
 }
