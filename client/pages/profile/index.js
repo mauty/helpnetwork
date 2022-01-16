@@ -12,6 +12,7 @@ function Profile(data = null) {
   }, [])
 
   return (
+    <>
     <Container title='John Smith'>
       <div className="flex flex-col gap-6 mx-2">
         <div className='flex justify-between p-2'>
@@ -81,6 +82,7 @@ function Profile(data = null) {
       </div>
     </Container>
     <NavBar />
+    </>
   )
   
 }
