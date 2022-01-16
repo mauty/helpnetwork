@@ -25,7 +25,7 @@ export default function Map({ children }) {
       className="flex"
       {...viewport}
       width="100%"
-      height="70vh"
+      height="60vh"
       onViewportChange={(nextViewport) => setViewport(nextViewport)}
       mapboxApiAccessToken={`${process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN}`}
       mapStyle={"mapbox://styles/mapbox/streets-v11"}

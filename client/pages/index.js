@@ -21,7 +21,7 @@ export default function Home() {
             <button className="btn btn-sm">Sort</button>
           </div>
         </div>
-        <div className='flex w-full h-52 shadow overflow-y-scroll'>
+        <div className='flex w-full h-64 shadow overflow-y-scroll'>
           <ul className="p-4 pt-0 divide-y w-full">
             <li className="py-4 flex first:pt-0 last:pb-0">
               <img className="h-10 w-10 rounded" src="https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" alt=""/>
