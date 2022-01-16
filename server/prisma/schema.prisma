@@ -26,32 +26,32 @@ model Person {
 }
 
 model Request {
-  id                Int            @id @default(autoincrement())
-  request_details   String
-  category          String
-  map_id            String
-  request_claimed   Boolean        @default(false)
-  request_completed Boolean        @default(false)
-  createdAt         DateTime       @default(now())
-  time_sensitive    Boolean        @default(false)
-  start_time        DateTime       @default(now())
-  end_time          DateTime?      @default(now())
-  points_value      Int            @default(0)
-  helper_id         Int
-  requester_id      Int
-  helper            Person         @relation(name: "helper_id", fields: [helper_id], references: [id])
-  requester         Person         @relation(name: "requester_id", fields: [requester_id], references: [id])
-  conversations     Conversation[]
+  id                  Int                  @id @default(autoincrement())
+  request_details     String
+  category            String
+  map_id              String
+  request_claimed     Boolean              @default(false)
+  request_completed   Boolean              @default(false)
+  createdAt           DateTime             @default(now())
+  time_sensitive      Boolean              @default(false)
+  start_time          DateTime             @default(now())
+  end_time            DateTime?            @default(now())
+  points_value        Int                  @default(0)
+  helper_id           Int
+  requester_id        Int
+  helper              Person               @relation(name: "helper_id", fields: [helper_id], references: [id])
+  requester           Person               @relation(name: "requester_id", fields: [requester_id], references: [id])
+  conversations       Conversation[]
   requested_resources Requested_resource[]
 }
 
 model Resource {
-  id                Int                 @id @default(autoincrement())
-  name              String
-  category          String
-  detail            String?
-  image             String?
-  personal_resources Personal_resource[]
+  id                  Int                  @id @default(autoincrement())
+  name                String
+  category            String
+  detail              String?
+  image               String?
+  personal_resources  Personal_resource[]
   requested_resources Requested_resource[]
 }
 
@@ -59,7 +59,7 @@ model Requested_resource {
   id          Int      @id @default(autoincrement())
   request_id  Int
   resource_id Int
-  request     Request @relation(fields: [request_id], references: [id])
+  request     Request  @relation(fields: [request_id], references: [id])
   resource    Resource @relation(fields: [resource_id], references: [id])
 }
 
@@ -72,13 +72,13 @@ model Personal_resource {
 }
 
 model Conversation {
-  id           Int     @id @default(autoincrement())
+  id           Int       @id @default(autoincrement())
   helper_id    Int
   requester_id Int
   request_id   Int
-  request      Request @relation(fields: [request_id], references: [id])
-  sender       Person  @relation(name: "sender_id", fields: [helper_id], references: [id])
-  receiver     Person  @relation(name: "receiver_id", fields: [requester_id], references: [id])
+  request      Request   @relation(fields: [request_id], references: [id])
+  sender       Person    @relation(name: "sender_id", fields: [helper_id], references: [id])
+  receiver     Person    @relation(name: "receiver_id", fields: [requester_id], references: [id])
   messages     Message[]
 }
 

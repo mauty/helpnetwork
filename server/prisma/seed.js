@@ -16,25 +16,47 @@ const person_data = [
 	},
 ];
 
-const request_data = [{}, {}, {}];
+const request_data = [
+	{
+		request_details: 'I need help with repairing my car',
+		category: 'Repair',
+	},
+	{
+		request_details: 'I need help with picking up my groceries from Costco',
+		category: 'Delivery',
+	},
+	{
+		request_details: 'I need a help clearing snow from my driveway',
+		category: 'Cleaning',
+	},
+];
 
-const resource_data = [{}, {}, {}, {}, {}];
+const resource_data = [
+	{ name: 'Car Repair', category: 'Repair' },
+	{ name: 'Groceries', category: 'Delivery' },
+	{ name: 'Medicine', category: 'Delivery' },
+	{ name: 'Outdoor Cleaning', category: 'Cleaning' },
+	{ name: 'Indoor Cleaning', category: 'Cleaning' },
+];
 
-const requested_resource_data = [{}, {}, {}];
+const message_data = [
+	{
+		body: 'Hey I would love to help you with your request',
+		conversation_id: 1,
+	},
+	{ body: 'Hi, thank you for excepting my request', conversation_id: 1 },
+	{
+		body: 'Hey I would love to help you with your request',
+		conversation_id: 2,
+	},
+	{ body: 'Hi, thank you for excepting my request', conversation_id: 2 },
+	{
+		body: 'Hey I would love to help you with your request',
+		conversation_id: 3,
+	},
+	{ body: 'Hi, thank you for excepting my request', conversation_id: 3 },
+];
 
-const personal_resource_data = [{}, {}, {}];
-
-const conversation_data = [{}, {}, {}];
-
-const message_data = [{}, {}, {}, {}, {}, {}, {}];
-/*
-Request
-Resource
-Requested_resource
-Personal_resource
-Conversation
-Message
-*/
 const main = async () => {
 	console.log('Start seeding');
 
@@ -65,6 +87,7 @@ const main = async () => {
 	await prisma.message.createMany({
 		message_data,
 	});
+
 	console.log(`Seeding finished.`);
 };
 
