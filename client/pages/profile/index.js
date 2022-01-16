@@ -1,3 +1,4 @@
+import NavBar from "../../components/NavBar"
 import { useEffect, useState } from 'react';
 import Container from '../../components/ui/Container';
 
@@ -78,7 +79,10 @@ function Profile(data = null) {
           <button class="btn btn-primary">Contact Helper</button>
         </div>
       </div>
-    </Container>)
+    </Container>
+    <NavBar />
+  )
+  
 }
 
 export default Profile

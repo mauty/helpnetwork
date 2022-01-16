@@ -1,5 +1,12 @@
+import NavBar from "../../components/NavBar"
+
 function NewRequest() {
-  return <div>New Request Form</div>
+  return (
+    <>
+      <h2>New Request Form</h2>
+      <NavBar />
+    </>
+  )
 }
 
 export default NewRequest

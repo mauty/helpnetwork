@@ -1,5 +1,12 @@
+import NavBar from "../../components/NavBar"
+
 function Messages() {
-  return <div>Messages</div>
+  return (
+    <>
+      <h2>Messages</h2>
+      <NavBar />
+    </>
+  )
 }
 
 export default Messages
