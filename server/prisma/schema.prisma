@@ -14,11 +14,13 @@ model Person {
   id                 Int                 @id @default(autoincrement())
   createdAt          DateTime            @default(now())
   email              String              @unique
-  first_name         String?
-  last_name          String?
+  first_name         String
+  last_name          String
+  bio                String?
   safety_details     String?
   lat                Float?
   long               Float?
+  postal_code        String?
   points             Int                 @default(0)
   Helper             Request[]           @relation("helper_id")
   Requester          Request[]           @relation("requester_id")
