@@ -1,6 +1,15 @@
+import { useEffect } from 'react';
 import Container from '../../components/ui/Container';
 
-function Profile() {
+function Profile(data = null) {
+  const [profileData, setProfileData] = useEffect(data);
+
+  useEffect(() => {
+    if(data === null) {
+      // Query your profile here from the server
+    }
+  }, [])
+
   return (
     <Container title='John Smith'>
       <div className="flex flex-col gap-6 mx-2">
@@ -15,7 +24,7 @@ function Profile() {
               Vestibulum rhoncus dui vel eros laoreet consectetur. Vivamus eget elementum ligula,
               vitae pharetra quam. Nullam at ligula sed metu.
             </p>
-            <img className="rounded-full border bg-gray-300 border-gray-600 h-32 w-full block" src="https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" alt="Image" />
+            <img className="rounded-full border bg-gray-300 border-gray-600 h-32 w-32 block" src="https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" alt="Image" />
         </div>
         <div>
           <h1 className="text-lg font-bold text-gray-900 dark:text-gray-100 p-2">
@@ -65,9 +74,9 @@ function Profile() {
               </div>
           </div>
         </div>
-      </div>
-      <div className='absolute bottom-0 left-1/2 flex justify-center'>
-        <button class="btn btn-primary -ml-20">Contact Helper</button>
+        <div className='flex justify-center'>
+          <button class="btn btn-primary">Contact Helper</button>
+        </div>
       </div>
     </Container>)
 }
