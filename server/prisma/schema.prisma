@@ -14,9 +14,13 @@ model Person {
   id                 Int                 @id @default(autoincrement())
   createdAt          DateTime            @default(now())
   email              String              @unique
-  first_name         String?
-  last_name          String?
+  first_name         String
+  last_name          String
+  bio                String?
   safety_details     String?
+  lat                Float?
+  long               Float?
+  postal_code        String?
   points             Int                 @default(0)
   Helper             Request[]           @relation("helper_id")
   Requester          Request[]           @relation("requester_id")
@@ -28,8 +32,10 @@ model Person {
 model Request {
   id                  Int                  @id @default(autoincrement())
   request_details     String
-  category            String
-  map_id              String
+  map_id              String?
+  lat                 Float?
+  long                Float?
+  postal_code         String?
   request_claimed     Boolean              @default(false)
   request_completed   Boolean              @default(false)
   createdAt           DateTime             @default(now())
@@ -39,10 +45,20 @@ model Request {
   points_value        Int                  @default(0)
   helper_id           Int
   requester_id        Int
+  category_id         Int                  @unique
+  category            Category             @relation(fields: [category_id], references: [id])
   helper              Person               @relation(name: "helper_id", fields: [helper_id], references: [id])
   requester           Person               @relation(name: "requester_id", fields: [requester_id], references: [id])
   conversations       Conversation[]
   requested_resources Requested_resource[]
+}
+
+model Category {
+  id         Int      @id @default(autoincrement())
+  name       String
+  image      String?
+  request_id Int
+  request    Request?
 }
 
 model Resource {
