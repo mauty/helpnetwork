@@ -16,7 +16,7 @@ export default function Container({ title = "", size = "medium", children }) {
       >
         <div className="flex items-center justify-between mb-4">
           {title && (
-            <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">
+            <h1 className="text-xl font-bold text-gray-900 dark:text-gray-100">
               {title}
             </h1>
           )}

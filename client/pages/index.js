@@ -15,7 +15,8 @@ export default function Home() {
         <Map />
       </Container>
       <Container size='full'>
-        <div className='flex justify-end m-2'>
+        <div className='flex justify-between m-2'>
+          <p className='self-end font-medium'>List of ???</p>
           <div className="btn-group">
             <button className="btn btn-sm">Filter</button>
             <button className="btn btn-sm">Sort</button>
