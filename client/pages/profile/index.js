@@ -1,8 +1,8 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Container from '../../components/ui/Container';
 
 function Profile(data = null) {
-  const [profileData, setProfileData] = useEffect(data);
+  const [profileData, setProfileData] = useState(data);
 
   useEffect(() => {
     if(data === null) {
