@@ -1,5 +1,12 @@
+import NavBar from "../../components/NavBar"
+
 function Points() {
-  return <div>Points</div>
+  return (
+    <>
+      <h2>Points</h2>
+      <NavBar />
+    </>
+  )
 }
 
 export default Points

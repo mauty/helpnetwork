@@ -4,33 +4,27 @@ const NavBar = (props) => {
   const { } = props;
   
   return (
-    <ul>
-      <li class="mt-8">
-        <Link href="/">
-          <a><button class="btn btn-primary btn-active">Home</button></a>
-        </Link>
-      </li>
-      <li class="mt-8">
-        <Link href="/points">
-          <a><button class="btn btn-md">Points</button></a>
-        </Link>
-      </li>
-      <li class="mt-8">
-        <Link href="/requests/new">
-          <a><button class="btn btn-primary">New Request</button></a>
-        </Link>
-      </li>
-      <li class="mt-8">
-        <Link href="/messages">
-          <a><button class="btn btn-md">Messages</button></a>
-        </Link>
-      </li>
-      <li class="mt-8">
-        <Link href="/profile">
-          <a><button class="btn btn-md">Profile</button></a>
-        </Link>
-      </li>
-    </ul>
+    <div class="navbar mb-2 shadow-lg bg-neutral text-neutral-content rounded-box absolute inset-x-0 bottom-0 h-16 ...">
+      <div class="flex-1 px-2 mx-2">
+        <div class="items-stretch lg:flex">
+          <Link href="/">
+            <a class="btn btn-ghost btn-sm rounded-btn">Home</a>
+          </Link>
+          <Link href="/points">
+            <a class="btn btn-ghost btn-sm rounded-btn">Points</a>
+          </Link>
+          <Link href="/requests/new">
+            <a class="btn btn-ghost btn-sm rounded-btn">New Request</a>
+          </Link>
+          <Link href="/messages">
+            <a class="btn btn-ghost btn-sm rounded-btn">Messages</a>
+          </Link>
+          <Link href="/profile">
+            <a class="btn btn-ghost btn-sm rounded-btn">Profile</a>
+          </Link>
+        </div>
+      </div>
+    </div>
   );
 }
 
