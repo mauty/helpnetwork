@@ -1,8 +1,10 @@
 const CategoryListItem = (props) => {
-  const { } = props;
+  const { name } = props;
   
   return (
-    <button className="btn btn-active">Groceries</button>
+    <li>
+      <button className="btn btn-sm">{name}</button>
+    </li>
   );
 }
 
