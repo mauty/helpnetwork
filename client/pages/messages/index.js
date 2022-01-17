@@ -1,5 +1,13 @@
+import Container from '../../components/ui/Container';
+import ConversationList from '../../components/Messaging/ConversationList';
 function Messages() {
-  return <div>Messages</div>
+	return (
+		<>
+			<Container title='All Messages'></Container>
+			<ConversationList></ConversationList>
+		</>
+	);
 }
 
-export default Messages
+//list of conversation
+export default Messages;
