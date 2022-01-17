@@ -56,3 +56,5 @@ router.post('/conversations/:conversation_id', async function (req, res) {
 
 	res.json(message);
 });
+
+module.exports = router;

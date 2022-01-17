@@ -17,9 +17,16 @@ router.get('/request/:id', async function (req, res) {
 });
 
 router.get('/requests', async function (req, res) {
-	const request = await prisma.request.findMany();
+  const lat = parseFloat(req.query.lat);
+  const lng = parseFloat(req.query.long);
 
-	res.json(request);
+  // const requests = await prisma.$queryRaw`
+  // SELECT * FROM (SELECT id, request_details, lat, long, ( 3959 * acos( cos( radians(${lat}) ) * cos( radians( lat ) ) * cos( radians( long ) - radians(${lng}) ) + sin( radians(${lat}) ) * sin( radians( lat ) ) ) ) as distance from "Request") al WHERE distance < 3 ORDER BY distance;`;
+
+  const requests = await prisma.$queryRaw`
+  SELECT * FROM (SELECT id, request_details, lat, long, ( 3959 * acos( cos( radians(${lat}) ) * cos( radians( lat ) ) * cos( radians( long ) - radians(${lng}) ) + sin( radians(${lat}) ) * sin( radians( lat ) ) ) ) as distance from "Request") al WHERE distance < 3 ORDER BY distance;`;
+
+	res.status(200).json(requests);
 });
 
 /* POST request listing. */
