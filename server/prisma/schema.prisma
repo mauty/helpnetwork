@@ -43,11 +43,11 @@ model Request {
   start_time          DateTime             @default(now())
   end_time            DateTime?            @default(now())
   points_value        Int                  @default(0)
-  helper_id           Int
+  helper_id           Int?
   requester_id        Int
-  category_id         Int                  @unique
+  category_id         Int
   category            Category             @relation(fields: [category_id], references: [id])
-  helper              Person               @relation(name: "helper_id", fields: [helper_id], references: [id])
+  helper              Person?               @relation(name: "helper_id", fields: [helper_id], references: [id])
   requester           Person               @relation(name: "requester_id", fields: [requester_id], references: [id])
   conversations       Conversation[]
   requested_resources Requested_resource[]
@@ -57,7 +57,6 @@ model Category {
   id         Int      @id @default(autoincrement())
   name       String
   image      String?
-  request_id Int
   request    Request?
 }
 

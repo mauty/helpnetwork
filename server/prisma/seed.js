@@ -19,16 +19,25 @@ const person_data = [
 const request_data = [
 	{
 		request_details: 'I need help with repairing my car',
-		category: 1,
+		category_id: 1,
+    requester_id: 1
 	},
 	{
 		request_details: 'I need help with picking up my groceries from Costco',
-		category: 2,
+		category_id: 2,
+    requester_id: 2
 	},
 	{
 		request_details: 'I need a help clearing snow from my driveway',
-		category: 3,
+		category_id: 3,
+    requester_id: 1
 	},
+];
+
+const category_data = [
+  { name: "Repair" },
+  { name: "Delivery" },
+  { name: "Cleaning" },
 ];
 
 const resource_data = [
@@ -64,6 +73,10 @@ const main = async () => {
 		data: person_data,
 	});
 
+  await prisma.category.createMany({
+    data: category_data,
+  })
+
 	await prisma.request.createMany({
 		data: request_data,
 	});
@@ -72,21 +85,21 @@ const main = async () => {
 		data: resource_data,
 	});
 
-	await prisma.requested_resource.createMany({
-		data: requested_resource_data,
-	});
+	// await prisma.requested_resource.createMany({
+	// 	data: requested_resource_data,
+	// });
 
-	await prisma.personal_resource.createMany({
-		data: personal_resource_data,
-	});
+	// await prisma.personal_resource.createMany({
+	// 	data: personal_resource_data,
+	// });
 
-	await prisma.conversation.createMany({
-		data: conversation_data,
-	});
+	// await prisma.conversation.createMany({
+	// 	data: conversation_data,
+	// });
 
-	await prisma.message.createMany({
-		data: message_data,
-	});
+	// await prisma.message.createMany({
+	// 	data: message_data,
+	// });
 
 	console.log(`Seeding finished.`);
 };
