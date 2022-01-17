@@ -13,7 +13,7 @@ import useViewport from '../hooks/useViewport';
 
 
 export default function Home() {
-  const { viewport, copyViewport, setViewport } = useViewport();
+  const { viewport, copyViewport, setViewport, isViewportLoading } = useViewport();
   const {isLoading, isError, data} = useQuery(['requests', copyViewport], () => useAxios({ url: '/requests', method: "get", params: { long: viewport.longitude, lat: viewport.latitude } }));
 
   return (
@@ -50,17 +50,25 @@ export default function Home() {
               </ul>
             </div>
           </div>
-          { data && data.map((request) =>
-            <Mark key={request.id} longitude={request.long} latitude={request.lat} />
+          { data && data.map((request, index) =>
+            <Mark key={request.id} longitude={request.long} latitude={request.lat} index={index + 1} />
           ) }
         </Map>
         <div className='flex w-full h-64 shadow overflow-y-scroll pt-2'>
           <ul className="p-4 pt-0 divide-y w-full">
 
             { isError && <ErrorMessage title="Error" error="Something unexpected... Try again"/> }
-            { isLoading && <Shimmer /> }
-            { data && data.map(request =>
-              <ListItem key={request.id} details={request.request_details}/>
+            { (isLoading || isViewportLoading) ? (<Shimmer />) : (
+              data && data.map((request, index) =>
+                <ListItem
+                key={request.id}
+                id={request.id}
+                category={request.category_name}
+                name={`${request.first_name} ${request.last_name}`}
+                index={index + 1}
+                createdAt={request.createdAt}
+                time={{ isSensitive: request.time_sensitive, start_time: request.start_time }}/>
+              )
             )}
           </ul>
       </div>
