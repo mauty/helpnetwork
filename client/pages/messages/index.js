@@ -1,12 +1,15 @@
-import NavBar from "../../components/NavBar"
-
+import NavBar from '../../components/NavBar';
+import Container from '../../components/ui/Container';
+import ConversationList from '../../components/Messaging/ConversationList';
 function Messages() {
-  return (
-    <>
-      <h2>Messages</h2>
-      <NavBar />
-    </>
-  )
+	return (
+		<>
+			<NavBar />
+			<Container title='All Messages'></Container>
+			<ConversationList></ConversationList>
+		</>
+	);
 }
 
-export default Messages
+//list of conversation
+export default Messages;
