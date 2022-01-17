@@ -2,7 +2,7 @@ const MessageListItem = (props) => {
   const { } = props;
   
   return (
-    <div></div>
+    <div><p>Hello My name is Amir.</p></div>
   );
 }
 

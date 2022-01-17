@@ -1,7 +1,5 @@
 import Container from '../../components/ui/Container';
-import Conversations from '../../components/Messaging/Conversation';
-
-import 
+import Conversations from '../../components/Messaging/Conversation/';
 function Messages() {
 	return (
 		<>
