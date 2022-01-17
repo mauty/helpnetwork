@@ -17,11 +17,7 @@ router.get('/request/:id', async function (req, res) {
 });
 
 router.get('/requests', async function (req, res) {
-	const { map_id } = req.body;
-
-	const request = await prisma.request.findMany({
-		where: { map_id },
-	});
+	const request = await prisma.request.findMany();
 
 	res.json(request);
 });
