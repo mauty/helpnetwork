@@ -8,6 +8,12 @@ import { useState } from "react";
 const NewRequest = (props) => {
   const { } = props;
   
+  const [state, setState] = useState({
+    categoryId: 0,
+    details: '',
+    resourceSelected: 0
+  })
+
   return (
     <div className="mb-auto">
       <h2 className="text-xl font-bold">What kind of help do you need?</h2>
@@ -25,7 +31,6 @@ const NewRequest = (props) => {
       <div className="flex justify-center">
         <button className="btn btn-wide btn-md btn-primary m-4">Next</button>
       </div>
-
     </div>
   );
 }
