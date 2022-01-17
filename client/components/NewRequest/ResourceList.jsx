@@ -1,8 +1,27 @@
+import ResourceListItem from "./ResourceListItem";
+
 const ResourceList = (props) => {
   const { } = props;
   
+  const resourcesData = [
+    "Snow Blower",
+    "Lawn Mower",
+    "Pickup Truck",
+    "Ladder",
+    "Wheelbarrow",
+    "Hammer Drill"
+  ]
+
+  const resourceComponentArray = resourcesData.map((resource) => {
+    return (
+      <ResourceListItem resourceName={resource} />
+    )
+  })
+
   return (
-    <h2>ResourceList</h2>
+    <ul>
+      {resourceComponentArray}
+    </ul>
   );
 }
 

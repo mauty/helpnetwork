@@ -8,7 +8,7 @@ const NewRequest = (props) => {
   const { } = props;
   
   return (
-    <Container>
+    <div className="mb-auto">
       <h2>What kind of help do you need?</h2>
       <CategoryList />
       <div className="mx">
@@ -21,8 +21,8 @@ const NewRequest = (props) => {
       </div>
       <ResourceList />
       <Stepper />
-      <NavBar />
-    </Container>
+
+    </div>
   );
 }
 
