@@ -3,13 +3,13 @@ const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 const person_data = [
 	{
-		email: 'bob@example.com',
+		email: 'helper@example.com',
 		first_name: 'Bob',
 		last_name: 'Johnson',
 		safety_details: 'Masks are good',
 	},
 	{
-		email: 'sally@example.com',
+		email: 'sender@example.com',
 		first_name: 'Sally',
 		last_name: 'Smith',
 		safety_details: 'Masks are evil',
@@ -19,16 +19,31 @@ const person_data = [
 const request_data = [
 	{
 		request_details: 'I need help with repairing my car',
-		category: 'Repair',
+    long: -77.0364,
+    lat: 38.8951,
+		category_id: 1,
+    requester_id: 1
 	},
 	{
 		request_details: 'I need help with picking up my groceries from Costco',
-		category: 'Delivery',
+    long: -79.3871,
+    lat: 43.6426,
+		category_id: 2,
+    requester_id: 2
 	},
 	{
 		request_details: 'I need a help clearing snow from my driveway',
-		category: 'Cleaning',
+    long: -79.3948,
+    lat: 43.6677,
+		category_id: 3,
+    requester_id: 1
 	},
+];
+
+const category_data = [
+  { name: "Repair" },
+  { name: "Delivery" },
+  { name: "Cleaning" },
 ];
 
 const resource_data = [
@@ -61,32 +76,36 @@ const main = async () => {
 	console.log('Start seeding');
 
 	await prisma.person.createMany({
-		person_data,
+		data: person_data,
 	});
 
+  await prisma.category.createMany({
+    data: category_data,
+  })
+
 	await prisma.request.createMany({
-		request_data,
+		data: request_data,
 	});
 
 	await prisma.resource.createMany({
-		resource_data,
+		data: resource_data,
 	});
 
-	await prisma.requested_resource.createMany({
-		requested_resource_data,
-	});
+	// await prisma.requested_resource.createMany({
+	// 	data: requested_resource_data,
+	// });
 
-	await prisma.personal_resource.createMany({
-		personal_resource_data,
-	});
+	// await prisma.personal_resource.createMany({
+	// 	data: personal_resource_data,
+	// });
 
-	await prisma.conversation.createMany({
-		conversation_data,
-	});
+	// await prisma.conversation.createMany({
+	// 	data: conversation_data,
+	// });
 
-	await prisma.message.createMany({
-		message_data,
-	});
+	// await prisma.message.createMany({
+	// 	data: message_data,
+	// });
 
 	console.log(`Seeding finished.`);
 };
