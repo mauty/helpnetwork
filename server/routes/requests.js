@@ -7,10 +7,15 @@ const prisma = new PrismaClient();
 router.get('/request/:id', async function (req, res) {
 	const { id } = req.params;
 
-	const request = await prisma.request.findOne({
+	const request = await prisma.request.findFirst({
 		where: {
-			id,
+			id: parseInt(id),
 		},
+    include: {
+      requested_resources: true,
+      requester: true,
+      category: true
+    }
 	});
 
 	res.json(request);
@@ -24,7 +29,22 @@ router.get('/requests', async function (req, res) {
   // SELECT * FROM (SELECT id, request_details, lat, long, ( 3959 * acos( cos( radians(${lat}) ) * cos( radians( lat ) ) * cos( radians( long ) - radians(${lng}) ) + sin( radians(${lat}) ) * sin( radians( lat ) ) ) ) as distance from "Request") al WHERE distance < 3 ORDER BY distance;`;
 
   const requests = await prisma.$queryRaw`
-  SELECT * FROM (SELECT id, request_details, lat, long, ( 3959 * acos( cos( radians(${lat}) ) * cos( radians( lat ) ) * cos( radians( long ) - radians(${lng}) ) + sin( radians(${lat}) ) * sin( radians( lat ) ) ) ) as distance from "Request") al WHERE distance < 3 ORDER BY distance;`;
+    SELECT * FROM
+    (SELECT "Request".id, request_details, "Request".lat, "Request".long, "Category".name as category_name, "Person".first_name, "Person".last_name, "Request".time_sensitive, "Request".start_time, "Request"."createdAt", ( 3959 * acos( cos( radians(${lat}) ) * cos( radians( "Request".lat ) ) * cos( radians( "Request".long ) - radians(${lng}) ) + sin( radians(${lat}) ) * sin( radians( "Request".lat ) ) ) ) as distance
+      FROM "Request"
+      INNER JOIN "Category" ON "Request".category_id="Category".id
+      INNER JOIN "Person" ON "Request".requester_id="Person".id) al
+    WHERE distance < 3 ORDER BY distance;`;
+
+  // const ids = requests.map(request => request.id);
+
+  // if(ids.length) {
+  //   const resources = await prisma.requested_resource.findMany(
+  //   {
+  //     where: {
+  //     }
+  //   });
+  // }
 
 	res.status(200).json(requests);
 });
