@@ -7,7 +7,6 @@ function NewRequestPage() {
   return (
     <div className="flex flex-col h-screen justify-between">
         <Header pageName="New Request Form" />
-        <header className="h-20">New Request Form</header>
         <NewRequest />
         <NavBar />
       

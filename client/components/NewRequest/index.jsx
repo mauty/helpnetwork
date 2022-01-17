@@ -3,13 +3,14 @@ import Container from "../ui/Container";
 import NavBar from "../NavBar";
 import ResourceList from "./ResourceList";
 import Stepper from "./Stepper";
+import { useState } from "react";
 
 const NewRequest = (props) => {
   const { } = props;
   
   return (
     <div className="mb-auto">
-      <h2>What kind of help do you need?</h2>
+      <h2 className="text-xl font-bold">What kind of help do you need?</h2>
       <CategoryList />
       <div className="mx">
         <div className='flex flex-col p-2'>
@@ -21,6 +22,9 @@ const NewRequest = (props) => {
       </div>
       <ResourceList />
       <Stepper />
+      <div className="flex justify-center">
+        <button className="btn btn-wide btn-md btn-primary m-4">Next</button>
+      </div>
 
     </div>
   );

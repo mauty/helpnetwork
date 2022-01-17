@@ -6,7 +6,7 @@ const ResourceListItem = (props) => {
       <div class="alert-sm alert-info rounded m-1">
         <div class="flex justify-between items-center">
           <label className='text-sm font-semibold'>{resourceName}</label>
-          <input type="checkbox" class="toggle toggle-primary" checked/>
+          <input type="checkbox" class="toggle toggle-primary" unchecked/>
         </div>
       </div>
     </li>
