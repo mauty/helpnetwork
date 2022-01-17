@@ -3,13 +3,13 @@ const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 const person_data = [
 	{
-		email: 'bob@example.com',
+		email: 'helper@example.com',
 		first_name: 'Bob',
 		last_name: 'Johnson',
 		safety_details: 'Masks are good',
 	},
 	{
-		email: 'sally@example.com',
+		email: 'sender@example.com',
 		first_name: 'Sally',
 		last_name: 'Smith',
 		safety_details: 'Masks are evil',
@@ -61,31 +61,31 @@ const main = async () => {
 	console.log('Start seeding');
 
 	await prisma.person.createMany({
-		person_data,
+		data: person_data,
 	});
 
 	await prisma.request.createMany({
-		request_data,
+		data: request_data,
 	});
 
 	await prisma.resource.createMany({
-		resource_data,
+		data: resource_data,
 	});
 
 	await prisma.requested_resource.createMany({
-		requested_resource_data,
+		data: requested_resource_data,
 	});
 
 	await prisma.personal_resource.createMany({
-		personal_resource_data,
+		data: personal_resource_data,
 	});
 
 	await prisma.conversation.createMany({
-		conversation_data,
+		data: conversation_data,
 	});
 
 	await prisma.message.createMany({
-		message_data,
+		data: message_data,
 	});
 
 	console.log(`Seeding finished.`);
