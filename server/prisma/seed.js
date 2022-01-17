@@ -19,15 +19,15 @@ const person_data = [
 const request_data = [
 	{
 		request_details: 'I need help with repairing my car',
-		category: 'Repair',
+		category: 1,
 	},
 	{
 		request_details: 'I need help with picking up my groceries from Costco',
-		category: 'Delivery',
+		category: 2,
 	},
 	{
 		request_details: 'I need a help clearing snow from my driveway',
-		category: 'Cleaning',
+		category: 3,
 	},
 ];
 
