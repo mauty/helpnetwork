@@ -1,8 +1,9 @@
+import MessageListItem from "./MessageListItem";
 const MessageList = (props) => {
   const { } = props;
   
   return (
-    <div></div>
+    <MessageListItem></MessageListItem>
   );
 }
 

@@ -1,9 +1,9 @@
-
+import ConversationList from "./ConversationList";
 const Conversations = (props) => {
   const { } = props;
   
   return (
-    <div></div>
+    <ConversationList></ConversationList>
   );
 }
 
