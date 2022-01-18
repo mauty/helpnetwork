@@ -88,19 +88,19 @@ const resource_data = [
 
 const requested_resource_data = [
   { request_id: 3, resource_id: 3 },
-  { request_id: 2, resource_id: 0 },
+  { request_id: 2, resource_id: 1 },
 ];
 
 const personal_resource_data = [
   { person_id: 1, resource_id: 2},
-  { person_id: 0, resource_id: 4},
-  { person_id: 2, resource_id: 0},
+  { person_id: 2, resource_id: 4},
+  { person_id: 2, resource_id: 1},
 ];
 
 const conversation_data = [
   { helper_id: 2, requester_id: 1, request_id: 1 },
-  { helper_id: 1, requester_id: 2, request_id: 0 },
-  { helper_id: 0, requester_id: 3, request_id: 2 },
+  { helper_id: 1, requester_id: 2, request_id: 1 },
+  { helper_id: 1, requester_id: 3, request_id: 2 },
 ];
 
 const message_data = [
