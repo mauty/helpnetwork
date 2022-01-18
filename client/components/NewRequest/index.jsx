@@ -20,10 +20,10 @@ const NewRequest = (props) => {
       <CategoryList />
       <div className="mx">
         <div className='flex flex-col p-2'>
-          <label class="label">
-            <span class="label-text">Details</span>
+          <label className="label">
+            <span className="label-text">Details</span>
           </label>
-          <textarea class="textarea h-24 textarea-bordered"></textarea>
+          <textarea className="textarea h-24 textarea-bordered"></textarea>
         </div>
       </div>
       <ResourceList />
