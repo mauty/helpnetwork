@@ -17,10 +17,15 @@ router.get('/profile', async function (req, res) {
 
 /*Get route to see other users profiles*/
 router.get('/profile/:id', async function (req, res) {
-	const { id } = req.params;
+	const { id } = req.query;
 
-	const person = await prisma.person.findOne({
-		where: { id },
+	const person = await prisma.person.findFirst({
+		where: {
+      id
+    },
+    include: {
+      personal_resources: true
+    }
 	});
 
 	res.json(person);
