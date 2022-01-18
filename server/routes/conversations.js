@@ -1,4 +1,5 @@
 const { PrismaClient } = require('@prisma/client');
+const { json } = require('express');
 const express = require('express');
 const router = express.Router();
 const prisma = new PrismaClient();
@@ -26,12 +27,12 @@ router.get('/conversations', async function (req, res) {
 });
 
 //Get a specific conversation that the user has
-router.get('/conversations/:conversation_id', async function (req, res) {
-	const { conversation_id } = req.body;
-
-	const conversation = await prisma.conversation.findOne({
+router.get('/conversations/:id', async function (req, res) {
+	const { id } = req.params;
+	console.log('Conversation ID: ', id);
+	const conversation = await prisma.conversation.findFirst({
 		where: {
-			conversation_id,
+			id: parseInt(id),
 		},
 		include: {
 			messages: true,
