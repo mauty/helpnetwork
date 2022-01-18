@@ -31,6 +31,20 @@ router.get('/profile/:id', async function (req, res) {
 	res.json(person);
 });
 
+/* Post route to see edit own profile*/
+router.post('/profile', async function (req, res) {
+	// TODO: Get the ID from the session
+  const { id } = req.params;
+  console.log(req);
+
+	// const person = await prisma.person.update({
+	// 	where: { id },
+  //   data: {}
+	// });
+
+	// res.json(person);
+});
+
 module.exports = router;
 
 //requests
