@@ -3,10 +3,10 @@ const express = require('express');
 const router = express.Router();
 const prisma = new PrismaClient();
 
-/* GET resources listing. */
-router.get('/resources', async function (_req, res) {
-  const resources = await prisma.resource.findMany();
-  res.json(resources);
+/* GET categories listing. */
+router.get('/categories', async function (_req, res) {
+  const categories = await prisma.category.findMany();
+  res.json(categories);
 });
 
 module.exports = router;
