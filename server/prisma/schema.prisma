@@ -58,6 +58,7 @@ model Category {
   name    String
   image   String?
   request Request?
+
 }
 
 model Resource {
