@@ -1,4 +1,4 @@
-export function Shimmer() {
+export default function Shimmer() {
   return (
     <div className="animate-pulse flex flex-col space-y-4">
       <div className="h-6 bg-gray-500 bg-opacity-25 rounded-lg w-1/2"></div>
