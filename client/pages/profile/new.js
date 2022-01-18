@@ -1,34 +1,37 @@
 import Container from '../../components/ui/Container';
+import useAuth from '../../hooks/useAuth';
 
 function NewProfile() {
+  useAuth();
+
   return (
     <Container title='New Profile'>
       <div className="mx-2">
         <div className='flex justify-between p-2 gap-4'>
-          <div class="form-control gap-2 w-full">
+          <div className="form-control gap-2 w-full">
             <div>
-              <label class="label">
-                <span class="label-text">First Name</span>
+              <label className="label">
+                <span className="label-text">First Name</span>
               </label>
-              <input type="text" class="input input-sm input-bordered w-full sm:w-80"/>
+              <input type="text" className="input input-sm input-bordered w-full sm:w-80"/>
             </div>
             <div>
-              <label class="label">
-                <span class="label-text">Last Name</span>
+              <label className="label">
+                <span className="label-text">Last Name</span>
               </label>
-              <input type="text" class="input input-sm input-bordered w-full sm:w-80"/>
+              <input type="text" className="input input-sm input-bordered w-full sm:w-80"/>
             </div>
             <div>
-              <label class="label">
-                <span class="label-text">Email</span>
+              <label className="label">
+                <span className="label-text">Email</span>
               </label>
-              <input type="email" class="input input-sm input-bordered w-full sm:w-80"/>
+              <input type="email" className="input input-sm input-bordered w-full sm:w-80"/>
             </div>
             <div>
-              <label class="label">
-                <span class="label-text">Postal Code</span>
+              <label className="label">
+                <span className="label-text">Postal Code</span>
               </label>
-              <input type="text" class="input input-sm input-bordered w-full sm:w-80"/>
+              <input type="text" className="input input-sm input-bordered w-full sm:w-80"/>
             </div>
           </div>
 
@@ -36,10 +39,10 @@ function NewProfile() {
         </div>
 
         <div className='flex flex-col p-2'>
-          <label class="label">
-            <span class="label-text">Your bio</span>
+          <label className="label">
+            <span className="label-text">Your bio</span>
           </label>
-          <textarea class="textarea h-24 textarea-bordered"></textarea>
+          <textarea className="textarea h-24 textarea-bordered"></textarea>
         </div>
 
         <div className='mt-4'>
@@ -47,29 +50,29 @@ function NewProfile() {
           Resources
           </h1>
           <div className="flex flex-col sm:w-96">
-            <div class="alert-sm alert-info rounded m-1">
-              <div class="flex justify-between items-center">
+            <div className="alert-sm alert-info rounded m-1">
+              <div className="flex justify-between items-center">
                 <label className='text-sm font-semibold'>SNOW BLOWER</label>
-                <input type="checkbox" class="toggle toggle-primary" checked/>
+                <input type="checkbox" className="toggle toggle-primary" checked/>
               </div>
             </div>
-            <div class="alert-sm alert-info rounded m-1">
-              <div class="flex justify-between items-center">
+            <div className="alert-sm alert-info rounded m-1">
+              <div className="flex justify-between items-center">
                 <label className='text-sm font-semibold'>SNOW BLOWER</label>
-                <input type="checkbox" class="toggle toggle-primary" /*checked*//>
+                <input type="checkbox" className="toggle toggle-primary" /*checked*//>
               </div>
             </div>
-            <div class="alert-sm alert-info rounded m-1">
-              <div class="flex justify-between items-center">
+            <div className="alert-sm alert-info rounded m-1">
+              <div className="flex justify-between items-center">
                 <label className='text-sm font-semibold'>SNOW BLOWER</label>
-                <input type="checkbox" class="toggle toggle-primary" checked/>
+                <input type="checkbox" className="toggle toggle-primary" checked/>
               </div>
             </div>
           </div>
         </div>
 
         <div className='flex justify-center mt-4'>
-          <button class="btn btn-primary">Save</button>
+          <button className="btn btn-primary">Save</button>
         </div>
       </div>
     </Container>)
