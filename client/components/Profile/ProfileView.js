@@ -1,9 +1,11 @@
+import { useRouter } from "next/router"
 import Container from '../ui/Container';
 
-export default function ProfileView(data) {
+export default function ProfileView({ data }) {
+  const router = useRouter();
+
   return (
-    <>
-    <Container title='John Smith'>
+    <Container title={`${data.first_name} ${data.last_name}`}>
       <div className="flex flex-col gap-6 mx-2">
         <div className='flex justify-between p-2'>
             <p>{data.bio}</p>
@@ -11,7 +13,7 @@ export default function ProfileView(data) {
         </div>
         <div>
           {
-            data.personal_resources && (
+            data.personal_resourcesa && data.personal_resources.length && (
               <>
                 <h1 className="text-lg font-bold text-gray-900 dark:text-gray-100 p-2">
                 Resources
@@ -19,8 +21,8 @@ export default function ProfileView(data) {
                 <div className="flex flex-col sm:w-96">
                   {
                     data.personal_resources.map(resource => (
-                      <div class="alert-sm alert-info rounded m-1">
-                        <div class="flex-1">
+                      <div key={resource.id} className="alert-sm alert-info rounded m-1">
+                        <div className="flex-1">
                           <label className='text-sm font-semibold'>{resource.name}</label>
                         </div>
                       </div>
@@ -36,12 +38,12 @@ export default function ProfileView(data) {
             Points Earned
           </h1>
           <div className='flex gap-2'>
-            <div class="rating rating-md">
-              <input disabled class="mask mask-star-2 bg-warning"/>
-              <input disabled class="mask mask-star-2 bg-warning"/>
-              <input disabled class="mask mask-star-2 bg-warning"/>
-              <input disabled class="mask mask-star-2 bg-warning"/>
-              <input disabled class="mask mask-star-2 bg-warning"/>
+            <div className="rating rating-md">
+              <input disabled className="mask mask-star-2 bg-warning"/>
+              <input disabled className="mask mask-star-2 bg-warning"/>
+              <input disabled className="mask mask-star-2 bg-warning"/>
+              <input disabled className="mask mask-star-2 bg-warning"/>
+              <input disabled className="mask mask-star-2 bg-warning"/>
             </div>
             <label className='font-medium text-gray-800 text-lg'>{data.points}</label>
           </div>
@@ -50,18 +52,21 @@ export default function ProfileView(data) {
           <h1 className="text-lg font-bold text-gray-900 dark:text-gray-100 p-2">
             Completed Requests
           </h1>
-          <div class="alert-sm alert-success rounded m-1">
-              <div class="flex flex-col">
+          <div className="alert-sm alert-success rounded m-1">
+              <div className="flex flex-col">
                 <label className='text-sm font-semibold'>Gutter Cleaning</label>
                 <label className='text-xs'>Betsy Johnson</label>
               </div>
           </div>
         </div>
-        <div className='flex justify-center'>
-          <button class="btn btn-primary">Contact Helper</button>
-        </div>
+        {
+          router.asPath !== '/profile' && (
+            <div className='flex justify-center'>
+              <button className="btn btn-primary">Contact Helper</button>
+            </div>
+          )
+        }
       </div>
     </Container>
-    </>
   )
 }
