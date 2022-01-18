@@ -19,24 +19,5 @@ const Compose = (props) => {
   );
 }
 
-// <div class="form-control" onSubmit={(event) => event.preventDefault()}>
-//   <label className="label">
-//     <span className="label-text">Message</span>
-//   </label> 
-//   <input type="text" placeholder="Enter Message" class="input input-bordered" value={}>
-// </div>
-
-
-// <form autoComplete='off' >
-// 					<input
-// 						className=''
-// 						name='name'
-// 						type='text'
-// 						placeholder='Enter Message'
-// 						onChange={(event) => setName(event.target.value)}
-// 						value={name}
-// 						data-testid='student-name-input'
-// 					/>
-// 				</form>
 
 export default Compose;

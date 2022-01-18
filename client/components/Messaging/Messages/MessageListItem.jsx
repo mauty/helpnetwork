@@ -1,23 +1,18 @@
-const MessageListItem = (message, isItMine) => {
+const MessageListItem = (props) => {
+  const { } = props;
   
+  const senderOrReceiver = user
 
-  const message = (isItMine) => {
-  if(isItMine) {
-    <div className="rounded-md justify-right bg: green">
-      {message}
-    </div>
-  } else
-    <div className="rounded-md justify-left">
-      {message}
-    </div>
-  }
 
-  const 
+
+
   return (
-    {message}
+    <div className="w-300 mx-50 rounded-full bg-blue-900 dark:bg-slate-900">
+      <p className="text-slate-500 dark:text-slate-400 mt-2 text-sm">
+        Hello My name is Amir.
+      </p>
+    </div>
   );
-
-
 }
 
 

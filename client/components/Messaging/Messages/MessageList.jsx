@@ -32,7 +32,7 @@ const MessageList = (props) => {
     </div>];
 
 const newArray = messages.map(
-  (arrayItem, arrayItemIndex, wholeArray) => arrayItem
+  (arrayItem) => arrayItem
 );
     
   return (
