@@ -22,7 +22,7 @@ export default function Home() {
         <Map setViewport={setViewport} viewport={viewport}>
           <div className='flex justify-start gap-2 m-2'>
             <div className="dropdown">
-              <button className="btn btn-sm">Filter</button>
+              <button className="btn btn-xs">Filter</button>
               <ul tabIndex="0" className="p-2 shadow menu dropdown-content bg-base-100 rounded-box w-52 my-1">
                 <li>
                   <a>Category</a>
@@ -36,7 +36,7 @@ export default function Home() {
               </ul>
             </div>
             <div className="dropdown">
-              <button className="btn btn-sm">Sort</button>
+              <button className="btn btn-xs">Sort</button>
               <ul tabIndex="0" className="p-2 shadow menu dropdown-content bg-base-100 rounded-box w-52 my-1">
                 <li>
                   <a>Item 1</a>
