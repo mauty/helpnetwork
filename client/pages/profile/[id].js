@@ -1,5 +1,5 @@
 import Shimmer from "../../components/ui/Shimmer";
-import Profile from "./index";
+import ProfileView from "../../components/Profile/ProfileView";
 import useAxios from "../../hooks/useAxios";
 import { useQuery } from "react-query";
 
@@ -15,7 +15,7 @@ function ProfileId({ id }) {
 
   if(isLoading) return <div className="p-2"><Shimmer/></div>;
   if(isError) return <div className="p-2"><ErrorMessage title="Error" error="Something unexpected... Try again"/></div>;
-  return <Profile data={data}/>
+  return <ProfileView data={data}/>
 }
 
 export default ProfileId
