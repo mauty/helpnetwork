@@ -4,10 +4,14 @@ import {
   QueryClient,
   QueryClientProvider,
 } from 'react-query'
+import { createContext, useState } from "react";
 
 const queryClient = new QueryClient()
 
+export const UserContext = createContext();
+
 const MyApp = ({ Component, pageProps }) => {
+  const [currentUser, setCurrentUser] = useState(null);
 
   return (
     <>
@@ -16,7 +20,9 @@ const MyApp = ({ Component, pageProps }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <QueryClientProvider client={queryClient}>
-        <Component {...pageProps} />
+        <UserContext.Provider value={{ currentUser, setCurrentUser }}>
+          <Component {...pageProps} />
+        </UserContext.Provider>
       </QueryClientProvider>
     </>
   )

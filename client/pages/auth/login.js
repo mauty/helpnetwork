@@ -1,6 +1,13 @@
+import React, { useContext } from 'react';
+import { useRouter } from 'next/router';
+import { UserContext } from '../_app';
+
 import Container from "../../components/ui/Container";
 
 export default function Login() {
+  const router = useRouter();
+  const data = useContext(UserContext);
+
   const USERS = [
     { id: 1, email: "helper@example.com", name: "Bob Johnson" },
     { id: 2, email: "sender@example.com", name: "Sally Smith" },
@@ -8,7 +15,8 @@ export default function Login() {
   ];
 
   function handleLogin(id) {
-    console.log(id);
+    data.setCurrentUser(USERS[id - 1]);
+    router.push("/");
   }
 
   return (
@@ -85,7 +93,8 @@ export default function Login() {
               {
                 USERS.map(user => (
                   <button
-                    onClick={handleLogin(user.id)}
+                    key={user.id}
+                    onClick={() => handleLogin(user.id)}
                     className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                   >
                     <span className="absolute left-0 inset-y-0 flex items-center pl-3">
