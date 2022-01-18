@@ -1,11 +1,13 @@
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+
 import CategoryList from "./CategoryList";
 import Container from "../ui/Container";
 import NavBar from "../NavBar";
 import ResourceList from "./ResourceList";
 import Stepper from "./Stepper";
-import { useState } from "react";
 
-const NewRequest = (props) => {
+const NewRequestForm = (props) => {
   const { } = props;
   
   const [state, setState] = useState({
@@ -27,6 +29,7 @@ const NewRequest = (props) => {
         </div>
       </div>
       <ResourceList />
+      <LocationChooser />
       <Stepper />
       <div className="flex justify-center">
         <button className="btn btn-wide btn-md btn-primary m-4">Next</button>
@@ -35,4 +38,4 @@ const NewRequest = (props) => {
   );
 }
 
-export default NewRequest;
+export default NewRequestForm;
