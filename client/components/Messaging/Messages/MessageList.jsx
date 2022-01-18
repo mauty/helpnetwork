@@ -1,4 +1,5 @@
 import MessageListItem from "./MessageListItem";
+
 const MessageList = (props) => {
 
   //call db for list of conversations for current user
@@ -9,10 +10,9 @@ const MessageList = (props) => {
   //at intervals of 5 seconds refresh component state to update conversation
   //
 
+  //sender or receiver state check
 
-  const postMessage = () => {
-  
-  }
+  //render conditional class depending on user_id
 
   const renderMyMessage = () => {
     
@@ -22,21 +22,12 @@ const MessageList = (props) => {
     
   }
 
-
-  const messages = [<div className="flex justify-center items-center mx-2 margin-top: 20px w-4/5 md:w-4/5 lg:w-4/5">    
-      <MessageListItem></MessageListItem>
-    </div>, <div className="flex justify-center items-center mx-2 margin-top: 20px w-4/5 md:w-4/5 lg:w-4/5">    
-      <MessageListItem></MessageListItem>
-    </div>, <div className="flex justify-center items-center mx-2 margin-top: 20px w-4/5 md:w-4/5 lg:w-4/5">    
-      <MessageListItem></MessageListItem>
-    </div>];
-
-const newArray = messages.map(
-  (arrayItem) => arrayItem
-);
+  const updateMessages = () => {
     
+  }
+
   return (
-    <div>
+    <div className={`${userID === receiver_userID ? "text-right" : "text-left"}`}>
           {messages}
     </div>
   );

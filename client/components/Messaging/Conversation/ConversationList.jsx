@@ -19,6 +19,12 @@ import ConversationListItem from "./ConversationListItem";
     //transition from conversation page dynamic message page
 
 
+  //loading state for whenthe data is coming in
+
+
+  //render conversations based on length of db query return, if empty 
+
+
 function ConversationList(props) {
 	//const conversations = props.days;
 	//const listConversations = conversations.map((conversation) => {

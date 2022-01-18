@@ -3,6 +3,7 @@
 
 //create message with body
 //send button that posts to DB
+
 const Compose = (props) => {
   const { } = props;
   
