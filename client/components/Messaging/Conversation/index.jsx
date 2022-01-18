@@ -3,7 +3,7 @@ const Conversations = (props) => {
   const { } = props;
   
   return (
-    <ConversationList></ConversationList>
+    <ConversationList/>
   );
 }
 
