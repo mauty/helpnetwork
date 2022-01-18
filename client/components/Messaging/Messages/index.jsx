@@ -1,11 +1,14 @@
 import Link from 'next/link';
 import MessageList from './MessageList';
+import Compose from './Compose';
 const Messages = (props) => {
   const { } = props;
   
   return (
-    <MessageList></MessageList>
-
+    <div>
+      <MessageList></MessageList>
+      <Compose></Compose>
+    </div>
   );
 }
 

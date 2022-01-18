@@ -6,9 +6,11 @@ const ConversationListItem = (props) => {
 
   return (
     <div className="conversation-item" className="flex  justify-center items-center px-3  mx-2 margin-top: 20px bg-grey" >
-      <div className="conversation-avatar" className="flex flex-center mx-1">
-        <img src="" alt="" />
-      </div>
+      <div className="avatar placeholder">
+        <div className="bg-neutral-focus text-neutral-content rounded-full w-16 h-16">
+          <span>MX</span>
+        </div>
+      </div> 
       <div className="conversation-info" className="flex flex-col">
         <div className="consversation-header" className="flex justify-between">
           <h3 className="requester-name" className="text-center sm:text-left">Amir Ali</h3>

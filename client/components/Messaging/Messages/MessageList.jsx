@@ -9,6 +9,20 @@ const MessageList = (props) => {
   //at intervals of 5 seconds refresh component state to update conversation
   //
 
+
+  const postMessage = () => {
+  
+  }
+
+  const renderMyMessage = () => {
+    
+  }
+
+  const receiveMessage = () => {
+    
+  }
+
+
   const messages = [<div className="flex justify-center items-center mx-2 margin-top: 20px w-4/5 md:w-4/5 lg:w-4/5">    
       <MessageListItem></MessageListItem>
     </div>, <div className="flex justify-center items-center mx-2 margin-top: 20px w-4/5 md:w-4/5 lg:w-4/5">    
