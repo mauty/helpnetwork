@@ -27,9 +27,12 @@ const MessageList = (props) => {
   }
 
   return (
+    /*
     <div className={`${userID === receiver_userID ? "text-right" : "text-left"}`}>
           {messages}
     </div>
+    */
+    {messages}
   );
 }
 

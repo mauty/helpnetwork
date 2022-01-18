@@ -1,8 +1,7 @@
 const MessageListItem = (props) => {
   const { } = props;
   
-  const senderOrReceiver = user
-
+//function to detect which user
 
 
 
