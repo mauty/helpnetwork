@@ -1,3 +1,5 @@
+import Container from '../ui/Container';
+
 export default function ProfileView(data) {
   return (
     <>
@@ -62,5 +64,4 @@ export default function ProfileView(data) {
     </Container>
     </>
   )
-
 }
