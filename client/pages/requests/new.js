@@ -1,5 +1,5 @@
 import NavBar from "../../components/NavBar"
-import NewRequest from "../../components/NewRequest/NewRequestForm"
+import NewRequestForm from "../../components/NewRequest/NewRequestForm"
 import Container from "../../components/ui/Container"
 import Header from "../../components/Header"
 
