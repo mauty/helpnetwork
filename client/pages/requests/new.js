@@ -9,7 +9,6 @@ function NewRequestPage() {
         <Header pageName="New Request Form" />
         <NewRequestForm />
         <NavBar />
-      
     </div>
   )
 }

@@ -19,9 +19,12 @@ const ResourceList = (props) => {
   })
 
   return (
-    <ul>
-      {resourceComponentArray}
-    </ul>
+    <div>
+      <h2 className="text-lg font-bold">Resources Needed:</h2>
+      <ul>
+        {resourceComponentArray}
+      </ul>
+    </div>
   );
 }
 

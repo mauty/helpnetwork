@@ -1,7 +1,9 @@
 import CategoryListItem from "./CategoryListItem";
 
 const CategoryList = (props) => {
-  const { } = props;
+  const { categoryData } = props;
+
+  console.log('categoryData', categoryData)
   
   const categories = [
     "Groceries",

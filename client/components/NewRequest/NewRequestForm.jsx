@@ -15,16 +15,21 @@ import Stepper from "./Stepper";
 const NewRequestForm = (props) => {
   const { } = props;
   
-  const {isLoading, isError, data} = useQuery('categories', () => {
-    useAxios({ url: '/categories', method: "get"})
+  const [state, setState] = useState({
+    categoryId: 0,
+    details: '',
+    resourceSelected: 0
   })
-  console.log('data from categories>>>>>', data)
-  // const getCategories = () => {
-  //   const categoryData = data
-  // return categoryData; 
-  // };
 
-  // getCategories()
+
+  const getCategories = () => {
+    const {isLoading, isError, data} = useQuery('categories', () => useAxios({ url: '/categories', method: "get"}))
+    const categoryData = data
+    console.log('categoryData>>>>>', categoryData)
+    return categoryData;
+  };
+
+  const categoryData = getCategories()
 
   const { register, handleSubmit, setValue, watch, formState: { errors } } = useForm({
     defaultValues: {}
@@ -34,11 +39,6 @@ const NewRequestForm = (props) => {
     register()
   }, [register])
 
-  const [state, setState] = useState({
-    categoryId: 0,
-    details: '',
-    resourceSelected: 0
-  })
 
   const handleCreate = async (data) => {
 
@@ -53,7 +53,7 @@ const NewRequestForm = (props) => {
     <div className="mb-auto">
       <form className="" onSubmit={handleSubmit(onSubmit)}>
         <h2 className="text-xl font-bold">What kind of help do you need?</h2>
-        <CategoryList />
+        <CategoryList categoryData={categoryData} />
         <div className="mx">
           <div className='flex flex-col p-2'>
             <label className="label">
