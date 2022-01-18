@@ -2,13 +2,13 @@ import { useState } from "react";
 import Link from "next/link";
 import { Marker } from "react-map-gl";
 
-export default function Mark() {
+export default function Mark({ longitude, latitude, index }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <Marker
-      latitude={37.8}
-      longitude={-122.41}
+      latitude={latitude || -77.4}
+      longitude={longitude || -77.4}
       offsetLeft={-20}
       offsetTop={-10}
     >
@@ -17,12 +17,12 @@ export default function Mark() {
           className="h-10 w-10 p-1 mask mask-hexagon font-bold rounded-full  text-white transition ease-in-out delay-150 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300"
           onClick={() => setIsOpen((prevState) => !prevState)}
         >
-          +
+          {index}
         </button>
         {isOpen && (
           <div
             onMouseLeave={() => setIsOpen(false)}
-            className="flex flex-col items-center w-40 h-48 bg-white rounded p-1 justify-between"
+            className="z-20 flex flex-col items-center w-40 h-48 bg-white rounded p-1 justify-between"
           >
             <div>
               <p className="text-sm border-b border-gray-300 text-center text-gray-800">
