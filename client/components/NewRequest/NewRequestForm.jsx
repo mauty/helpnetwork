@@ -13,6 +13,7 @@ import ResourceList from "./ResourceList";
 import LocationChooser from "./LocationChooser";
 import TimeChooser from "./TimeChooser";
 import Stepper from "./Stepper";
+import FormDetails from "./FormDetails";
 
 
 const NewRequestForm = (props) => {
@@ -68,14 +69,7 @@ const NewRequestForm = (props) => {
         <form className="" onSubmit={handleSubmit(onSubmit)}>
           <h2 className="text-xl font-bold">What kind of help do you need?</h2>
           {categoryData && <CategoryList categoryData={categoryData} />}
-          <div className="mx">
-            <div className='flex flex-col p-2'>
-              <label className="label">
-                <span className="label-text">Details</span>
-              </label>
-              <textarea className="textarea h-24 textarea-bordered"></textarea>
-            </div>
-          </div>
+          <FormDetails />
           <ResourceList />
           <LocationChooser />
           <TimeChooser />
