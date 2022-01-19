@@ -7,7 +7,7 @@ const MessageListItem = (props) => {
 
   return (
     <>
-    <div className="w-300 mx-50 rounded-full bg-blue-900 dark:bg-slate-900 border border-indigo-600 ">
+    <div className="rounded-full bg-blue-900 text-white p-2 border border-indigo-600 ">
         {body}
     </div>
     <div>
