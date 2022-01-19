@@ -19,16 +19,22 @@ const person_data = [
 const request_data = [
 	{
 		request_details: 'I need help with repairing my car',
+    long: -77.0364,
+    lat: 38.8951,
 		category_id: 1,
     requester_id: 1
 	},
 	{
 		request_details: 'I need help with picking up my groceries from Costco',
+    long: -79.3871,
+    lat: 43.6426,
 		category_id: 2,
     requester_id: 2
 	},
 	{
 		request_details: 'I need a help clearing snow from my driveway',
+    long: -79.3948,
+    lat: 43.6677,
 		category_id: 3,
     requester_id: 1
 	},
