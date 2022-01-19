@@ -35,7 +35,11 @@ router.get('/conversations/:id', async function (req, res) {
 			id: parseInt(id),
 		},
 		include: {
-			messages: true,
+			messages: {
+        orderBy: {
+          timestamp: 'desc'
+        }
+      },
 		},
 	});
 
@@ -44,13 +48,13 @@ router.get('/conversations/:id', async function (req, res) {
 
 /* Route to post a new message to the db */
 
-router.post('/conversations/:conversation_id', async function (req, res) {
-	const conversation_id = req.params;
-	const { body } = req.body;
+router.post('/conversations/:id', async function (req, res) {
+	const id = req.params;
+	const { body } = req.body.params;
 
 	const message = await prisma.message.create({
 		data: {
-			conversation_id,
+			conversation_id: 1,
 			body,
 		},
 	});

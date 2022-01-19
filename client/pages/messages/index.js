@@ -13,13 +13,16 @@ function Messages(props) {
 		'conversations',
 		() => useAxios({ url: `/conversations/1`, method: 'get' }),
 		{
-			refetchInterval: 60000,
+			refetchInterval: 50000,
 		},
 	);
 	console.log('Data >>>>', data);
 
 	// const [data, setData] = useState({}); // optional
 
+  // function refetchData() {
+  //   return refetch;
+  // }
 	//function to write msg to db
 	//function to refresh page
 	return (
@@ -27,7 +30,7 @@ function Messages(props) {
 			<NavBar />
 			<Container title='Talk With Requester'>
 				{data && <MessageList key={data.id} {...data} />}
-				<Compose />
+				<Compose reload={() => {refetch}}/>
 			</Container>
 			<button onClick={refetch}> Do refetch NOW </button>
 		</>
