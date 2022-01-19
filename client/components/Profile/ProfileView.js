@@ -38,14 +38,14 @@ export default function ProfileView({ data }) {
             Points Earned
           </h1>
           <div className='flex gap-2'>
-            <div className="rating rating-md">
-              <input disabled className="mask mask-star-2 bg-warning"/>
-              <input disabled className="mask mask-star-2 bg-warning"/>
-              <input disabled className="mask mask-star-2 bg-warning"/>
-              <input disabled className="mask mask-star-2 bg-warning"/>
-              <input disabled className="mask mask-star-2 bg-warning"/>
+            <div className="rating rating-md px-2">
+              <input type="radio" checked="checked" className="mask mask-star-2 bg-warning" disabled/>
+              <input type="radio" className="mask mask-star-2 bg-warning" disabled/>
+              <input type="radio" className="mask mask-star-2 bg-warning"disabled/>
+              <input type="radio" className="mask mask-star-2 bg-warning" disabled/>
+              <input type="radio" className="mask mask-star-2 bg-warning" disabled/>
             </div>
-            <label className='font-medium text-gray-800 text-lg'>{data.points}</label>
+            <label className='font-medium text-gray-800 text-xl'>{data.points}</label>
           </div>
         </div>
         <div>

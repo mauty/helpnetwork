@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useQuery } from 'react-query';
 import useAxios from '../hooks/useAxios';
 import Mark from '../components/Map/Mark';
@@ -11,11 +11,18 @@ import ErrorMessage from '../components/ui/ErrorMessage';
 import Shimmer from '../components/ui/Shimmer';
 import ListItem from '../components/Home/ListItem';
 import useViewport from '../hooks/useViewport';
+import MapCollapseTab from '../components/Map/MapCollapseTab';
+import clsx from 'clsx';
 
 
 export default function Home() {
+  const [ currentCategory, setCategory ] = useState(null);
+  const [ currentResources, setResources ] = useState([]);
   const { viewport, copyViewport, setViewport, isViewportLoading } = useViewport();
-  const {isLoading, isError, data} = useQuery(['requests', copyViewport], () => useAxios({ url: '/requests', method: "get", params: { long: viewport.longitude, lat: viewport.latitude } }));
+
+  const { isLoading, isError, data } = useQuery(['requests', copyViewport], () => useAxios({ url: '/requests', method: "get", params: { long: viewport.longitude, lat: viewport.latitude } }));
+  const { data: categoriesData } = useQuery('categories', () => useAxios({ url: '/categories', method: "get"}));
+  const { data: resourcesData } = useQuery('resources', () => useAxios({ url: '/resources', method: "get"}));
 
   return (
     <>
@@ -24,21 +31,49 @@ export default function Home() {
           <div className='flex justify-start gap-2 m-2'>
             <div className="dropdown">
               <button className="btn btn-sm btn-ghost px-1"><Filter/></button>
-              <ul tabIndex="0" className="p-2 shadow menu dropdown-content bg-base-100 rounded-box w-52 my-1">
-                <li>
-                  <a>Category</a>
-                </li>
-                <li>
-                  <a>Time</a>
-                </li>
-                <li>
-                  <a>Resource</a>
-                </li>
+              <ul tabIndex="0" className="p-1 bg-opacity-95 shadow menu dropdown-content bg-base-100 rounded-box w-80 my-1">
+                <MapCollapseTab name="Category">
+                {
+                  categoriesData &&
+                    categoriesData.map(category =>
+                      <button
+                        className={clsx('btn btn-xs btn-primary m-1', category.id === currentCategory && ("btn-error"))}
+                        onClick={
+                          () => setCategory(prevState => {
+                            if(prevState === category.id) return null;
+                            return category.id;
+                          })
+                        }>
+                        {category.name}
+                      </button>)
+                }
+                </MapCollapseTab>
+                <MapCollapseTab name="Resources">
+                {
+                  resourcesData &&
+                    resourcesData.map(resource =>
+                      <button
+                        className={clsx('btn btn-xs btn-primary m-1', currentResources.includes(resource.id) && ("btn-error"))}
+                        onClick={
+                          () => setResources(prevState => {
+                            if(prevState.includes(resource.id)) {
+                              return prevState.filter(id => resource.id !== id)
+                            }
+
+                            return [...prevState, resource.id];
+                          })
+                        }>
+                        {resource.name}
+                      </button>)
+                }
+                </MapCollapseTab>
+
+                <MapCollapseTab name="Time"><div>asdf</div></MapCollapseTab>
               </ul>
             </div>
             <div className="dropdown">
               <button className="btn btn-sm btn-ghost px-1"><AlignCenter/></button>
-              <ul tabIndex="0" className="p-2 shadow menu dropdown-content bg-base-100 rounded-box w-52 my-1">
+              <ul tabIndex="0" className="p-1 bg-opacity-95 shadow menu dropdown-content bg-base-100 rounded-box w-52 my-1">
                 <li>
                   <a>Item 1</a>
                 </li>
