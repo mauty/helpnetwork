@@ -28,6 +28,22 @@ const person_data = [
 		long: -79.4805399308699,
 		safety_details: 'Masks, vaccines, boosted',
 	},
+	{
+		email: 'amir@email.com',
+		first_name: 'Amir',
+		last_name: 'Ali',
+		bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Risus feugiat in ante metus dictum at tempor commodo. Pulvinar pellentesque habitant morbi tristique senectus et.',
+		postal_code: 'M9N 0B1',
+		safety_details: 'Masks, vaccines, boosted',
+	},
+	{
+		email: 'malcolm@email.com',
+		first_name: 'Malcolm',
+		last_name: 'Merchant',
+		bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Risus feugiat in ante metus dictum at tempor commodo. Pulvinar pellentesque habitant morbi tristique senectus et.',
+		postal_code: 'M5A T8E',
+		safety_details: 'Masks are evil',
+	},
 ];
 
 const request_data = [
@@ -58,23 +74,7 @@ const request_data = [
 		long: -79.1848,
 		lat: 43.8977,
 		category_id: 3,
-		requester_id: 3,
-	},
-	{
-		request_details:
-			'Can someone help me install my new satellite dish?.',
-		long: -79.1848,
-		lat: 43.8977,
-		category_id: 7,
-		requester_id: 4,
-	},
-	{
-		request_details:
-			'I need a morning jogging buddy.',
-		long: -79.1848,
-		lat: 43.8977,
-		category_id: 9,
-		requester_id: 3,
+		requester_id: 2,
 	},
 ];
 
@@ -115,29 +115,32 @@ const personal_resource_data = [
 
 const conversation_data = [
 	{ helper_id: 2, requester_id: 1, request_id: 1 },
-	{ helper_id: 1, requester_id: 2, request_id: 3 },
-	{ helper_id: 3, requester_id: 3, request_id: 2 },
-	{ helper_id: 1, requester_id: 4, request_id: 4 },
-	{ helper_id: 2, requester_id: 3, request_id: 5 },
+	{ helper_id: 3, requester_id: 1, request_id: 1 },
+	{ helper_id: 4, requester_id: 1, request_id: 1 },
+	{ helper_id: 3, requester_id: 2, request_id: 2 },
+	{ helper_id: 1, requester_id: 2, request_id: 2 },
+	{ helper_id: 4, requester_id: 2, request_id: 2 },
+	{ helper_id: 3, requester_id: 1, request_id: 3 },
+	{ helper_id: 4, requester_id: 1, request_id: 3 },
+	{ helper_id: 1, requester_id: 2, request_id: 4 },
+	{ helper_id: 3, requester_id: 2, request_id: 4 },
+	{ helper_id: 4, requester_id: 2, request_id: 4 },
 ];
 
 const message_data = [
 	{
 		body: 'Hey I would love to help you with your request',
 		conversation_id: 1,
-		sender_id: 
 	},
 	{ body: 'Hi, thank you for excepting my request', conversation_id: 1 },
 	{
 		body: 'Hey I would love to help you with your request',
 		conversation_id: 2,
-		sender_id
 	},
 	{ body: 'Hi, thank you for excepting my request', conversation_id: 2 },
 	{
 		body: 'Hey I would love to help you with your request',
 		conversation_id: 3,
-		sender_id
 	},
 	{ body: 'Hi, thank you for excepting my request', conversation_id: 3 },
 ];
