@@ -3,11 +3,13 @@ import ResourceListItem from "./ResourceListItem";
 const ResourceList = (props) => {
   const { resourceData } = props;
   
-  console.log('resourceData from ResrouceList >>>', resourceData)
-
   const resourceComponentArray = resourceData.map((resource) => {
     return (
-      <ResourceListItem key={resource.id} resourceName={resource.name} />
+      <ResourceListItem
+        key={resource.id}
+        id={resource.id}
+        resourceName={resource.name} 
+      />
     )
   })
 

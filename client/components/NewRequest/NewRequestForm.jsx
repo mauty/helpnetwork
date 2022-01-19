@@ -21,24 +21,19 @@ const NewRequestForm = (props) => {
   
   const { state, setState } = useContext(FormContext)
 
-  console.log('state from useContext', state)
-
   // State Needed for Each Component
   // - open/closed
   // - empty/data validated
-  // - 
 
   const getCategories = () => {
     const {isLoading, isError, data} = useQuery('categories', () => useAxios({ url: '/categories', method: "get"}))
     const categoryData = data
-    // console.log('categoryData>>>>>', categoryData)
     return categoryData;
   };
 
   const categoryData = getCategories()
 
-  // Get Resources and build object by ids
-  
+  // Get All Resources and return array of resource objects
   const getAllResources = () => {
     const {isLoading, isError, data} = useQuery('resources', () => useAxios({ url: '/resources', method: "get"}))
     return data;
@@ -46,13 +41,10 @@ const NewRequestForm = (props) => {
 
   const resourceData = getAllResources()
 
+  // REACT-HOOK-FORM CODE
   const { register, handleSubmit, setValue, watch, formState: { errors } } = useForm({
     defaultValues: {}
   });
-
-  useEffect(() => {
-    console.log('state from inside of useEffect', state)
-  }, [state])
 
   // useEffect(() => {
   //   register()

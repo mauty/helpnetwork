@@ -14,12 +14,12 @@ const LocationChooser = (props) => {
         <label className='text-lg font-semibold'>Or Somewhere Else:</label>
         <input type="checkbox" className="toggle toggle-primary" unchecked="true" />
       </div>
-          <label className="label">
-            <span className="label-text">Postal Code</span>
-          </label>
-          <input type="text" className="input input-sm input-bordered w-full sm:w-80" placeholder="eg: M6C 2R8"/>
-        </div>
+        <label className="label">
+          <span className="label-text">Postal Code</span>
+        </label>
+        <input type="text" className="input input-sm input-bordered w-full sm:w-80" placeholder="eg: M6C 2R8"/>
       </div>
+    </div>
   );
 }
 
