@@ -14,7 +14,7 @@ const ResourceList = (props) => {
 
   const resourceComponentArray = resourcesData.map((resource) => {
     return (
-      <ResourceListItem resourceName={resource} />
+      <ResourceListItem key={resource.id} resourceName={resource} />
     )
   })
 

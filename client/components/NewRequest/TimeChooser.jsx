@@ -10,9 +10,9 @@ const TimeChooser = (props) => {
     <div className='flex justify-between p-2 gap-4 mt-8'>
       <div className="form-control gap-2 w-full">
         <button className="btn btn-secondary mb-6" onClick={clickHandler}>Anytime is Fine</button>
-        <div class="flex justify-between items-center">
+        <div className="flex justify-between items-center">
           <label className='text-lg font-semibold'>Or Specific Time:</label>
-          <input type="checkbox" class="toggle toggle-primary" unchecked="true" />
+          <input type="checkbox" className="toggle toggle-primary" unchecked="true" />
         </div>
         <div>
           <label className="label">

@@ -29,7 +29,7 @@ const CategoryList = (props) => {
 
   const categoriesArray = categoryData.map((category) => {
     return (
-      <li className="mb-1">
+      <li key={category.id} className="mb-1">
         <button className="btn btn-sm" onClick={() => clickHandler(category.id)} >{category.name}</button>
       </li>
     // <CategoryListItem key={category.id} name={category.name}/>
