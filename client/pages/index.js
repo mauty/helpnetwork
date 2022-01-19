@@ -24,6 +24,7 @@ export default function Home() {
           <div className='flex justify-start gap-2 m-2'>
             <div className="dropdown">
               <button className="btn btn-sm btn-ghost px-1"><Filter/></button>
+              <button className="btn btn-xs">Filter</button>
               <ul tabIndex="0" className="p-2 shadow menu dropdown-content bg-base-100 rounded-box w-52 my-1">
                 <li>
                   <a>Category</a>
@@ -38,6 +39,7 @@ export default function Home() {
             </div>
             <div className="dropdown">
               <button className="btn btn-sm btn-ghost px-1"><AlignCenter/></button>
+              <button className="btn btn-xs">Sort</button>
               <ul tabIndex="0" className="p-2 shadow menu dropdown-content bg-base-100 rounded-box w-52 my-1">
                 <li>
                   <a>Item 1</a>
