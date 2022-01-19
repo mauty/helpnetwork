@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { useQuery } from 'react-query';
+import { useState, useEffect, useRef } from 'react';
+import { useQuery, useMutation } from 'react-query';
 import useAxios from '../../hooks/useAxios';
 
 import NavBar from '../../components/NavBar';
@@ -11,28 +11,63 @@ import Compose from '../../components/Messaging/Messages/Compose';
 function Messages(props) {
 	const { isLoading, isError, data, refetch } = useQuery(
 		'conversations',
-		() => useAxios({ url: `/conversations/1`, method: 'get' }),
+		() => {
+			console.log('Ok Refreshing page');
+			return useAxios({ url: `/conversations/1`, method: 'get' });
+		},
 		{
-			refetchInterval: 50000,
+			refetchInterval: 10000,
 		},
 	);
 	console.log('Data >>>>', data);
 
-	// const [data, setData] = useState({}); // optional
+	const refreshButton = useRef(null);
 
-  // function refetchData() {
-  //   return refetch;
-  // }
+	// const [data, setData] = useState({}); // optional?
+
+	// function refetchData() {
+	//   return refetch;
+	// }
 	//function to write msg to db
 	//function to refresh page
+
+	const [text, setText] = useState('');
+
+	const mutation = useMutation((newMessage) =>
+		useAxios({ url: `/conversations/1`, method: 'post', params: newMessage }),
+	);
+
+	function handleSubmit() {
+		mutation.mutate({ body: text, sender_id: 1 });
+		setText('');
+		setTimeout(() => {
+			refreshButton.current.click();
+			console.log('Reload function >>>>> ', refreshButton.current);
+		}, 1500);
+	}
+
 	return (
 		<>
 			<NavBar />
 			<Container title='Talk With Requester'>
 				{data && <MessageList key={data.id} {...data} />}
-				<Compose reload={() => {refetch}}/>
+				{/* COMPOSE MESSAGE */}
+				<div className='w-full flex justify-between'>
+					<textarea
+						className='flex-grow focus:bg-white m-2 py-2 px-4 mr-1 rounded-full border border-gray-300 bg-gray-200 resize-none'
+						rows='1'
+						placeholder='Message...'
+						onChange={(event) => setText(event.target.value)}
+						value={text}></textarea>
+					<button className='p-5' onClick={handleSubmit}>
+						Send
+					</button>
+				</div>
 			</Container>
-			<button onClick={refetch}> Do refetch NOW </button>
+			<button ref={refreshButton} onClick={refetch}>
+				{' '}
+				Do refetch NOW{' '}
+			</button>
 		</>
 	);
 }

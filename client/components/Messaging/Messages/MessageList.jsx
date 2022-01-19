@@ -31,6 +31,7 @@ const MessageList = ({ messages = [] }) => {
         id={message.id}
         body={message.body}
         timestamp={message.timestamp}
+        sender_id={message.sender_id}
       />
     );
   });
