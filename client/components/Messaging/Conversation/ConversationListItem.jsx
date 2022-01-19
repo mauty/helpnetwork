@@ -1,5 +1,6 @@
 const ConversationListItem = (props) => {
   const { name, avatar, time, body } = props;
+
   
   //add props
   //add css
@@ -25,6 +26,5 @@ const ConversationListItem = (props) => {
     </div>
   );
 }
-
 
 export default ConversationListItem;
