@@ -48,7 +48,7 @@ function EditProfile() {
     })
 
     mutation.mutate({ id: currentUser.id, ...formData, personal_resources: enabledResources.map(value => parseInt(value)) });
-    // router.push('/profile');
+    router.push('/profile');
   }
 
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
