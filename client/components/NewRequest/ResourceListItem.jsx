@@ -1,5 +1,9 @@
+import { useContext } from "react";
+import { FormContext } from "../../contexts/FormContext";
+
 const ResourceListItem = (props) => {
   const { resourceName } = props;
+  const {state, setState} = useContext(FormContext)
   
   return (
     <li >

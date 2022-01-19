@@ -1,20 +1,13 @@
 import ResourceListItem from "./ResourceListItem";
 
 const ResourceList = (props) => {
-  const { } = props;
+  const { resourceData } = props;
   
-  const resourcesData = [
-    "Snow Blower",
-    "Lawn Mower",
-    "Pickup Truck",
-    "Ladder",
-    "Wheelbarrow",
-    "Hammer Drill"
-  ]
+  console.log('resourceData from ResrouceList >>>', resourceData)
 
-  const resourceComponentArray = resourcesData.map((resource) => {
+  const resourceComponentArray = resourceData.map((resource) => {
     return (
-      <ResourceListItem key={resource.id} resourceName={resource} />
+      <ResourceListItem key={resource.id} resourceName={resource.name} />
     )
   })
 
