@@ -5,13 +5,42 @@ import useAxios from '../../hooks/useAxios';
 import NavBar from '../../components/NavBar';
 import Container from '../../components/ui/Container';
 import Conversations from '../../components/Messaging/Conversation/';
+import MessageList from '../../components/Messaging/Messages/MessageList';
+import Compose from '../../components/Messaging/Messages/Compose';
 
-function Messages() {
-	const { isLoading, isError, conversation_data } = useQuery(
+function Messages(props) {
+	const { isLoading, isError, data, refetch } = useQuery(
 		'conversations',
-		() => useAxios({ url: `/conversations`, method: 'get' }),
+		() => useAxios({ url: `/conversations/1`, method: 'get' }),
+		{
+			refetchInterval: 60000,
+		},
 	);
-	console.log('conversation_data >>>>', conversation_data);
+	console.log('Data >>>>', data);
+
+	// const [data, setData] = useState({}); // optional
+
+	//function to write msg to db
+	//function to refresh page
+	return (
+		<>
+			<NavBar />
+			<Container title='Talk With Requester'>
+				{data && <MessageList key={data.id} {...data} />}
+				<Compose />
+			</Container>
+			<button onClick={refetch}> Do refetch NOW </button>
+		</>
+	);
+}
+export default Messages;
+
+/*
+function Messages() {
+	const { isLoading, isError, data } = useQuery('conversations', () =>
+		useAxios({ url: `/conversations`, method: 'get' }),
+	);
+	console.log('conversation_data >>>>', data);
 
 	//Add profile information
 
@@ -27,10 +56,10 @@ function Messages() {
 			<Container title='All Messages'>
 				{data && (
 					<Conversations
-						key={conversation_data.id}
-						id={conversation_data.id}
-						request_id={conversation_data.request_id}
-						messages={conversation_data.messages}
+						key={data.conversation.id}
+						id={data[0].id}
+						request_id={data[0].request_id}
+						messages={data[0].messages}
 						// requester={}
 					/>
 				)}
@@ -39,3 +68,5 @@ function Messages() {
 	);
 }
 export default Messages;
+
+*/

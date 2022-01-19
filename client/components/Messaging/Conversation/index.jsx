@@ -25,9 +25,9 @@ import Link from "next/link";
   //render conversations based on length of db query return, if empty 
 
   
-  const renderConversations = (conversations) {
+  // const renderConversations = (conversations) {
     
-  }
+  // }
 function Conversation(props) {
 	//const conversations = props.days;
 	//const listConversations = conversations.map((conversation) => {
@@ -37,7 +37,6 @@ function Conversation(props) {
 				//key={conversation.id}
 				name= "Amir"
         avatar={props.id}
-        time={}
         body={props.message}
 			/>
 		);

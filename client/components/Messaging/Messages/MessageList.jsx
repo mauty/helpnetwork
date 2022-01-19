@@ -1,6 +1,6 @@
 import MessageListItem from "./MessageListItem";
 
-const MessageList = (props) => {
+const MessageList = ({messages = []}) => {
 
   //call db for list of conversations for current user
   //map conversationListItem
@@ -14,17 +14,27 @@ const MessageList = (props) => {
 
   //render conditional class depending on user_id
 
-  const renderMyMessage = () => {
+  // const renderMyMessage = () => {
     
-  }
+  // }
 
-  const receiveMessage = () => {
+  // const receiveMessage = () => {
     
-  }
+  // }
 
-  const updateMessages = () => {
+  // const updateMessages = () => {
     
-  }
+  // }
+  const listOfMessages = messages.map((message) => {
+		return (
+			<MessageListItem
+				key={message.id}
+				id={message.id}
+				body={message.body}
+				timestamp={message.timestamp}
+			/>
+		);
+	});
 
   return (
     /*
@@ -32,7 +42,11 @@ const MessageList = (props) => {
           {messages}
     </div>
     */
-    {messages}
+    //list of messages
+    <section>
+      <ul className='message_list'>{listOfMessages}</ul>
+    </section>
+
   );
 }
 

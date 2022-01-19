@@ -15,7 +15,6 @@ function Conversation(props) {
 	const { isLoading, isError, data } = useQuery('conversations', () =>
 		useAxios({ url: `/conversations/${props.id}`, method: 'get' }),
 	);
-	console.log('Data >>>>', data);
 
 	return (
 		<div className='flex flex-col justify-between'>

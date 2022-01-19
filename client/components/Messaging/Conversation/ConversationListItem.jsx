@@ -5,7 +5,7 @@ const ConversationListItem = (props) => {
   //add css
 
   return (
-    <div className="conversation-item" className="flex  justify-center items-center px-3  mx-2 margin-top: 20px bg-grey" >
+    <div className="conversation-item" className="flex  justify-center items-center px-3  mx-2 margin-top: 20px bg-grey border border-indigo-600 " >
       {/* <div className="avatar placeholder">
         <div className="bg-neutral-focus text-neutral-content rounded-full w-16 h-16">
           <span>{avatar}</span>
