@@ -104,7 +104,6 @@ model Message {
   body            String
   timestamp       DateTime     @default(now())
   sender_id       Int
-  receiver_id     Int
   conversation_id Int
   conversation    Conversation @relation(fields: [conversation_id], references: [id])
 }
