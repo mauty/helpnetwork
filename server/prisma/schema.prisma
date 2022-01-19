@@ -14,6 +14,7 @@ model Person {
   id                 Int                 @id @default(autoincrement())
   createdAt          DateTime            @default(now())
   email              String              @unique
+  imgURL             String?
   first_name         String
   last_name          String
   bio                String?
@@ -45,7 +46,7 @@ model Request {
   points_value        Int                  @default(0)
   helper_id           Int?
   requester_id        Int
-  category_id         Int                  
+  category_id         Int
   category            Category             @relation(fields: [category_id], references: [id])
   helper              Person?              @relation(name: "helper_id", fields: [helper_id], references: [id])
   requester           Person               @relation(name: "requester_id", fields: [requester_id], references: [id])
