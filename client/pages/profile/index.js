@@ -8,8 +8,8 @@ import ErrorMessage from '../../components/ui/ErrorMessage';
 import ProfileView from '../../components/Profile/ProfileView';
 
 export default function Profile() {
-  const user = useContext(UserContext);
-  const { isLoading, isError, data } = useQuery('profile', () => useAxios({ url: `/profile/${user.id}`, method: "get" }));
+  const { currentUser } = useContext(UserContext);
+  const { isLoading, isError, data } = useQuery('profile', () => useAxios({ url: `/profile/${currentUser.id}`, method: "get" }));
   console.log(data);
 
   if(isLoading) return <div className="p-2"><Shimmer/></div>;
