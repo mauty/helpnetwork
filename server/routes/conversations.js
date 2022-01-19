@@ -1,4 +1,5 @@
 const { PrismaClient } = require('@prisma/client');
+const { json } = require('express');
 const express = require('express');
 const router = express.Router();
 const prisma = new PrismaClient();
@@ -26,15 +27,19 @@ router.get('/conversations', async function (req, res) {
 });
 
 //Get a specific conversation that the user has
-router.get('/conversations/:conversation_id', async function (req, res) {
-	const { conversation_id } = req.body;
-
-	const conversation = await prisma.conversation.findOne({
+router.get('/conversations/:id', async function (req, res) {
+	const { id } = req.params;
+	console.log('Conversation ID: ', id);
+	const conversation = await prisma.conversation.findFirst({
 		where: {
-			conversation_id,
+			id: parseInt(id),
 		},
 		include: {
-			messages: true,
+			messages: {
+        orderBy: {
+          timestamp: 'desc'
+        }
+      },
 		},
 	});
 
@@ -43,13 +48,13 @@ router.get('/conversations/:conversation_id', async function (req, res) {
 
 /* Route to post a new message to the db */
 
-router.post('/conversations/:conversation_id', async function (req, res) {
-	const conversation_id = req.params;
-	const { body } = req.body;
+router.post('/conversations/:id', async function (req, res) {
+	const id = req.params;
+	const { body } = req.body.params;
 
 	const message = await prisma.message.create({
 		data: {
-			conversation_id,
+			conversation_id: 1,
 			body,
 		},
 	});
