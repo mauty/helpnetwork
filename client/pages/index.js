@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useQuery } from 'react-query';
 import useAxios from '../hooks/useAxios';
 import Mark from '../components/Map/Mark';
+import { AlignCenter, Filter } from 'react-feather';
 
 import NavBar from  '../components/NavBar';
 import Map from '../components/Map';
@@ -22,7 +23,7 @@ export default function Home() {
         <Map setViewport={setViewport} viewport={viewport}>
           <div className='flex justify-start gap-2 m-2'>
             <div className="dropdown">
-              <button className="btn btn-sm">Filter</button>
+              <button className="btn btn-sm btn-ghost px-1"><Filter/></button>
               <ul tabIndex="0" className="p-2 shadow menu dropdown-content bg-base-100 rounded-box w-52 my-1">
                 <li>
                   <a>Category</a>
@@ -36,7 +37,7 @@ export default function Home() {
               </ul>
             </div>
             <div className="dropdown">
-              <button className="btn btn-sm">Sort</button>
+              <button className="btn btn-sm btn-ghost px-1"><AlignCenter/></button>
               <ul tabIndex="0" className="p-2 shadow menu dropdown-content bg-base-100 rounded-box w-52 my-1">
                 <li>
                   <a>Item 1</a>

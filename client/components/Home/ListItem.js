@@ -8,7 +8,7 @@ export default function ListItem({ id, index, category, name, time, createdAt })
   return (
     <Link href={`/requests/${id}`}>
       <li className="py-4 flex first:pt-0 last:pb-0 items-center hover:bg-gray-100 p-2 rounded cursor-pointer">
-        <span>{index}</span>
+        <div className="basis-7 flex justify-center mask mask-hexagon p-1 bg-blue-500"><p className="text-white">{index}</p></div>
         <div className="ml-3 w-full">
           <div className="flex justify-between items-center">
             <p className="text-sm font-medium">{category}</p>
