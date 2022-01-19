@@ -9,7 +9,7 @@ router.get('/profile/:id', async function (req, res) {
 
 	const person = await prisma.person.findFirst({
 		where: {
-      id
+      id: parseInt(id),
     },
     include: {
       personal_resources: true
