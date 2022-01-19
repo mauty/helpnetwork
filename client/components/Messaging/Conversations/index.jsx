@@ -36,21 +36,28 @@ import Link from "next/link";
   //link a conversation to a specific message
 
 
-function ConversationList({conversations = []}) {
-    
-    const listOfConversations = conversations.map((conversation) => {
+function ConversationList({data }) {
+
+    const listOfConversations = data.map((conversation) => {
+      console.log('Conversation List Item Body', conversation.messages);
+      const id = conversation.id;
       return (
-        <ConversationListItem
-          key={conversation.id}
-          id={conversation.id}
-          body={conversation.messages[0].body}
-          timestamp={conversation.messages[0].timestamp}
-          sender_id={conversation.messages[0].sender_id}
-          //  name={conversation["person"].first_name}
-          // avatar={conversation["person"].imgURL}
-        />
+        <>
+        {/* <Link href={`/messages/[id]`} > */}
+          <ConversationListItem
+            key={conversation.id}
+            id={conversation.id}
+            body={conversation.messages[0]?.body}
+            timestamp={conversation.messages[0]?.timestamp}
+            sender_id={conversation.messages[0]?.sender_id}
+            name={conversation.sender.first_name} 
+            />
+            {/* avatar={conversation["person"].imgURL} */}
+        {/* </Link> */}
+        </>
       );
     });
+
     //requester Name
     //requester img
     //message body 
@@ -59,7 +66,7 @@ function ConversationList({conversations = []}) {
   
   return (
     <div className="">
-      <div className="h-96 flex flex-col overflow-y-scroll">
+      <div className="h-96 flex flex-col overflow-y-scroll border border-indigo-600">
         {listOfConversations}
       </div>
     </div>
