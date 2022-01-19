@@ -3,6 +3,7 @@ import { useQuery } from "react-query";
 import Container from "../../components/ui/Container";
 import useAxios from "../../hooks/useAxios";
 import Shimmer from '../../components/ui/Shimmer';
+import { Send, File } from "react-feather";
 
 export const getServerSideProps = async (ctx) => {
   // TODO: Get the data from the server here using ctx.params.id
@@ -28,7 +29,7 @@ function RequestId({ id }) {
           <h1 className="font-medium text-xl">{`${data.requester.first_name} ${data.requester.last_name}`}</h1>
           <div className="flex items-start">
             <Link href={`/profile/${data.requester.id}`}>
-              <button className="btn btn-sm btn-primary">View Profile</button>
+              <button className="btn btn-sm btn-primary"><File className="h-4 w-4 mr-1"/>View Profile</button>
             </Link>
           </div>
           <div className="my-6">
@@ -82,7 +83,7 @@ function RequestId({ id }) {
               )
             }
           </div>
-          <button onClick={offerHelp} className="btn btn-primary mt-10">Offer my help</button>
+          <button onClick={offerHelp} className="btn btn-primary mt-10"><Send className="mr-2"/> Offer my help</button>
         </div>
       )}
     </Container>
