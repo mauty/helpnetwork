@@ -38,8 +38,13 @@ const NewRequestForm = (props) => {
   const categoryData = getCategories()
 
   // Get Resources and build object by ids
-  // 
+  
+  const getAllResources = () => {
+    const {isLoading, isError, data} = useQuery('resources', () => useAxios({ url: '/resources', method: "get"}))
+    return data;
+  };
 
+  const resourceData = getAllResources()
 
   const { register, handleSubmit, setValue, watch, formState: { errors } } = useForm({
     defaultValues: {}
@@ -66,11 +71,11 @@ const NewRequestForm = (props) => {
   return (
     
       <div className="mb-auto">
-        <form className="" onSubmit={handleSubmit(onSubmit)}>
+        <form className="" onSubmit={handleSubmit(onSubmit)} autoComplete="off">
           <h2 className="text-xl font-bold">What kind of help do you need?</h2>
           {categoryData && <CategoryList categoryData={categoryData} />}
           <FormDetails />
-          <ResourceList />
+          {resourceData && <ResourceList resourceData={resourceData}/>}
           <LocationChooser />
           <TimeChooser />
           <div className="flex justify-center">
