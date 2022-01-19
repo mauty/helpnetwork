@@ -1,22 +1,17 @@
-const MessageListItem = (props) => {
-  const { body, time} = props;
-  
-//function to detect which user
+import timeAgo from "../../../utils/timeAgo";
 
-
+const MessageListItem = ({ body, timestamp }) => {
+  const ago = timeAgo(new Date(timestamp));
+  //function to detect which user
 
   return (
-    <>
-    <div className="rounded-full bg-blue-900 text-white p-2 border border-indigo-600 ">
+    <div className="flex flex-col my-2 mx-1">
+      <div className="rounded-full bg-blue-600 shadow-sm text-white py-1 px-4 border border-indigo-600 text-md">
         {body}
+        <p className="text-2xs text-gray-400 text-right">{ago} ago</p>
+      </div>
     </div>
-    <div>
-        {time}
-    </div>
-    </>
   );
-}
-
-
+};
 
 export default MessageListItem;
