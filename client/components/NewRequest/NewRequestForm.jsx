@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { useQuery } from "react-query";
 import useAxios from "../../hooks/useAxios";
 
+
 import { FormContext } from "../../contexts/FormContext";
 
 import Container from "../ui/Container";
@@ -21,33 +22,30 @@ const NewRequestForm = (props) => {
   
   const { state, setState } = useContext(FormContext)
 
-  console.log('state from useContext', state)
-
   // State Needed for Each Component
   // - open/closed
   // - empty/data validated
-  // - 
 
   const getCategories = () => {
     const {isLoading, isError, data} = useQuery('categories', () => useAxios({ url: '/categories', method: "get"}))
     const categoryData = data
-    // console.log('categoryData>>>>>', categoryData)
     return categoryData;
   };
 
   const categoryData = getCategories()
 
-  // Get Resources and build object by ids
-  // 
+  // Get All Resources and return array of resource objects
+  const getAllResources = () => {
+    const {isLoading, isError, data} = useQuery('resources', () => useAxios({ url: '/resources', method: "get"}))
+    return data;
+  };
 
+  const resourceData = getAllResources()
 
+  // REACT-HOOK-FORM CODE
   const { register, handleSubmit, setValue, watch, formState: { errors } } = useForm({
     defaultValues: {}
   });
-
-  useEffect(() => {
-    console.log('state from inside of useEffect', state)
-  }, [state])
 
   // useEffect(() => {
   //   register()
@@ -66,11 +64,11 @@ const NewRequestForm = (props) => {
   return (
     
       <div className="mb-auto">
-        <form className="" onSubmit={handleSubmit(onSubmit)}>
+        <form className="" onSubmit={handleSubmit(onSubmit)} autoComplete="off">
           <h2 className="text-xl font-bold">What kind of help do you need?</h2>
           {categoryData && <CategoryList categoryData={categoryData} />}
           <FormDetails />
-          <ResourceList />
+          {resourceData && <ResourceList resourceData={resourceData}/>}
           <LocationChooser />
           <TimeChooser />
           <div className="flex justify-center">
