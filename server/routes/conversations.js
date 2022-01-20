@@ -44,6 +44,11 @@ router.get('/conversations/:id', async function (req, res) {
 			id: parseInt(id),
 		},
 		include: {
+			request: {
+				include: {
+					category: true,
+				},
+			},
 			messages: {
 				orderBy: {
 					timestamp: 'desc',

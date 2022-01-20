@@ -58,8 +58,7 @@ model Category {
   id      Int      @id @default(autoincrement())
   name    String
   image   String?
-  request Request?
-
+  requests Request[]
 }
 
 model Resource {

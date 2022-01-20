@@ -3,28 +3,26 @@ const ConversationListItem = (props) => {
   const { name, body, timestamp } = props;
 
   const ago = timeAgo(new Date(timestamp));
-
-  //add props
-  //add css
-
   return (
-    <div className="conversation-item" className="flex justify-center items-center px-3  mx-2 margin-top: 20px bg-grey border border-indigo-600 " >
-      <div className="avatar placeholder">
-        <div className="bg-neutral-focus text-neutral-content rounded-full w-16 h-16">
+
+
+
+<tr>
+      <td>
+        <div className="flex items-center space-x-3">
+        <div className="avatar placeholder">
+        <div className="bg-neutral-focus text-neutral-content rounded-full w-14 h-14">
           <span>AA</span>
         </div>
       </div> 
-      <div className="flex flex-col">
-        <div className="flex justify-between">
-          <h3 className="text-center sm:text-left">{name}</h3>
-          <p className="text-center sm:text-left">{ago} ago</p>
+          <div>
+            <div className="font-bold text-left">{name}</div>
+            <div className="text-sm opacity-50">{body}</div>
+          </div>
         </div>
-        <div className="text-center sm:text-left">
-          {/*Add max characters amount to show in a message bubble.*/}
-          <p>{body}</p>
-        </div>
-      </div>
-    </div>
+      </td>
+      <td className="text-2xs text-gray-400 text-right">{ago} ago</td>
+    </tr>
   );
 }
 

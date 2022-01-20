@@ -12,7 +12,11 @@ router.get('/profile/:id', async function (req, res) {
       id: parseInt(id),
     },
     include: {
-      personal_resources: true
+      personal_resources: {
+        include: {
+          resource: true
+        }
+      }
     }
 	});
 
