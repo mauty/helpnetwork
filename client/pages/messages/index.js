@@ -1,38 +1,24 @@
-import { useState, useEffect } from 'react';
-import { useQuery } from 'react-query';
+import { useState, useEffect, useRef } from 'react';
+import { useQuery, useMutation } from 'react-query';
 import useAxios from '../../hooks/useAxios';
 
 import NavBar from '../../components/NavBar';
 import Container from '../../components/ui/Container';
-import Conversations from '../../components/Messaging/Conversation/';
-import MessageList from '../../components/Messaging/Messages/MessageList';
-import Compose from '../../components/Messaging/Messages/Compose';
-
+import ConversationList from '../../components/Messaging/Conversations';
+//query for conversation list
+//pass props down
 function Messages(props) {
-	const { isLoading, isError, data, refetch } = useQuery(
-		'conversations',
-		() => useAxios({ url: `/conversations/1`, method: 'get' }),
-		{
-			refetchInterval: 50000,
-		},
-	);
-	console.log('Data >>>>', data);
+	const { isLoading, isError, data } = useQuery('conversations', () => {
+		return useAxios({ url: `/conversations/`, method: 'get' });
+	});
+	console.log('Conversation List Data >>>>', data);
 
-	// const [data, setData] = useState({}); // optional
-
-  // function refetchData() {
-  //   return refetch;
-  // }
-	//function to write msg to db
-	//function to refresh page
 	return (
 		<>
 			<NavBar />
 			<Container title='Talk With Requester'>
-				{data && <MessageList key={data.id} {...data} />}
-				<Compose reload={() => {refetch}}/>
+				{data && <ConversationList key={data.id} data={data} />}
 			</Container>
-			<button onClick={refetch}> Do refetch NOW </button>
 		</>
 	);
 }

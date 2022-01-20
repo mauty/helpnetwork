@@ -4,8 +4,7 @@ const express = require('express');
 const router = express.Router();
 const prisma = new PrismaClient();
 
-const requester_id = 1;
-const helper_id = 1;
+const user_id = 1;
 
 // Get all conversations that user has
 router.get('/conversations', async function (req, res) {
@@ -14,12 +13,22 @@ router.get('/conversations', async function (req, res) {
 			OR: [
 				{
 					// TODO: 1 is user 1. Need to get current user id
-					requester_id,
+
+					requester_id: user_id,
 				},
 				{
-					helper_id,
+					helper_id: user_id,
 				},
 			],
+		},
+
+		include: {
+			sender: true,
+			messages: {
+				orderBy: {
+					timestamp: 'desc',
+				},
+			},
 		},
 	});
 
@@ -36,10 +45,10 @@ router.get('/conversations/:id', async function (req, res) {
 		},
 		include: {
 			messages: {
-        orderBy: {
-          timestamp: 'desc'
-        }
-      },
+				orderBy: {
+					timestamp: 'desc',
+				},
+			},
 		},
 	});
 
@@ -50,12 +59,13 @@ router.get('/conversations/:id', async function (req, res) {
 
 router.post('/conversations/:id', async function (req, res) {
 	const id = req.params;
-	const { body } = req.body.params;
+	const { body, sender_id } = req.body.params;
 
 	const message = await prisma.message.create({
 		data: {
 			conversation_id: 1,
 			body,
+			sender_id,
 		},
 	});
 

@@ -4,20 +4,15 @@ import useAxios from '../../hooks/useAxios';
 
 import NavBar from '../../components/NavBar';
 import Container from '../../components/ui/Container';
+import Conversations from '../../components/Messaging/Conversations';
 import MessageList from '../../components/Messaging/Messages';
 
-export const getServerSideProps = async (ctx) => {
-	// TODO: Get the data from the server here using ctx.params.id
-	// TODO: Then return the component Profile with the data
-	return { props: { id: ctx.params.id } };
-};
-
-function Conversation(props) {
+function Messages(props) {
 	const { isLoading, isError, data, refetch } = useQuery(
 		'conversations',
 		() => {
 			console.log('Ok Refreshing page');
-			return useAxios({ url: `/conversations/${props.id}`, method: 'get' });
+			return useAxios({ url: `/conversations/1`, method: 'get' });
 		},
 		{
 			refetchInterval: 10000,
@@ -26,6 +21,14 @@ function Conversation(props) {
 	console.log('Data >>>>', data);
 
 	const refreshButton = useRef(null);
+
+	// const [data, setData] = useState({}); // optional?
+
+	// function refetchData() {
+	//   return refetch;
+	// }
+	//function to write msg to db
+	//function to refresh page
 
 	const [text, setText] = useState('');
 
@@ -67,7 +70,40 @@ function Conversation(props) {
 		</>
 	);
 }
-//help request header
-//container for conversation
-//send message button
-export default Conversation;
+export default Messages;
+
+/*
+function Messages() {
+	const { isLoading, isError, data } = useQuery('conversations', () =>
+		useAxios({ url: `/conversations`, method: 'get' }),
+	);
+	console.log('conversation_data >>>>', data);
+
+	//Add profile information
+
+	// const person_id = conversation_data.requester_id;
+	// const { isLoading, isError, person_data } = useQuery('person', () =>
+	// 	useAxios({ url: `/profile/${person_id}`, method: 'get' }),
+	// );
+	// console.log('person_data >>>>', person_data);
+
+	return (
+		<>
+			<NavBar />
+			<Container title='All Messages'>
+				{data && (
+					<Conversations
+						key={data.conversation.id}
+						id={data[0].id}
+						request_id={data[0].request_id}
+						messages={data[0].messages}
+						// requester={}
+					/>
+				)}
+			</Container>
+		</>
+	);
+}
+export default Messages;
+
+*/
