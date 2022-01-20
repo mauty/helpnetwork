@@ -2,6 +2,7 @@ import { useState } from "react";
 import { set } from "react-hook-form";
 import { useContext } from "react";
 import { FormContext } from "../../contexts/FormContext";
+import clsx from "clsx";
 
 const TimeChooser = (props) => {
   const { } = props;
@@ -35,7 +36,9 @@ const TimeChooser = (props) => {
   return (
     <div className='flex justify-between p-2 gap-4 mt-8'>
       <div className="form-control gap-2 w-full">
-        <button className="btn btn-secondary mb-6" onClick={anytimeButton}>Anytime is Fine</button>
+        <button
+          className={clsx("btn mb-6",{"btn-primary": timeSensitiveToggle === false, "btn-secondary": timeSensitiveToggle === true})}
+          onClick={anytimeButton}>Anytime is Fine</button>
         <div className="flex justify-between items-center">
           <label className='text-lg font-semibold'>Or Specific Time:</label>
           <input

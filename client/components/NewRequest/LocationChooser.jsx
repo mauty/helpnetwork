@@ -1,5 +1,6 @@
 import Geocode from "react-geocode";
 import { useEffect, useState } from "react";
+import clsx from "clsx";
 
 Geocode.setApiKey(process.env.NEXT_PUBLIC_GOOGLE_MAPS_API);
 
@@ -12,13 +13,7 @@ const LocationChooser = (props) => {
 
   const [locationToggle, setLocationToggle] = useState(false)
 
-  const clickHandler = () => {
-    console.log('>>>> trigger google places lookup');
-    // TO DO google places geolocation lookup
-  }
-
   const getCoordsFromPostal = (fromForm) => {
-    
     Geocode.fromAddress(fromForm).then(
       (response) => {
         const { lat, lng } = response.results[0].geometry.location;
@@ -54,7 +49,10 @@ const LocationChooser = (props) => {
   return (
     <div className='flex justify-between p-2 gap-4 mt-10'>
       <div className="form-control gap-2 w-full">
-        <button className="btn btn-secondary mb-6" onClick={handleLocationClick}>Use My Current Location</button>
+        <button className={clsx("btn mb-6",{"btn-primary": locationToggle === false, "btn-secondary": locationToggle === true})} 
+          onClick={handleLocationClick}>
+            Use My Current Location
+          </button>
         <h2>{lat}, {lng}</h2>
         <div className="flex justify-between items-center">
           <label className='text-lg font-semibold'>Or Somewhere Else:</label>
