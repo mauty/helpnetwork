@@ -5,6 +5,7 @@ const logger = require('morgan');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
+const pointsRouter = require('./routes/points');
 const requestsRouter = require('./routes/requests');
 const resourcesRouter = require('./routes/resources');
 const categoriesRouter = require('./routes/categories');
@@ -23,6 +24,7 @@ app.use(cookieParser());
 
 app.use('/', indexRouter);
 app.use('/', usersRouter);
+app.use('/', pointsRouter);
 app.use('/', requestsRouter);
 app.use('/', resourcesRouter);
 app.use('/', categoriesRouter);
