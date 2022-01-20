@@ -117,7 +117,7 @@ function RequestId({ id }) {
           }
 
           {
-            currentUser && data.conversations.length && (currentUser.id === data.requester_id || currentUser.id === data.helper_id) && (
+            currentUser && data.conversations.length > 0 && (currentUser.id === data.requester_id || currentUser.id === data.helper_id) && (
               <button onClick={findConversation} className="btn btn-primary mt-10"><MessageSquare className="mr-2"/>Conversation</button>
             )
           }
