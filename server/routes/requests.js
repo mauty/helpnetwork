@@ -13,7 +13,11 @@ router.get('/request/:id', async function (req, res) {
 			id: parseInt(id),
 		},
     include: {
-      requested_resources: true,
+      requested_resources: {
+        include: {
+          resource: true
+        }
+      },
       requester: true,
       category: true
     }
@@ -82,6 +86,7 @@ router.get('/requests', async function (req, res) {
         }
       }
     },
+    take: 15,
   })
 
 	res.status(200).json(requests);
