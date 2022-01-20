@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { FormContext } from "../../contexts/FormContext";
 import CategoryListItem from "./CategoryListItem";
+import clsx from "clsx";
 
 const CategoryList = (props) => {
   const { categoryData } = props;
@@ -14,7 +15,7 @@ const CategoryList = (props) => {
     return (
       <li key={category.id} className="mb-1">
         <button 
-          className="btn btn-sm" 
+          className={clsx("btn btn-sm", {"btn-primary": category.id === state.categoryId})} 
           onClick={() => clickHandler(category.id)} 
         >
           {category.name}
