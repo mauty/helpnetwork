@@ -131,32 +131,32 @@ const message_data = [
 	{
 		body: 'Hey I would love to help you with your request',
 		conversation_id: 1,
-		sender_id: 1,
+		sender_id: 2,
 	},
 	{
 		body: 'Hi, thank you for excepting my request',
 		conversation_id: 1,
-		sender_id: 2,
+		sender_id: 1,
 	},
 	{
 		body: 'Hey I would love to help you with your request',
 		conversation_id: 2,
-		sender_id: 1,
+		sender_id: 2,
 	},
 	{
 		body: 'Hi, thank you for excepting my request',
 		conversation_id: 2,
-		sender_id: 2,
+		sender_id: 1,
 	},
 	{
 		body: 'Hey I would love to help you with your request',
 		conversation_id: 3,
-		sender_id: 1,
+		sender_id: 2,
 	},
 	{
 		body: 'Hi, thank you for excepting my request',
 		conversation_id: 3,
-		sender_id: 2,
+		sender_id: 1,
 	},
 ];
 
