@@ -1,32 +1,17 @@
 import MessageListItem from "./MessageListItem";
-
+import { useContext } from "react";
+import { UserContext } from "../../../pages/_app";
 const MessageList = ({ messages = [] }) => {
-  //call db for list of conversations for current user
-  //map conversationListItem
-  //sort by timestamp, prepend
-  //link a conversation to a specific message
-
-  //at intervals of 5 seconds refresh component state to update conversation
-  //
 
   //sender or receiver state check
 
   //render conditional class depending on user_id
+  const { currentUser } = useContext(UserContext);
 
-  // const renderMyMessage = () => {
-
-  // }
-
-  // const receiveMessage = () => {
-
-  // }
-
-  // const updateMessages = () => {
-
-  // }
   const listOfMessages = messages.map((message) => {
+
     return (
-    //<div className={`${userID === receiver_userID ? "justify-right" : "justify-left"}`}>
+    <div className={`${currentUser === message.sender_id ? "justify-right" : "justify-left"}`}>
         <MessageListItem
           key={message.id}
           id={message.id}
@@ -34,7 +19,7 @@ const MessageList = ({ messages = [] }) => {
           timestamp={message.timestamp}
           sender_id={message.sender_id}
         />
-    //</div>
+    </div>
 
     );
   });
