@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useQuery, useMutation } from 'react-query';
 import useAxios from '../../hooks/useAxios';
-
+import Link from 'next/link';
 import NavBar from '../../components/NavBar';
 import Container from '../../components/ui/Container';
 import MessageList from '../../components/Messaging/Messages';
@@ -46,12 +46,6 @@ function Conversation(props) {
 		<>
 			<NavBar />
 			<Container title='Message'>
-				<header className='bg-blue-500 bg-opacity-25 flex flex-row justify-between'>
-					<p>Category</p>
-					<p>Details</p>
-					{/* link to unique request page */}
-					<button className='btn btn-primary'>See Details</button>
-				</header>
 				{data && <MessageList key={data.id} {...data} />}
 				{/* COMPOSE MESSAGE */}
 				<div className='w-full flex justify-between'>
