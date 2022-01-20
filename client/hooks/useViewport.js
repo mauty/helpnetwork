@@ -4,7 +4,7 @@ export default function useViewport() {
   const [viewport, setViewport] = useState({
     longitude: -79.3871,
     latitude: 43.6426,
-    zoom: 11.5,
+    zoom: 13.5,
   });
 
   const [copyViewport, setCopyViewport] = useState({ ...viewport });

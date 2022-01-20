@@ -84,7 +84,13 @@ export default function Home() {
             </div>
           </div>
           { data && data.map((request, index) =>
-            <Mark key={request.id} longitude={request.long} latitude={request.lat} index={index + 1} />
+            <Mark
+              key={request.id}
+              longitude={request.long}
+              latitude={request.lat}
+              index={index + 1}
+              description={request.request_details}
+              id={request.id} />
           ) }
         </Map>
         <div className='flex w-full h-64 shadow overflow-y-scroll pt-2'>

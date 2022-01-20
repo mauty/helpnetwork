@@ -1,9 +1,16 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import Link from "next/link";
 import { Marker } from "react-map-gl";
 
-export default function Mark({ longitude, latitude, index }) {
+export default function Mark({
+  longitude,
+  latitude,
+  index,
+  description = "",
+  id,
+}) {
   const [isOpen, setIsOpen] = useState(false);
+  const desc = useMemo(() => description.slice(0, 90), description);
 
   return (
     <Marker
@@ -14,7 +21,7 @@ export default function Mark({ longitude, latitude, index }) {
     >
       <div className="flex gap-1">
         <button
-          className="h-10 w-10 p-1 mask mask-hexagon font-bold rounded-full  text-white transition ease-in-out delay-150 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300"
+          className="z-10 h-10 w-10 p-1 mask mask-hexagon font-bold rounded-full  text-white transition ease-in-out delay-150 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300"
           onClick={() => setIsOpen((prevState) => !prevState)}
         >
           {index}
@@ -28,13 +35,9 @@ export default function Mark({ longitude, latitude, index }) {
               <p className="text-sm border-b border-gray-300 text-center text-gray-800">
                 Need help!
               </p>
-              <p className="text-xs py-1 text-gray-800">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
-                ornare lacus at ex euismod fringilla. Aliquam ultrices fermentum
-                ullamcorper...
-              </p>
+              <p className="text-xs py-1 text-gray-800">{desc}...</p>
             </div>
-            <Link href="#">
+            <Link href={`/requests/${id}`}>
               <span className="cursor-pointer text-xs underline text-blue-500">
                 Learn more...
               </span>

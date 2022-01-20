@@ -60,18 +60,19 @@ function RequestId({ id }) {
               </h2>
               <p className="text-sm">{data.request_details}</p>
             </div>
-            {
-              data.requested_resources && data.requested_resources.length > 0 && (
-              <div className="p-2">
-                <h2 className="text-lg font-bold text-gray-900 dark:text-gray-100">
-                Resources
-                </h2>
-                <div className="flex flex-col gap-1 sm:w-96">
-                  {
-                    data.requested_resources.map(resource =>
-                      <div className="alert-sm alert-info rounded">
-                        <div className="flex-1">
-                          <label className='text-sm font-semibold uppercase'>{resource.name}</label>
+              {
+                data.requested_resources && data.requested_resources.length > 0 && (
+                <div className="p-2">
+                  <h2 className="text-lg font-bold text-gray-900 dark:text-gray-100">
+                  Resources
+                  </h2>
+                  <div className="flex flex-col gap-1 sm:w-96">
+                    {
+                      data.requested_resources.map(resource =>
+                        <div key={resource.id} className="alert-sm alert-info rounded">
+                          <div className="flex-1">
+                            <label className='text-sm font-semibold uppercase'>{resource.resource.name}</label>
+                          </div>
                         </div>
                       </div>
                     )
@@ -90,7 +91,7 @@ function RequestId({ id }) {
                   <div className="flex flex-col gap-1 sm:w-96">
                     <div className="alert-sm alert-success rounded">
                       <div className="flex-1">
-                        <label className='text-sm font-semibold'>{new Date(data.start_time).toLocaleDateString()}</label>
+                        <label className='text-sm font-semibold'>{new Date(data.start_time).toLocaleString()}</label>
                       </div>
                     </div>
                   </div>
