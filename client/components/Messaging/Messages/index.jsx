@@ -1,50 +1,37 @@
 import MessageListItem from "./MessageListItem";
+import { useContext } from "react";
+import { UserContext } from "../../../pages/_app";
+import Link from "next/link";
+const MessageList = ({ messages = [], request, request_id }) => {
 
-const MessageList = ({ messages = [] }) => {
-  //call db for list of conversations for current user
-  //map conversationListItem
-  //sort by timestamp, prepend
-  //link a conversation to a specific message
+  const { currentUser } = useContext(UserContext);
 
-  //at intervals of 5 seconds refresh component state to update conversation
-  //
-
-  //sender or receiver state check
-
-  //render conditional class depending on user_id
-
-  // const renderMyMessage = () => {
-
-  // }
-
-  // const receiveMessage = () => {
-
-  // }
-
-  // const updateMessages = () => {
-
-  // }
   const listOfMessages = messages.map((message) => {
+
     return (
-      <MessageListItem
-        key={message.id}
-        id={message.id}
-        body={message.body}
-        timestamp={message.timestamp}
-        sender_id={message.sender_id}
-      />
+      <div className={`${currentUser === message.sender_id ? "justify-right" : "justify-left"}`}>
+          <MessageListItem
+            key={message.id}
+            id={message.id}
+            body={message.body}
+            timestamp={message.timestamp}
+            sender_id={message.sender_id}
+          />
+      </div>
     );
   });
 
   return (
-    /*
-    <div className={`${userID === receiver_userID ? "text-right" : "text-left"}`}>
-          {messages}
-    </div>
-    */
-    //list of messages
     <div className="">
-      <div className="h-96 flex flex-col-reverse justify-end items-end divider overflow-y-scroll">
+      		<header className='bg-blue-500 bg-opacity-25 flex flex-row justify-between'>
+					<p>{request.category.name}</p>
+					<p>{request.request_details}</p>
+					{/* link to unique request page */}
+					<Link href={`/requests/${request_id}`}>
+					<button className='btn btn-primary'>See Details</button>
+					</Link>
+				</header>
+      <div className="h-96 flex flex-col-reverse  items-end divider overflow-y-scroll">
         {listOfMessages}
       </div>
     </div>
