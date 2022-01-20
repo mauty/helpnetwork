@@ -4,6 +4,8 @@ import Container from '../ui/Container';
 export default function ProfileView({ data }) {
   const router = useRouter();
 
+  console.log(data);
+
   return (
     <Container title={`${data.first_name} ${data.last_name}`}>
       <div className="flex flex-col gap-6 mx-2">
@@ -13,14 +15,14 @@ export default function ProfileView({ data }) {
         </div>
         <div>
           {
-            data.personal_resourcesa && data.personal_resources.length && (
+            data.personal_resources && data.personal_resources.length && (
               <>
                 <h1 className="text-lg font-bold text-gray-900 dark:text-gray-100 p-2">
                 Resources
                 </h1>
                 <div className="flex flex-col sm:w-96">
                   {
-                    data.personal_resources.map(resource => (
+                    data.personal_resources.map(({resource}) => (
                       <div key={resource.id} className="alert-sm alert-info rounded m-1">
                         <div className="flex-1">
                           <label className='text-sm font-semibold'>{resource.name}</label>
