@@ -11,7 +11,7 @@ const MessageList = ({ messages = [], request, request_id }) => {
 
     return (
 
-      <div className={`${currentUser !== message.sender_id ? "justify-right" : "justify-left"}`}>
+      <div className={`${currentUser === message.sender_id ? "justify-right" : "justify-left"}`}>
           <MessageListItem
             key={message.id}
             id={message.id}
