@@ -44,11 +44,11 @@ const LocationChooser = (props) => {
         setStatus(null);
         setLat(position.coords.latitude);
         setLng(position.coords.longitude);
+        console.log('navigator>>>>',lat, lng)
       }, () => {
         setStatus('Unable to retrieve your location');
       });
     }
-    console.log('navigator>>>>',lat, lng)
   }
 
   return (
@@ -61,8 +61,9 @@ const LocationChooser = (props) => {
           <input
             type="checkbox" 
             className="toggle toggle-primary" 
-            unchecked="true" 
-            onChange={() => setLocationToggle(!locationToggle)}/>
+            checked={locationToggle}
+            onChange={() => setLocationToggle(!locationToggle)}
+          />
         </div>
         { locationToggle &&
           <div>
