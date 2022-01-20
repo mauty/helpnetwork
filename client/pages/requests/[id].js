@@ -74,7 +74,6 @@ function RequestId({ id }) {
                             <label className='text-sm font-semibold uppercase'>{resource.resource.name}</label>
                           </div>
                         </div>
-                      </div>
                     )
                   }
                 </div>
