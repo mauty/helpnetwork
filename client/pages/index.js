@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { useQuery } from 'react-query';
 import useAxios from '../hooks/useAxios';
-import Mark from '../components/Map/Mark';
-import { AlignCenter, Filter } from 'react-feather';
+import clsx from 'clsx';
+
+import { Filter } from 'react-feather';
 
 import NavBar from  '../components/NavBar';
 import Map from '../components/Map';
@@ -11,18 +12,41 @@ import ErrorMessage from '../components/ui/ErrorMessage';
 import Shimmer from '../components/ui/Shimmer';
 import ListItem from '../components/Home/ListItem';
 import useViewport from '../hooks/useViewport';
-import MapCollapseTab from '../components/Map/MapCollapseTab';
-import clsx from 'clsx';
+import MapCollapseTab from '../components/Home/MapCollapseTab';
+import Mark from '../components/Map/Mark';
+import TimeInput from '../components/Home/TimeInput';
 
 
 export default function Home() {
   const [ currentCategory, setCategory ] = useState(null);
   const [ currentResources, setResources ] = useState([]);
+
+  const [ time, setTime ] = useState({ from: "07:00:00", to: "15:00:00" });
+  const [ isTimeFiltering, setIsTimeFiltering ] = useState(false);
+
   const { viewport, copyViewport, setViewport, isViewportLoading } = useViewport();
 
-  const { isLoading, isError, data } = useQuery(['requests', copyViewport], () => useAxios({ url: '/requests', method: "get", params: { long: viewport.longitude, lat: viewport.latitude } }));
+  const { isLoading, isError, data } = useQuery(
+    ['requests', copyViewport, currentCategory, currentResources.length, isTimeFiltering],
+    () => useAxios({
+      url: '/requests',
+      method: "get",
+      params: {
+        long: viewport.longitude,
+        lat: viewport.latitude,
+        time: isTimeFiltering? time: null,
+        category_id: currentCategory,
+        resources: currentResources } }
+  ));
+
+  console.log(data);
+
   const { data: categoriesData } = useQuery('categories', () => useAxios({ url: '/categories', method: "get"}));
   const { data: resourcesData } = useQuery('resources', () => useAxios({ url: '/resources', method: "get"}));
+
+  function handleTimeChange(event) {
+    setTime(prevState => prevState[event.target.name] = event.target.value);
+  }
 
   return (
     <>
@@ -37,6 +61,7 @@ export default function Home() {
                   categoriesData &&
                     categoriesData.map(category =>
                       <button
+                        key={category.id}
                         className={clsx('btn btn-xs btn-primary m-1', category.id === currentCategory && ("btn-error"))}
                         onClick={
                           () => setCategory(prevState => {
@@ -53,6 +78,7 @@ export default function Home() {
                   resourcesData &&
                     resourcesData.map(resource =>
                       <button
+                        key={resource.id}
                         className={clsx('btn btn-xs btn-primary m-1', currentResources.includes(resource.id) && ("btn-error"))}
                         onClick={
                           () => setResources(prevState => {
@@ -68,21 +94,20 @@ export default function Home() {
                 }
                 </MapCollapseTab>
 
-                <MapCollapseTab name="Time"><div>asdf</div></MapCollapseTab>
-              </ul>
-            </div>
-            <div className="dropdown">
-              <button className="btn btn-sm btn-ghost px-1"><AlignCenter/></button>
-              <ul tabIndex="0" className="p-1 bg-opacity-95 shadow menu dropdown-content bg-base-100 rounded-box w-52 my-1">
-                <li>
-                  <a>Item 1</a>
-                </li>
-                <li>
-                  <a>Item 2</a>
-                </li>
-                <li>
-                  <a>Item 3</a>
-                </li>
+                <MapCollapseTab name="Time">
+                  <div className="flex flex-col gap-2">
+                    <div className="flex gap-2">
+                      <TimeInput name="from" value={time.from} setValue={handleTimeChange}/>
+                      <TimeInput name="to" value={time.to} setValue={handleTimeChange}/>
+                    </div>
+                    <button
+                      onClick={() => setIsTimeFiltering(prevState => !prevState)}
+                      className={clsx('btn btn-primary btn-sm', isTimeFiltering && 'btn-error')}>
+                        <Filter className='w-4 h-4 mr-2'/>
+                        { isTimeFiltering ? "Remove time filter" : "Filter Time" }
+                    </button>
+                  </div>
+              </MapCollapseTab>
               </ul>
             </div>
           </div>
@@ -99,11 +124,9 @@ export default function Home() {
                 <ListItem
                 key={request.id}
                 id={request.id}
-                category={request.category_name}
-                name={`${request.first_name} ${request.last_name}`}
-                index={index + 1}
-                createdAt={request.createdAt}
-                time={{ isSensitive: request.time_sensitive, start_time: request.start_time }}/>
+                index={index}
+                data={request}
+                />
               )
             )}
           </ul>
