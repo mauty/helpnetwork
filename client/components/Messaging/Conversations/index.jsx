@@ -22,6 +22,7 @@ function ConversationList({data }) {
             timestamp={conversation.messages[0]?.timestamp}
             sender_id={conversation.messages[0]?.sender_id}
             name={conversation.sender.first_name} 
+            // avatar={conversation.sender.imgURL}
             /></a>
           </Link>
         </>
@@ -31,10 +32,17 @@ function ConversationList({data }) {
    //TODO: add state logic for if conversation is empty and if a new message is received
   
   return (
-    <div className="">
-      <div className="h-96 flex flex-col overflow-y-scroll border border-indigo-600">
-        {listOfConversations}
-      </div>
+    // <div className="">
+    //   <div className="h-96 flex flex-col overflow-y-scroll border border-indigo-600">
+        
+    //   </div>
+    // </div>
+    <div className="overflow-x-auto">
+    <table className="table w-full ">
+      <tbody>
+      {listOfConversations}
+      </tbody>
+    </table>
     </div>
   );
 }
