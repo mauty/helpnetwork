@@ -16,6 +16,7 @@ import MapCollapseTab from '../components/Home/MapCollapseTab';
 import Mark from '../components/Map/Mark';
 import TimeInput from '../components/Home/TimeInput';
 import FilterButton from '../components/Home/FilterButton';
+import { Empty } from '../components/ui/Empty';
 
 
 export default function Home() {
@@ -44,12 +45,10 @@ export default function Home() {
 
   function handleTimeChange({ target }) {
     const { name, value } = target;
-    console.log(target);
     const currentTime = {...time};
 
     currentTime[name] = value;
     setTime(currentTime);
-    console.log(currentTime);
   }
 
   return (
@@ -93,14 +92,15 @@ export default function Home() {
 
             { isError && <ErrorMessage title="Error" error="Something unexpected... Try again"/> }
             { (isLoading || isViewportLoading) ? (<Shimmer />) : (
-              data && data.map((request, index) =>
+              data?.length? (
+              data.map((request, index) =>
                 <ListItem
                 key={request.id}
                 id={request.id}
                 index={index}
                 data={request}
                 />
-              )
+              )) : (<Empty/>)
             )}
           </ul>
       </div>
