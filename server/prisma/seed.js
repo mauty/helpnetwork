@@ -6,7 +6,7 @@ const person_data = [
 		email: 'helper@example.com',
 		first_name: 'Bob',
 		last_name: 'Johnson',
-		bio: 'Blonde, coily hair neatly coiffured to reveal a furrowed, radiant face. Bright hazel eyes, set seductively within their sockets, watch anxiously over the people theyve defended for so long. A scar stretching from just under the right eyebrow , running towards his left nostril and ending under his left eye leaves an aching burden of innocence long lost. This is the face of Brodie Wakelin, a true warrior among halflings. He stands ordinary among others, despite his big frame. Theres something bewildering about him, perhaps its his kindness or perhaps its simply a feeling of indifference. But nonetheless, people tend to pretend to be his friend, while secretly training to become more like him.',
+		bio: 'Blonde, coily hair neatly coiffured to reveal a furrowed, radiant face. Bright hazel eyes, set seductively with in their sockets, watch anxiously over the people theyve defended for so long. A scar stretching from just under the right eyebrow , running towards his left nostril and ending under his left eye leaves an aching burden of innocence long lost. This is the face of Brodie Wakelin, a true warrior among halflings. He stands ordinary among others, despite his big frame. Theres something bewildering about him, perhaps its his kindness or perhaps its simply a feeling of indifference. But nonetheless, people tend to pretend to be his friend, while secretly training to become more like him.',
 		postal_code: 'M6B 1L9',
     lat: 43.649744918000685,
     long: -79.46447462733938,
@@ -16,7 +16,7 @@ const person_data = [
 		email: 'sender@example.com',
 		first_name: 'Sally',
 		last_name: 'Smith',
-		bio: 'Gray, coily hair hangs over a strong, friendly face. Clear hazel eyes, set charmingly within their sockets, watch anxiously over the deserts theyve defended for so long. A moustache gracefully compliments his eyes and hair and leaves a gracious memory of his reckless luck. This is the face of Orlando Davenport, a true defender among humans. He stands towering among others, despite his fragile frame. Theres something puzzling about him, perhaps its his decency or perhaps its simply a feeling of shame. But nonetheless, people tend to flock towards him, while secretly dispising him.',
+		bio: 'Gray, coily hair hangs over a strong, friendly face. Clear hazel eyes, set charmingly with in their sockets, watch anxiously over the deserts theyve defended for so long. A moustache gracefully compliments his eyes and hair and leaves a gracious memory of his reckless luck. This is the face of Orlando Davenport, a true defender among humans. He stands towering among others, despite his fragile frame. Theres something puzzling about him, perhaps its his decency or perhaps its simply a feeling of shame. But nonetheless, people tend to flock towards him, while secretly dispising him.',
     lat: 43.671488,
     long: -79.350599,
 		postal_code: 'M4D 2U8',
@@ -26,7 +26,7 @@ const person_data = [
 		email: 'george@email.com',
 		first_name: 'George',
 		last_name: 'Hollinger',
-		bio: 'Red, short hair is pulled back to reveal a fine, friendly face. Bright gray eyes, set low within their sockets, watch longingly over the farms theyve been seperated from for so long.An old tattoo of a small wolf is prominently featured just above the right side of his right eyebrow leaves a tormenting burden of his luck in love.',
+		bio: 'Red, short hair is pulled back to reveal a fine, friendly face. Bright gray eyes, set low with in their sockets, watch longingly over the farms theyve been seperated from for so long.An old tattoo of a small wolf is prominently featured just above the right side of his right eyebrow leaves a tormenting burden of his luck in love.',
 		postal_code: 'M5A T8E',
 		lat: 43.65818641884621,
 		long: -79.4805399308699,
@@ -46,7 +46,7 @@ const person_data = [
 		email: 'malcolm@email.com',
 		first_name: 'Malcolm',
 		last_name: 'Merchant',
-		bio: 'Golden, flowing hair clumsily hangs over a handsome, lively face. Wide aquamarine eyes, set handsomely within their sockets, watch vigilantly over the ancestors theyve shown mercy on for so long. A sword left a mark stretching from the bottom of the right cheek , running towards the left side of his lips and ending above his right eye leaves a bittersweet memory of his luck.',
+		bio: 'Golden, flowing hair clumsily hangs over a handsome, lively face. Wide aquamarine eyes, set handsomely with in their sockets, watch vigilantly over the ancestors theyve shown mercy on for so long. A sword left a mark stretching from the bottom of the right cheek , running towards the left side of his lips and ending above his right eye leaves a bittersweet memory of his luck.',
 		postal_code: 'M5A T8E',
     lat: 43.651286,
     long: -79.422843,
@@ -72,7 +72,7 @@ const person_data = [
     email: "rgrubb2@loc.gov",
     first_name: "Raquela",
     last_name: "Grubb",
-    bio: "Dilation of Gastric Vein with Intraluminal Device, Open Approach",
+    bio: "Dilation of Gastric Vein with  Intraluminal Device, Open Approach",
     lat: 43.6628,
     long: -79.3848,
     safety_details: "Eosinophilic cellulitis [Wells]"
@@ -80,7 +80,7 @@ const person_data = [
     email: "bkroger3@yellowpages.com",
     first_name: "Bartram",
     last_name: "Kroger",
-    bio: "Occlusion of Right Peroneal Artery with Extraluminal Device, Open Approach",
+    bio: "Occlusion of Right Peroneal Artery with  Extraluminal Device, Open Approach",
     lat: 43.6641,
     long: -79.398,
     safety_details: "Unspecified injury of right elbow"
@@ -88,7 +88,7 @@ const person_data = [
     email: "htiesman4@auda.org.au",
     first_name: "Holli",
     last_name: "Tiesman",
-    bio: "Replacement of Abdomen Skin with Nonautologous Tissue Substitute, Partial Thickness, External Approach",
+    bio: "Replacement of Abdomen Skin with  Nonautologous Tissue Substitute, Partial Thickness, External Approach",
     lat: 43.658,
     long: -79.382,
     safety_details: "Activity, swimming"
@@ -112,7 +112,7 @@ const person_data = [
     email: "tsheryn7@nasa.gov",
     first_name: "Teodoor",
     last_name: "Sheryn",
-    bio: "Drainage of Right Lower Lobe Bronchus with Drainage Device, Open Approach",
+    bio: "Drainage of Right Lower Lobe Bronchus with  Drainage Device, Open Approach",
     lat: 43.6456,
     long: -79.3907,
     safety_details: "Fracture of unspecified phalanx of right ring finger"
@@ -120,7 +120,7 @@ const person_data = [
     email: "hgribbin8@foxnews.com",
     first_name: "Hermina",
     last_name: "Gribbin",
-    bio: "Supplement Right Atrium with Zooplastic Tissue, Open Approach",
+    bio: "Supplement Right Atrium with  Zooplastic Tissue, Open Approach",
     lat: 43.6539,
     long: -79.3964,
     safety_details: "Oth athscl type of bypass of the extremities, right leg"
@@ -128,7 +128,7 @@ const person_data = [
     email: "msterzaker9@facebook.com",
     first_name: "Manny",
     last_name: "Sterzaker",
-    bio: "Supplement Right Humeral Head with Nonautologous Tissue Substitute, Percutaneous Approach",
+    bio: "Supplement Right Humeral Head with  Nonautologous Tissue Substitute, Percutaneous Approach",
     lat: 43.6651,
     long: -79.3907,
     safety_details: "Multiple fx of ribs, unsp side, subs for fx w routn heal"
@@ -144,7 +144,7 @@ const person_data = [
     email: "bkuschkeb@baidu.com",
     first_name: "Bettine",
     last_name: "Kuschke",
-    bio: "Dilation of Right Temporal Artery, Bifurcation, with Drug-eluting Intraluminal Device, Percutaneous Approach",
+    bio: "Dilation of Right Temporal Artery, Bifurcation, with  Drug-eluting Intraluminal Device, Percutaneous Approach",
     lat: 43.6466,
     long: -79.3958,
     safety_details: "Ciguatera fish poisoning, accidental (unintentional)"
@@ -160,7 +160,7 @@ const person_data = [
     email: "cmccannd@google.com.br",
     first_name: "Cynthea",
     last_name: "McCann",
-    bio: "Bypass Left Foot Vein to Lower Vein with Synthetic Substitute, Percutaneous Endoscopic Approach",
+    bio: "Bypass Left Foot Vein to Lower Vein with  Synthetic Substitute, Percutaneous Endoscopic Approach",
     lat: 43.6559,
     long: -79.3875,
     safety_details: "Nondisp fx of med condyle of l humer, subs for fx w malunion"
@@ -192,7 +192,7 @@ const person_data = [
     email: "lmackellarh@microsoft.com",
     first_name: "Liliane",
     last_name: "MacKellar",
-    bio: "Replacement of Left Brachial Vein with Nonautologous Tissue Substitute, Percutaneous Endoscopic Approach",
+    bio: "Replacement of Left Brachial Vein with  Nonautologous Tissue Substitute, Percutaneous Endoscopic Approach",
     lat: 43.6454,
     long: -79.3935,
     safety_details: "Car driver injured in collision w SUV nontraf, sequela"
@@ -208,7 +208,7 @@ const person_data = [
     email: "estonnerj@wordpress.com",
     first_name: "Ethelbert",
     last_name: "Stonner",
-    bio: "Bypass Left Common Iliac Artery to Bilateral External Iliac Arteries with Autologous Arterial Tissue, Open Approach",
+    bio: "Bypass Left Common Iliac Artery to Bilateral External Iliac Arteries with  Autologous Arterial Tissue, Open Approach",
     lat: 43.6533,
     long: -79.3821,
     safety_details: "Twins, one liveborn and one stillborn"
@@ -240,7 +240,7 @@ const person_data = [
     email: "jduckern@upenn.edu",
     first_name: "Judon",
     last_name: "Ducker",
-    bio: "Drainage of Left Lower Lobe Bronchus with Drainage Device, Percutaneous Approach",
+    bio: "Drainage of Left Lower Lobe Bronchus with  Drainage Device, Percutaneous Approach",
     lat: 43.6624,
     long: -79.3812,
     safety_details: "Corrosion of first degree of back of right hand, init encntr"
@@ -293,193 +293,193 @@ const request_data = [
 		requester_id: 2,
 	},
   {
-    request_details: "I need help withtoxic effect of nitrogen oxides, accidental (unintentional), initial encounter",
+    request_details: "I need help with toxic effect of nitrogen oxides, accidental (unintentional), initial encounter",
     lat: 43.6514,
     long: -79.3902,
     category_id: 5,
     requester_id: 9,
     time_sensitive: true
   }, {
-    request_details: "I need help withbreakdown (mechanical) of other urinary devices and implants, sequela",
+    request_details: "I need help with breakdown (mechanical) of other urinary devices and implants, sequela",
     lat: 43.6527,
     long: -79.3822,
     category_id: 2,
     requester_id: 3,
     time_sensitive: true
   }, {
-    request_details: "I need help withdisplaced fracture of neck of fourth metacarpal bone, left hand, subsequent encounter for fracture with routine healing",
+    request_details: "I need help with displaced fracture of neck of fourth metacarpal bone, left hand, subsequent encounter for fracture with  routine healing",
     lat: 43.6434,
     long: -79.3809,
     category_id: 2,
     requester_id: 25
   }, {
-    request_details: "I need help withother specified osteochondropathies, right thigh",
+    request_details: "I need help with other specified osteochondropathies, right thigh",
     lat: 43.6675,
     long: -79.3924,
     category_id: 8,
     requester_id: 22
   }, {
-    request_details: "I need help withpathological dislocation of hand, not elsewhere classified",
+    request_details: "I need help with pathological dislocation of hand, not elsewhere classified",
     lat: 43.6515,
     long: -79.3971,
     category_id: 12,
     requester_id: 14
   }, {
-    request_details: "I need help withinfection and inflammatory reaction due to implanted electronic neurostimulator, generator, initial encounter",
+    request_details: "I need help with infection and inflammatory reaction due to implanted electronic neurostimulator, generator, initial encounter",
     lat: 43.6682,
     long: -79.3885,
     category_id: 4,
     requester_id: 23,
     time_sensitive: true
   }, {
-    request_details: "I need help withunspecified injury of intrinsic muscle, fascia and tendon of left ring finger at wrist and hand level",
+    request_details: "I need help with unspecified injury of intrinsic muscle, fascia and tendon of left ring finger at wrist and hand level",
     lat: 43.6501,
     long: -79.3914,
     category_id: 4,
     requester_id: 20
   }, {
-    request_details: "I need help withlaceration of other muscle(s) and tendon(s) at lower leg level, right leg, sequela",
+    request_details: "I need help with laceration of other muscle(s) and tendon(s) at lower leg level, right leg, sequela",
     lat: 43.6652,
     long: -79.3831,
     category_id: 5,
     requester_id: 23
   }, {
-    request_details: "I need help withunspecified war operations occurring after cessation of hostilities, civilian, subsequent encounter",
+    request_details: "I need help with unspecified war operations occurring after cessation of hostilities, civilian, subsequent encounter",
     lat: 43.6683,
     long: -79.3872,
     category_id: 8,
     requester_id: 22
   }, {
-    request_details: "I need help withencounter for dental examination and cleaning without abnormal findings",
+    request_details: "I need help with encounter for dental examination and cleaning with out abnormal findings",
     lat: 43.6514,
     long: -79.3937,
     category_id: 8,
     requester_id: 7,
     time_sensitive: false
   }, {
-    request_details: "I need help withnondisplaced fracture of anterior column [iliopubic] of left acetabulum, initial encounter for closed fracture",
+    request_details: "I need help with nondisplaced fracture of anterior column [iliopubic] of left acetabulum, initial encounter for closed fracture",
     lat: 43.6602,
     long: -79.3869,
     category_id: 7,
     requester_id: 24
   }, {
-    request_details: "I need help withpoisoning by ganglionic blocking drugs, undetermined, initial encounter",
+    request_details: "I need help with poisoning by ganglionic blocking drugs, undetermined, initial encounter",
     lat: 43.6545,
     long: -79.3899,
     category_id: 5,
     requester_id: 11
   }, {
-    request_details: "I need help withcorrosion of second degree of lower limb, except ankle and foot",
+    request_details: "I need help with corrosion of second degree of lower limb, except ankle and foot",
     lat: 43.6664,
     long: -79.3813,
     category_id: 8,
     requester_id: 19
   }, {
-    request_details: "I need help withage-related nuclear cataract, bilateral",
+    request_details: "I need help with age-related nuclear cataract, bilateral",
     lat: 43.6452,
     long: -79.3889,
     category_id: 5,
     requester_id: 18
   }, {
-    request_details: "I need help withsalter-harris type ii physeal fracture of upper end of right tibia, subsequent encounter for fracture with malunion",
+    request_details: "I need help with salter-harris type ii physeal fracture of upper end of right tibia, subsequent encounter for fracture with  malunion",
     lat: 43.6523,
     long: -79.3869,
     category_id: 3,
     requester_id: 27,
     time_sensitive: true
   }, {
-    request_details: "I need help withblister (nonthermal) of unspecified external genital organs, male",
+    request_details: "I need help with blister (nonthermal) of unspecified external genital organs, male",
     lat: 43.6445,
     long: -79.3895,
     category_id: 7,
     requester_id: 27
   }, {
-    request_details: "I need help withother specified disorders of synovium and tendon, shoulder",
+    request_details: "I need help with other specified disorders of synovium and tendon, shoulder",
     lat: 43.6478,
     long: -79.3907,
     category_id: 1,
     requester_id: 28
   }, {
-    request_details: "I need help withrecurrent dislocation, unspecified hand",
+    request_details: "I need help with recurrent dislocation, unspecified hand",
     lat: 43.6416,
     long: -79.394,
     category_id: 3,
     requester_id: 13
   }, {
-    request_details: "I need help withatherosclerosis of bypass graft of coronary artery of transplanted heart with unstable angina",
+    request_details: "I need help with atherosclerosis of bypass graft of coronary artery of transplanted heart with  unstable angina",
     lat: 43.651,
     long: -79.389,
     category_id: 2,
     requester_id: 11
   }, {
-    request_details: "I need help withulnar collateral ligament sprain of unspecified elbow, subsequent encounter",
+    request_details: "I need help with ulnar collateral ligament sprain of unspecified elbow, subsequent encounter",
     lat: 43.642,
     long: -79.3912,
     category_id: 9,
     requester_id: 26
   }, {
-    request_details: "I need help withstrain of extensor or abductor muscles, fascia and tendons of thumb at forearm level",
+    request_details: "I need help with strain of extensor or abductor muscles, fascia and tendons of thumb at forearm level",
     lat: 43.6606,
     long: -79.3917,
     category_id: 12,
     requester_id: 11
   }, {
-    request_details: "I need help withpoisoning by phenothiazine antipsychotics and neuroleptics, accidental (unintentional), initial encounter",
+    request_details: "I need help with poisoning by phenothiazine antipsychotics and neuroleptics, accidental (unintentional), initial encounter",
     lat: 43.6475,
     long: -79.3806,
     category_id: 4,
     requester_id: 20
   }, {
-    request_details: "I need help withmaternal care for anti-a sensitization, first trimester, fetus 5",
+    request_details: "I need help with maternal care for anti-a sensitization, first trimester, fetus 5",
     lat: 43.669,
     long: -79.391,
     category_id: 8,
     requester_id: 14
   }, {
-    request_details: "I need help withunspecified subluxation of left knee",
+    request_details: "I need help with unspecified subluxation of left knee",
     lat: 43.6642,
     long: -79.3962,
     category_id: 6,
     requester_id: 6
   }, {
-    request_details: "I need help withother pre-existing diabetes mellitus in pregnancy, first trimester",
+    request_details: "I need help with other pre-existing diabetes mellitus in pregnancy, first trimester",
     lat: 43.6588,
     long: -79.386,
     category_id: 5,
     requester_id: 28
   }, {
-    request_details: "I need help withtype 1 diabetes mellitus with severe nonproliferative diabetic retinopathy without macular edema, left eye",
+    request_details: "I need help with type 1 diabetes mellitus with  severe nonproliferative diabetic retinopathy with out macular edema, left eye",
     lat: 43.6693,
     long: -79.3897,
     category_id: 3,
     requester_id: 30
   }, {
-    request_details: "I need help withprimary syphilis of other sites",
+    request_details: "I need help with primary syphilis of other sites",
     lat: 43.6663,
     long: -79.389,
     category_id: 10,
     requester_id: 18
   }, {
-    request_details: "I need help withnondisplaced fracture of greater trochanter of unspecified femur, initial encounter for closed fracture",
+    request_details: "I need help with nondisplaced fracture of greater trochanter of unspecified femur, initial encounter for closed fracture",
     lat: 43.6468,
     long: -79.3896,
     category_id: 11,
     requester_id: 23
   }, {
-    request_details: "I need help withcomplete traumatic amputation at elbow level, right arm, subsequent encounter",
+    request_details: "I need help with complete traumatic amputation at elbow level, right arm, subsequent encounter",
     lat: 43.663,
     long: -79.3942,
     category_id: 4,
     requester_id: 22
   }, {
-    request_details: "I need help withnondisplaced fracture of anterior process of unspecified calcaneus, subsequent encounter for fracture with malunion",
+    request_details: "I need help with nondisplaced fracture of anterior process of unspecified calcaneus, subsequent encounter for fracture with  malunion",
     lat: 43.6477,
     long: -79.3915,
     category_id: 11,
     requester_id: 31,
     time_sensitive: false
   }, {
-    request_details: "I need help withmilitary operation involving nuclear radiation effects of nuclear weapon, civilian, initial encounter",
+    request_details: "I need help with military operation involving nuclear radiation effects of nuclear weapon, civilian, initial encounter",
     lat: 43.6505,
     long: -79.3835,
     category_id: 8,
@@ -840,34 +840,34 @@ const conversation_data = [
 
 const message_data = [
 	{
-		body: 'Hey I would love to help you with your request',
-		conversation_id: 1,
-		sender_id: 1,
-	},
-	{
-		body: 'Hi, thank you for excepting my request',
+		body: 'Hey I would love to help you with  your request',
 		conversation_id: 1,
 		sender_id: 2,
 	},
 	{
-		body: 'Hey I would love to help you with your request',
-		conversation_id: 2,
+		body: 'Hi, thank you for excepting my request',
+		conversation_id: 1,
 		sender_id: 1,
 	},
 	{
-		body: 'Hi, thank you for excepting my request',
+		body: 'Hey I would love to help you with  your request',
 		conversation_id: 2,
 		sender_id: 2,
 	},
 	{
-		body: 'Hey I would love to help you with your request',
-		conversation_id: 3,
+		body: 'Hi, thank you for excepting my request',
+		conversation_id: 2,
 		sender_id: 1,
+	},
+	{
+		body: 'Hey I would love to help you with  your request',
+		conversation_id: 3,
+		sender_id: 2,
 	},
 	{
 		body: 'Hi, thank you for excepting my request',
 		conversation_id: 3,
-		sender_id: 2,
+		sender_id: 1,
 	},
 ];
 
