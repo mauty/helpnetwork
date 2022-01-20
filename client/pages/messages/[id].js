@@ -23,7 +23,6 @@ function Conversation(props) {
 			refetchInterval: 10000,
 		},
 	);
-	console.log('Data >>>>', data);
 
 	const refreshButton = useRef(null);
 
@@ -41,6 +40,8 @@ function Conversation(props) {
 			console.log('Reload function >>>>> ', refreshButton.current);
 		}, 1500);
 	}
+
+	console.log('Data >>>>', data);
 
 	return (
 		<>
