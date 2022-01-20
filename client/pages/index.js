@@ -44,8 +44,14 @@ export default function Home() {
   const { data: categoriesData } = useQuery('categories', () => useAxios({ url: '/categories', method: "get"}));
   const { data: resourcesData } = useQuery('resources', () => useAxios({ url: '/resources', method: "get"}));
 
-  function handleTimeChange(event) {
-    setTime(prevState => prevState[event.target.name] = event.target.value);
+  function handleTimeChange({ target }) {
+    const { name, value } = target;
+    console.log(target);
+    const currentTime = {...time};
+
+    currentTime[name] = value;
+    setTime(currentTime);
+    console.log(currentTime);
   }
 
   return (
