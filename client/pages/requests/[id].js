@@ -51,9 +51,9 @@ function RequestId({ id }) {
                   <div className="flex flex-col gap-1 sm:w-96">
                     {
                       data.requested_resources.map(resource =>
-                        <div className="alert-sm alert-info rounded">
+                        <div key={resource.id} className="alert-sm alert-info rounded">
                           <div className="flex-1">
-                            <label className='text-sm font-semibold uppercase'>{resource.name}</label>
+                            <label className='text-sm font-semibold uppercase'>{resource.resource.name}</label>
                           </div>
                         </div>
                       )
@@ -75,7 +75,7 @@ function RequestId({ id }) {
                   <div className="flex flex-col gap-1 sm:w-96">
                     <div className="alert-sm alert-success rounded">
                       <div className="flex-1">
-                        <label className='text-sm font-semibold'>{new Date(data.start_time).toLocaleDateString()}</label>
+                        <label className='text-sm font-semibold'>{new Date(data.start_time).toLocaleString()}</label>
                       </div>
                     </div>
                   </div>
