@@ -8,7 +8,7 @@ export default function TimeInput({ name, value, setValue }) {
       </label>
       <input
         type="time"
-        name="from"
+        name={name}
         onChange={setValue}
         value={value}
         className="input input-primary input-bordered"

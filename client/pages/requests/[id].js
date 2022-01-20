@@ -1,9 +1,14 @@
 import Link from "next/link";
-import { useQuery } from "react-query";
+import { useContext } from "react";
+import { useQuery, useMutation } from "react-query";
+import { useRouter } from "next/router";
+import { Send, File, Check, MessageSquare } from "react-feather";
+import { UserContext } from '../_app';
+
 import Container from "../../components/ui/Container";
 import useAxios from "../../hooks/useAxios";
 import Shimmer from '../../components/ui/Shimmer';
-import { Send, File } from "react-feather";
+import ErrorMessage from "../../components/ui/ErrorMessage";
 
 export const getServerSideProps = async (ctx) => {
   // TODO: Get the data from the server here using ctx.params.id
@@ -12,12 +17,25 @@ export const getServerSideProps = async (ctx) => {
 };
 
 function RequestId({ id }) {
+  const router = useRouter();
+  const { currentUser } = useContext(UserContext);
+
+  const mutation = useMutation((newHelp) =>
+    useAxios({ url: `/request/help/${id}`, method: 'post', params: newHelp }),
+  );
+
+  const mutationComplete = useMutation((completeRequest) =>
+    useAxios({ url: `/request/complete/${id}`, method: 'post', params: completeRequest }),
+  );
+
   const {isLoading, isError, data} = useQuery('request', () => useAxios({ url: `/request/${id}`, method: "get" }));
-  console.log(data);
 
   function offerHelp() {
-    // TODO: We need a user for this
-    console.log("Hey now");
+    mutation.mutate({ helper_id: currentUser.id });
+  }
+
+  function markComplete() {
+    mutationComplete.mutate();
   }
 
   return (
@@ -51,19 +69,17 @@ function RequestId({ id }) {
                   <div className="flex flex-col gap-1 sm:w-96">
                     {
                       data.requested_resources.map(resource =>
-                        <div className="alert-sm alert-info rounded">
+                        <div key={resource.id} className="alert-sm alert-info rounded">
                           <div className="flex-1">
-                            <label className='text-sm font-semibold uppercase'>{resource.name}</label>
+                            <label className='text-sm font-semibold uppercase'>{resource.resource.name}</label>
                           </div>
                         </div>
-                      )
-                    }
-                  </div>
+                      </div>
+                    )
+                  }
                 </div>
-                )
-              }
-            {
-
+              </div>
+              )
             }
 
             {
@@ -75,7 +91,7 @@ function RequestId({ id }) {
                   <div className="flex flex-col gap-1 sm:w-96">
                     <div className="alert-sm alert-success rounded">
                       <div className="flex-1">
-                        <label className='text-sm font-semibold'>{new Date(data.start_time).toLocaleDateString()}</label>
+                        <label className='text-sm font-semibold'>{new Date(data.start_time).toLocaleString()}</label>
                       </div>
                     </div>
                   </div>
@@ -83,7 +99,21 @@ function RequestId({ id }) {
               )
             }
           </div>
-          <button onClick={offerHelp} className="btn btn-primary mt-10"><Send className="mr-2"/> Offer my help</button>
+          {
+            !data.request_completed && (
+              currentUser && data.request_claimed === false && currentUser.id !== data.requester_id ? (
+                <button onClick={offerHelp} className="btn btn-primary mt-10"><Send className="mr-2"/> Offer my help</button>
+              ) : (
+                <button onClick={markComplete} className="btn btn-success mt-10"><Check className="mr-2"/>Mark completed</button>
+              )
+            )
+          }
+
+          {
+            currentUser && (currentUser.id === data.requester_id || currentUser.id === data.helper_id) && (
+              <button onClick={() => router.push(`/messages/${data.conversations[0].id}`)} className="btn btn-primary mt-10"><MessageSquare className="mr-2"/>Conversation</button>
+            )
+          }
         </div>
       )}
     </Container>
