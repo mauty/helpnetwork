@@ -13,6 +13,7 @@ router.get('/request/:id', async function (req, res) {
 			id: parseInt(id),
 		},
     include: {
+      conversations: true,
       requested_resources: true,
       requester: true,
       category: true
@@ -27,18 +28,25 @@ router.get('/requests', async function (req, res) {
   const latitude = parseFloat(req.query.lat);
   const longitude = parseFloat(req.query.long);
 
-  const { time: strTime, category_id, resources } = req.query;
+  const { time: strTime, categories, resources } = req.query;
 
   let conditional = {}
 
-  if(category_id) conditional["category_id"] = parseInt(category_id);
+  if(categories) {
+    conditional = {
+      category_id: {
+        in: categories.map(category_id => parseInt(category_id) )
+      }
+    };
+  }
+
   if(resources) {
     conditional = {
       ...conditional,
       requested_resources: {
         some: {
           resource_id: {
-            in: resources.map(resource => parseInt(resource) )
+            in: resources.map(resource_id => parseInt(resource_id) )
           }
         }
       }
@@ -113,31 +121,57 @@ router.post('/request', async function (req, res) {
 		},
 	});
 
-	res.json(request);
+	res.status(200).json(request);
 });
 
-//TODO: for create profile page post resources
-//TODO: for profile display page get resources
-//TODO: for search filtering query by resources
+
+/* Complete the request listing */
+router.post('/request/complete/:id', async (req, res) => {
+	const { id: strId } = req.params;
+  const id = parseInt(strId);
+
+	const request = await prisma.request.update({
+		where: {
+			id,
+		},
+    data: {
+      request_completed: true
+    }
+	});
+
+  res.status(200).json(request);
+});
 
 /* Offer help to request listing */
-router.post('/request/:request_id', async (req, res) => {
-	const { request_id } = req.params;
+router.post('/request/help/:id', async (req, res) => {
+	const { id: strId } = req.params;
+  const { helper_id } = req.body.params;
+  const id = parseInt(strId);
 
-	const request = await prisma.request.findOne({
+  if(!helper_id) return res.status(500).send();
+
+	const request = await prisma.request.update({
 		where: {
-			id: request_id,
+			id,
 		},
+    data: {
+      helper_id,
+      request_claimed: true
+    }
 	});
+
+  if(!request) return res.status(500).send();
+  console.log(request);
 
 	const conversation = await prisma.conversation.create({
 		data: {
-			request: request.request_id,
+			request_id: id,
 			requester_id: request.requester_id,
-			message: {
+      helper_id,
+			messages: {
 				create: [
 					{
-						body: `Hey I would love to help you with your request ${request.details}`,
+						body: `Hey I would love to help you with your request ${request.request_details}`,
 					},
 				],
 			},
