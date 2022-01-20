@@ -2,7 +2,7 @@ import MessageListItem from "./MessageListItem";
 import { useContext } from "react";
 import { UserContext } from "../../../pages/_app";
 import Link from "next/link";
-const MessageList = ({ messages = [], request_id }) => {
+const MessageList = ({ messages = [], request, request_id }) => {
 
   const { currentUser } = useContext(UserContext);
 
@@ -24,8 +24,8 @@ const MessageList = ({ messages = [], request_id }) => {
   return (
     <div className="">
       		<header className='bg-blue-500 bg-opacity-25 flex flex-row justify-between'>
-					<p>Category</p>
-					<p>Details</p>
+					<p>{request.category.name}</p>
+					<p>{request.request_details}</p>
 					{/* link to unique request page */}
 					<Link href={`/requests/${request_id}`}>
 					<button className='btn btn-primary'>See Details</button>
