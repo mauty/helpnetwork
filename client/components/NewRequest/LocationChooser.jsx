@@ -1,14 +1,17 @@
 import Geocode from "react-geocode";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import clsx from "clsx";
+import { FormContext } from "../../contexts/FormContext"
 
 Geocode.setApiKey(process.env.NEXT_PUBLIC_GOOGLE_MAPS_API);
 
 const LocationChooser = (props) => {
   const { } = props;
   
-  const [lat, setLat] = useState(null);
-  const [lng, setLng] = useState(null);
+  const { state, setState } = useContext(FormContext)
+
+  // const [lat, setLat] = useState(null);
+  // const [lng, setLng] = useState(null);
   const [status, setStatus] = useState(null);
 
   const [locationToggle, setLocationToggle] = useState(false)
@@ -25,9 +28,18 @@ const LocationChooser = (props) => {
     );
   }
 
+  const setPostalCodeState = (postalCodeInput) => {
+    setState((prevState) => ({...prevState, location: {...prevState.location, postalCode: postalCodeInput}}))
+  }
+
   const handleLocationClick = () => {
     getLocation()
     setLocationToggle(false)
+  }
+
+  const handlePostalCodeToggle = () => {
+    setLocationToggle(!locationToggle)
+    setState((prevState) => ({...prevState, location: { postalCode:''}}))
   }
 
   const getLocation = () => {
@@ -37,9 +49,14 @@ const LocationChooser = (props) => {
       setStatus('Locating...');
       navigator.geolocation.getCurrentPosition((position) => {
         setStatus(null);
-        setLat(position.coords.latitude);
-        setLng(position.coords.longitude);
+        const lat = position.coords.latitude
+        const lng = position.coords.longitude
+        // setLat(position.coords.latitude);
+        // setLng(position.coords.longitude);
         console.log('navigator>>>>',lat, lng)
+        setState((prevState) => {
+          return {...prevState, location: {lat: lat, long: lng}}
+        });
       }, () => {
         setStatus('Unable to retrieve your location');
       });
@@ -53,14 +70,14 @@ const LocationChooser = (props) => {
           onClick={handleLocationClick}>
             Use My Current Location
           </button>
-        <h2>{lat}, {lng}</h2>
+        {/* <h2>{lat}, {lng}</h2> */}
         <div className="flex justify-between items-center">
           <label className='text-lg font-semibold'>Or Somewhere Else:</label>
           <input
             type="checkbox" 
             className="toggle toggle-primary" 
             checked={locationToggle}
-            onChange={() => setLocationToggle(!locationToggle)}
+            onChange={() => handlePostalCodeToggle()}
           />
         </div>
         { locationToggle &&
@@ -72,7 +89,7 @@ const LocationChooser = (props) => {
               type="text" 
               className="input input-sm input-bordered w-full sm:w-80" 
               placeholder="eg: M6C 2R8"
-              onChange={(event) => getCoordsFromPostal(event.target.value)}
+              onChange={(event) => setPostalCodeState(event.target.value)}
               />
           </div>
         }
