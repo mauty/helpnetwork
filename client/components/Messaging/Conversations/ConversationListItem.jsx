@@ -3,10 +3,6 @@ const ConversationListItem = (props) => {
   const { name, body, timestamp } = props;
 
   const ago = timeAgo(new Date(timestamp));
-
-  //add props
-  //add css
-
   return (
     <div className="conversation-item" className="flex justify-center items-center px-3  mx-2 margin-top: 20px bg-grey border border-indigo-600 " >
       <div className="avatar placeholder">
