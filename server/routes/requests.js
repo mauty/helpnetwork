@@ -177,6 +177,7 @@ router.post('/request/help/:id', async (req, res) => {
 				create: [
 					{
 						body: `Hey I would love to help you with your request ${request.request_details}`,
+            sender_id: helper_id
 					},
 				],
 			},
