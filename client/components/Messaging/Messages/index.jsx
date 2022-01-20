@@ -30,7 +30,7 @@ const MessageList = ({ messages = [], request, request_id }) => {
 					<p>{request.request_details}</p>
 					{/* link to unique request page */}
 					<Link href={`/requests/${request_id}`}>
-					<button className='btn btn-primary'>See Details</button>
+					<button className='btn btn-primary'>See Detail</button>
 					</Link>
 				</header>
       <div className="h-96 flex flex-col-reverse  items-end divider overflow-y-scroll">
