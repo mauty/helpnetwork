@@ -43,21 +43,22 @@ function ConversationList({data }) {
       const id = conversation.id;
       return (
         <>
-        {/* <Link href={`/messages/[id]`} > */}
-          <ConversationListItem
+          <Link href={`/messages/${conversation.id}`} >
+            <a class="btn btn-ghost btn-lg rounded-btn">
+              <ConversationListItem
             key={conversation.id}
             id={conversation.id}
             body={conversation.messages[0]?.body}
             timestamp={conversation.messages[0]?.timestamp}
             sender_id={conversation.messages[0]?.sender_id}
             name={conversation.sender.first_name} 
-            />
-            {/* avatar={conversation["person"].imgURL} */}
-        {/* </Link> */}
+            /></a>
+          </Link>
+
         </>
       );
     });
-
+  
     //requester Name
     //requester img
     //message body 
