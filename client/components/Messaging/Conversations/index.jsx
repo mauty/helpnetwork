@@ -59,11 +59,7 @@ function ConversationList({data }) {
       );
     });
   
-    //requester Name
-    //requester img
-    //message body 
-    //message.time
-    
+   //TODO: add state logic for if conversation is empty and if a new message is received
   
   return (
     <div className="">

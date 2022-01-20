@@ -43,7 +43,7 @@ const MessageList = ({ messages = [] }) => {
   
     //list of messages
     <div className="">
-      <div className="h-96 flex flex-col-reverse justify-end items-end divider overflow-y-scroll">
+      <div className="h-96 flex flex-col-reverse  items-end divider overflow-y-scroll">
         {listOfMessages}
       </div>
     </div>
