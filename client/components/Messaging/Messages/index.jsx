@@ -27,7 +27,7 @@ const MessageList = ({ messages = [], request_id }) => {
 					<p>Category</p>
 					<p>Details</p>
 					{/* link to unique request page */}
-					<Link href={`/request/${request_id}`}>
+					<Link href={`/requests/${request_id}`}>
 					<button className='btn btn-primary'>See Details</button>
 					</Link>
 				</header>
