@@ -41,8 +41,6 @@ export default function Home() {
         resources: currentResources } }
   ));
 
-  console.log(data);
-
   function handleTimeChange({ target }) {
     const { name, value } = target;
     const currentTime = {...time};
