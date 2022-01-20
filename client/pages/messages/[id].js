@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useQuery, useMutation } from 'react-query';
 import useAxios from '../../hooks/useAxios';
-
+import Link from 'next/link';
 import NavBar from '../../components/NavBar';
 import Container from '../../components/ui/Container';
 import MessageList from '../../components/Messaging/Messages';
@@ -45,7 +45,7 @@ function Conversation(props) {
 	return (
 		<>
 			<NavBar />
-			<Container title='Talk With Requester'>
+			<Container title='Message'>
 				{data && <MessageList key={data.id} {...data} />}
 				{/* COMPOSE MESSAGE */}
 				<div className='w-full flex justify-between'>
