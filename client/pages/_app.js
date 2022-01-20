@@ -13,13 +13,14 @@ export const UserContext = createContext();
 
 const MyApp = ({ Component, pageProps }) => {
   const [cookies, setCookie, removeCookie] = useCookies('user');
-  const [currentUser, setCurrentUser] = useState(cookies.user || null);
+
+  const [currentUser, setCurrentUser] = useState(cookies.user);
 
   function setNewUser(user) {
     if(user === null) {
       removeCookie('user');
     } else {
-      setCookie('user', user);
+      setCookie('user', user, { path: '/' });
       setCurrentUser(user);
     }
   }
