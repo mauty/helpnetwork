@@ -32,10 +32,16 @@ function RequestId({ id }) {
 
   function offerHelp() {
     mutation.mutate({ helper_id: currentUser.id });
+    router.push(router.asPath);
   }
 
   function markComplete() {
     mutationComplete.mutate();
+  }
+
+  function findConversation() {
+    const conversation = data.conversations.filter(convo => (convo.helper_id === currentUser.id || convo.requester_id === currentUser.id) );
+    router.push(`/messages/${conversation[0].id}`)
   }
 
   return (
@@ -100,17 +106,23 @@ function RequestId({ id }) {
           </div>
           {
             !data.request_completed && (
-              currentUser && data.request_claimed === false && currentUser.id !== data.requester_id ? (
+              currentUser && data.request_claimed === false && currentUser.id !== data.requester_id && (
                 <button onClick={offerHelp} className="btn btn-primary mt-10"><Send className="mr-2"/> Offer my help</button>
-              ) : (
+              )
+
+            )
+          }
+          {
+            data.request_completed === false && (
+              currentUser && data.request_claimed === true && currentUser.id === data.requester_id && (
                 <button onClick={markComplete} className="btn btn-success mt-10"><Check className="mr-2"/>Mark completed</button>
               )
             )
           }
 
           {
-            currentUser && (currentUser.id === data.requester_id || currentUser.id === data.helper_id) && (
-              <button onClick={() => router.push(`/messages/${data.conversations[0].id}`)} className="btn btn-primary mt-10"><MessageSquare className="mr-2"/>Conversation</button>
+            currentUser && data.conversations.length > 0 && (currentUser.id === data.requester_id || currentUser.id === data.helper_id) && (
+              <button onClick={findConversation} className="btn btn-primary mt-10"><MessageSquare className="mr-2"/>Conversation</button>
             )
           }
         </div>

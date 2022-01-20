@@ -10,7 +10,7 @@ export default function Mark({
   id,
 }) {
   const [isOpen, setIsOpen] = useState(false);
-  const desc = useMemo(() => description.slice(0, 90), description);
+  const desc = useMemo(() => description.slice(0, 90), [description]);
 
   return (
     <Marker

@@ -15,7 +15,7 @@ export default function ProfileView({ data }) {
         </div>
         <div>
           {
-            data.personal_resources && data.personal_resources.length && (
+            data.personal_resources && data.personal_resources.length > 0 && (
               <>
                 <h1 className="text-lg font-bold text-gray-900 dark:text-gray-100 p-2">
                 Resources
