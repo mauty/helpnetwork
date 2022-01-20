@@ -30,12 +30,20 @@ function RequestId({ id }) {
 
   const {isLoading, isError, data} = useQuery('request', () => useAxios({ url: `/request/${id}`, method: "get" }));
 
+  console.log(data);
+
   function offerHelp() {
     mutation.mutate({ helper_id: currentUser.id });
   }
 
   function markComplete() {
     mutationComplete.mutate();
+  }
+
+  function findConversation() {
+    const conversation = data.conversations.filter(convo => (convo.helper_id === currentUser.id || convo.requester_id === currentUser.id) );
+
+    router.push(`/messages/${conversation[0].id}`)
   }
 
   return (
@@ -109,8 +117,8 @@ function RequestId({ id }) {
           }
 
           {
-            currentUser && (currentUser.id === data.requester_id || currentUser.id === data.helper_id) && (
-              <button onClick={() => router.push(`/messages/${data.conversations[0].id}`)} className="btn btn-primary mt-10"><MessageSquare className="mr-2"/>Conversation</button>
+            currentUser && data.conversations.length && (currentUser.id === data.requester_id || currentUser.id === data.helper_id) && (
+              <button onClick={findConversation} className="btn btn-primary mt-10"><MessageSquare className="mr-2"/>Conversation</button>
             )
           }
         </div>
