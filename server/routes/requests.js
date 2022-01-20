@@ -2,6 +2,7 @@ const { PrismaClient } = require('@prisma/client');
 const express = require('express');
 const router = express.Router();
 const prisma = new PrismaClient();
+const { getBoundsOfDistance } = require('geolib');
 
 /* GET request listing. */
 router.get('/request/:id', async function (req, res) {
@@ -23,35 +24,65 @@ router.get('/request/:id', async function (req, res) {
 
 router.get('/requests', async function (req, res) {
 
-  const lat = parseFloat(req.query.lat);
-  const lng = parseFloat(req.query.long);
+  const latitude = parseFloat(req.query.lat);
+  const longitude = parseFloat(req.query.long);
 
-  const { time, category_id, resources } = req.query;
+  const { time: strTime, category_id, resources } = req.query;
 
-  // const requests = await prisma.$queryRaw`
-  // SELECT * FROM (SELECT id, request_details, lat, long, ( 3959 * acos( cos( radians(${lat}) ) * cos( radians( lat ) ) * cos( radians( long ) - radians(${lng}) ) + sin( radians(${lat}) ) * sin( radians( lat ) ) ) ) as distance from "Request") al WHERE distance < 3 ORDER BY distance;`;
-  console.log(`
-    ${category_id ? (`AND category_id=${parseInt(category_id)}`) : ('')}`);
+  let conditional = {}
 
-  const requests = await prisma.$queryRaw`
-    SELECT * FROM
-    (SELECT "Request".id, category_id, request_details, "Request".lat, "Request".long, "Category".name as category_name, "Person".first_name, "Person".last_name, "Request".time_sensitive, "Request".start_time, "Request"."createdAt", ( 3959 * acos( cos( radians(${lat}) ) * cos( radians( "Request".lat ) ) * cos( radians( "Request".long ) - radians(${lng}) ) + sin( radians(${lat}) ) * sin( radians( "Request".lat ) ) ) ) as distance
-      FROM "Request"
-      INNER JOIN "Category" ON "Request".category_id="Category".id
-      INNER JOIN "Person" ON "Request".requester_id="Person".id) al
-    WHERE distance < 2
-    ORDER BY distance;`;
+  if(category_id) conditional["category_id"] = parseInt(category_id);
+  if(resources) {
+    conditional = {
+      ...conditional,
+      requested_resources: {
+        some: {
+          resource_id: {
+            in: resources.map(resource => parseInt(resource) )
+          }
+        }
+      }
+    };
+  }
 
+  if(strTime) {
+    const time = JSON.parse(strTime);
+    conditional = {
+      ...conditional,
+      time_sensitive: true,
+      start_time: {
+        gte: new Date(`${new Date().toLocaleDateString()} ${time.from}`),
+      },
+      end_time: {
+        lte: new Date(`${new Date().toLocaleDateString()} ${time.to}`),
+      }
+    }
+  }
 
-  // const ids = requests.map(request => request.id);
+  const bounds = getBoundsOfDistance({
+    latitude, longitude
+  }, 5000)
 
-  // if(ids.length) {
-  //   const resources = await prisma.requested_resource.findMany(
-  //   {
-  //     where: {
-  //     }
-  //   });
-  // }
+  const requests = await prisma.request.findMany({
+    where: {
+      lat: { gte: bounds[0].latitude, lte: bounds[1].latitude },
+      long: { gte: bounds[0].longitude, lte: bounds[1].longitude },
+      ...conditional,
+    },
+    include: {
+      category: true,
+      requester: true,
+      requested_resources: {
+        include: {
+          resource: {
+            select: {
+              name: true
+            }
+          }
+        }
+      }
+    },
+  })
 
 	res.status(200).json(requests);
 });
