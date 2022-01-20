@@ -30,10 +30,9 @@ function RequestId({ id }) {
 
   const {isLoading, isError, data} = useQuery('request', () => useAxios({ url: `/request/${id}`, method: "get" }));
 
-  console.log(data);
-
   function offerHelp() {
     mutation.mutate({ helper_id: currentUser.id });
+    router.push(router.asPath);
   }
 
   function markComplete() {
@@ -42,7 +41,6 @@ function RequestId({ id }) {
 
   function findConversation() {
     const conversation = data.conversations.filter(convo => (convo.helper_id === currentUser.id || convo.requester_id === currentUser.id) );
-
     router.push(`/messages/${conversation[0].id}`)
   }
 
@@ -108,9 +106,15 @@ function RequestId({ id }) {
           </div>
           {
             !data.request_completed && (
-              currentUser && data.request_claimed === false && currentUser.id !== data.requester_id ? (
+              currentUser && data.request_claimed === false && currentUser.id !== data.requester_id && (
                 <button onClick={offerHelp} className="btn btn-primary mt-10"><Send className="mr-2"/> Offer my help</button>
-              ) : (
+              )
+
+            )
+          }
+          {
+            data.request_completed === false && (
+              currentUser && data.request_claimed === true && currentUser.id === data.requester_id && (
                 <button onClick={markComplete} className="btn btn-success mt-10"><Check className="mr-2"/>Mark completed</button>
               )
             )
