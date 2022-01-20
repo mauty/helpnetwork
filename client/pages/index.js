@@ -15,11 +15,12 @@ import useViewport from '../hooks/useViewport';
 import MapCollapseTab from '../components/Home/MapCollapseTab';
 import Mark from '../components/Map/Mark';
 import TimeInput from '../components/Home/TimeInput';
+import FilterButton from '../components/Home/FilterButton';
 
 
 export default function Home() {
-  const [ currentCategory, setCategory ] = useState(null);
-  const [ currentResources, setResources ] = useState([]);
+  const [ currentCategories, setCurrentCategories ] = useState([]);
+  const [ currentResources, setCurrentResources ] = useState([]);
 
   const [ time, setTime ] = useState({ from: "07:00:00", to: "15:00:00" });
   const [ isTimeFiltering, setIsTimeFiltering ] = useState(false);
@@ -27,7 +28,7 @@ export default function Home() {
   const { viewport, copyViewport, setViewport, isViewportLoading } = useViewport();
 
   const { isLoading, isError, data } = useQuery(
-    ['requests', copyViewport, currentCategory, currentResources.length, isTimeFiltering],
+    ['requests', copyViewport, currentCategories.length, currentResources.length, isTimeFiltering],
     () => useAxios({
       url: '/requests',
       method: "get",
@@ -35,14 +36,11 @@ export default function Home() {
         long: viewport.longitude,
         lat: viewport.latitude,
         time: isTimeFiltering? time: null,
-        category_id: currentCategory,
+        categories: currentCategories,
         resources: currentResources } }
   ));
 
   console.log(data);
-
-  const { data: categoriesData } = useQuery('categories', () => useAxios({ url: '/categories', method: "get"}));
-  const { data: resourcesData } = useQuery('resources', () => useAxios({ url: '/resources', method: "get"}));
 
   function handleTimeChange({ target }) {
     const { name, value } = target;
@@ -63,41 +61,10 @@ export default function Home() {
               <button className="btn btn-sm btn-ghost px-1"><Filter/></button>
               <ul tabIndex="0" className="p-1 bg-opacity-95 shadow menu dropdown-content bg-base-100 rounded-box w-80 my-1">
                 <MapCollapseTab name="Category">
-                {
-                  categoriesData &&
-                    categoriesData.map(category =>
-                      <button
-                        key={category.id}
-                        className={clsx('btn btn-xs btn-primary m-1', category.id === currentCategory && ("btn-error"))}
-                        onClick={
-                          () => setCategory(prevState => {
-                            if(prevState === category.id) return null;
-                            return category.id;
-                          })
-                        }>
-                        {category.name}
-                      </button>)
-                }
+                  <FilterButton type='categories' currentData={currentCategories} setData={setCurrentCategories}  />
                 </MapCollapseTab>
                 <MapCollapseTab name="Resources">
-                {
-                  resourcesData &&
-                    resourcesData.map(resource =>
-                      <button
-                        key={resource.id}
-                        className={clsx('btn btn-xs btn-primary m-1', currentResources.includes(resource.id) && ("btn-error"))}
-                        onClick={
-                          () => setResources(prevState => {
-                            if(prevState.includes(resource.id)) {
-                              return prevState.filter(id => resource.id !== id)
-                            }
-
-                            return [...prevState, resource.id];
-                          })
-                        }>
-                        {resource.name}
-                      </button>)
-                }
+                  <FilterButton type='resources' currentData={currentResources} setData={setCurrentResources}  />
                 </MapCollapseTab>
 
                 <MapCollapseTab name="Time">

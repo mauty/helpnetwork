@@ -27,18 +27,25 @@ router.get('/requests', async function (req, res) {
   const latitude = parseFloat(req.query.lat);
   const longitude = parseFloat(req.query.long);
 
-  const { time: strTime, category_id, resources } = req.query;
+  const { time: strTime, categories, resources } = req.query;
 
   let conditional = {}
 
-  if(category_id) conditional["category_id"] = parseInt(category_id);
+  if(categories) {
+    conditional = {
+      category_id: {
+        in: categories.map(category_id => parseInt(category_id) )
+      }
+    };
+  }
+
   if(resources) {
     conditional = {
       ...conditional,
       requested_resources: {
         some: {
           resource_id: {
-            in: resources.map(resource => parseInt(resource) )
+            in: resources.map(resource_id => parseInt(resource_id) )
           }
         }
       }
