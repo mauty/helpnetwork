@@ -12,6 +12,7 @@ function Messages(props) {
 	});
 	console.log('Conversation List Data >>>>', data);
 
+	if (isLoading) return <p>Loading...</p>;
 	return (
 		<>
 			<NavBar />
