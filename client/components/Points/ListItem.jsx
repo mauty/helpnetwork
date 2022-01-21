@@ -5,7 +5,6 @@ import Link from "next/link";
 export default function ListItem({ data, setHover, setLeave, isHovered }) {
   return (
     <tr onMouseMoveCapture={setHover} onMouseLeave={setLeave}>
-      <th></th>
       <td>
         <div className="flex items-center space-x-3">
           <div className="avatar">

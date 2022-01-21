@@ -45,7 +45,6 @@ export default function Home() {
               <table className="table w-full">
                 <thead>
                   <tr>
-                    <th></th>
                     <th>Name</th>
                     <th>Points</th>
                   </tr>
@@ -54,7 +53,6 @@ export default function Home() {
                 {
                   userData && (
                   <tr>
-                    <th className='font-semibold text-blue-600'>YOU</th>
                     <td>
                       <div className="flex items-center space-x-3">
                         <div className="avatar">
@@ -66,7 +64,7 @@ export default function Home() {
                           </div>
                         </div>
                         <div>
-                          <div className="font-bold">{userData.first_name} {userData.last_name}</div>
+                          <div className="font-bold text-blue-500">YOU</div>
                           <Link href={`/profile/${userData.id}`}>
                             <span className="text-sm opacity-50 link hover:text-blue-500">
                               View Profile
