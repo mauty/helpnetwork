@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { useQuery } from "react-query";
 import useAxios from "../../hooks/useAxios";
+import { useQuery, useMutation } from 'react-query';
 
 
 import { FormContext } from "../../contexts/FormContext";
@@ -26,6 +27,7 @@ const NewRequestForm = (props) => {
   // - open/closed
   // - empty/data validated
 
+    // Get All Categories and return array of category objects
   const getCategories = () => {
     const {isLoading, isError, data} = useQuery('categories', () => useAxios({ url: '/categories', method: "get"}))
     const categoryData = data
