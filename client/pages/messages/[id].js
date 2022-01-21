@@ -5,10 +5,9 @@ import Link from 'next/link';
 import NavBar from '../../components/NavBar';
 import Container from '../../components/ui/Container';
 import MessageList from '../../components/Messaging/Messages';
-import { ArrowUpCircle } from 'react-feather';
+import { ArrowUpCircle, ArrowDownCircle } from 'react-feather';
 import { useContext } from 'react';
 import { UserContext } from '../_app';
-import { ArrowDownCircle } from 'react-feather';
 
 export const getServerSideProps = async (ctx) => {
 	// TODO: Get the data from the server here using ctx.params.id
