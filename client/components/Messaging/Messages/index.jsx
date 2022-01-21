@@ -13,7 +13,7 @@ const MessageList = ({ messages = [], request, request_id }) => {
 
     return (
 
-      <div className={clsx({"self-end": currentUser.id === message.sender_id, "self-start": currentUser.id !== message.sender_id })}>
+      <div className={clsx({"self-end bg-blue-600 text-white border border-indigo-600 rounded-full shadow-sm py-1 px-4 text-md break-all": currentUser.id === message.sender_id, "self-start bg-slate-200 text-black border border-grey-600 rounded-full shadow-sm py-1 px-4 text-md break-all": currentUser.id !== message.sender_id })}>
           <MessageListItem
             key={message.id}
             id={message.id}

@@ -7,8 +7,8 @@ const ConversationListItem = (props) => {
 
 
 
-<tr>
-      <td>
+<div>
+      <div>
         <div className="flex items-center space-x-3">
         <div className="avatar placeholder">
         <div className="bg-neutral-focus text-neutral-content rounded-full w-14 h-14">
@@ -20,9 +20,9 @@ const ConversationListItem = (props) => {
             <div className="text-sm opacity-50">{body}</div>
           </div>
         </div>
-      </td>
-      <td className="text-2xs text-gray-400 text-right">{ago} ago</td>
-    </tr>
+      </div>
+      <div className="text-2xs text-gray-400 text-right">{ago} ago</div>
+    </div>
   );
 }
 
