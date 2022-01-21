@@ -73,7 +73,7 @@ router.get('/requests', async function (req, res) {
 
   const bounds = getBoundsOfDistance({
     latitude, longitude
-  }, 5000)
+  }, 500)
 
   const requests = await prisma.request.findMany({
     where: {
