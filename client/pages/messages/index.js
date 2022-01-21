@@ -7,10 +7,19 @@ import Container from '../../components/ui/Container';
 import ConversationList from '../../components/Messaging/Conversations';
 
 function Messages(props) {
-	const { isLoading, isError, data } = useQuery('conversations', () => {
+	//use usestate
+	const [conversationList, setConversationList] = useState({ data: {} });
+
+	const { status, isLoading, isError, data } = useQuery('conversations', () => {
+		console.log('Conversation List from Index.js >>>>', data);
 		return useAxios({ url: `/conversations/`, method: 'get' });
 	});
-	console.log('Conversation List Data >>>>', data);
+
+	useEffect(() => {
+		if (status === 'success') {
+			setConversationList({ data });
+		}
+	}, [status, data]);
 
 	//TODO: add styling for loading condition
 	if (isLoading) return <p>Loading...</p>;
@@ -18,10 +27,18 @@ function Messages(props) {
 		<>
 			<NavBar />
 			<Container title='Talk With Requester'>
-				{(data && <ConversationList key={data.id} data={data} />) || (
+				{
+					status === 'success' ? (
+						<ConversationList
+							key={conversationList.id}
+							data={conversationList}
+						/>
+					) : (
+						<h1>No Conversations to Display</h1>
+					)
 					//TODO: add styling for empty conversations
-					<h1>No Conversations to Display</h1>
-				)}
+				}
+				;
 			</Container>
 		</>
 	);

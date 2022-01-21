@@ -16,7 +16,7 @@ const NavBar = (props) => {
           <Link href="/requests/new">
             <a class="btn btn-ghost btn-sm rounded-btn">New Request</a>
           </Link>
-          <Link href="/messages">
+          <Link href="/messages/">
             <a class="btn btn-ghost btn-sm rounded-btn">Messages</a>
           </Link>
           <Link href="/profile">
