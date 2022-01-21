@@ -12,12 +12,14 @@ function Messages(props) {
 	});
 	console.log('Conversation List Data >>>>', data);
 
+	//TODO: add styling for loading condition
 	if (isLoading) return <p>Loading...</p>;
 	return (
 		<>
 			<NavBar />
 			<Container title='Talk With Requester'>
 				{(data && <ConversationList key={data.id} data={data} />) || (
+					//TODO: add styling for empty conversations
 					<h1>No Conversations to Display</h1>
 				)}
 			</Container>
