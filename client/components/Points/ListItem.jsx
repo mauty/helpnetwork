@@ -3,6 +3,7 @@ import clsx from "clsx";
 import Link from "next/link";
 
 export default function ListItem({ data, setHover, setLeave, isHovered }) {
+  console.log(data);
   return (
     <tr onMouseMoveCapture={setHover} onMouseLeave={setLeave}>
       <td>
@@ -26,11 +27,7 @@ export default function ListItem({ data, setHover, setLeave, isHovered }) {
           </div>
         </div>
       </td>
-      {
-        <td className="text-orange-600">
-          {data.points_value ? data.points_value : "0"}
-        </td>
-      }
+      {<td className="text-orange-600">{data.points ? data.points : "0"}</td>}
     </tr>
   );
 }

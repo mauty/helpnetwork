@@ -32,7 +32,7 @@ function RequestId({ id }) {
 
   function offerHelp() {
     mutation.mutate({ helper_id: currentUser.id });
-    router.push(router.asPath);
+    router.reload(window.location.pathname);
   }
 
   function markComplete() {
