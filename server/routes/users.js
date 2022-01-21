@@ -16,11 +16,33 @@ router.get('/profile/:id', async function (req, res) {
         include: {
           resource: true
         }
-      }
+      },
+      Helper: {
+        where: {
+          request_completed: true
+        },
+        include: {
+          category: true,
+          requester: true
+        }
+      },
     }
 	});
 
-	res.json(person);
+  const points = await prisma.request.groupBy({
+    where: {
+      request_completed: true,
+      helper_id: {
+        equals: person.id
+      }
+    },
+    by: ['helper_id'],
+    _sum: {
+      points_value: true
+    }
+  })
+
+	res.json({ ...person, points });
 });
 
 /* Post route to see edit own profile*/

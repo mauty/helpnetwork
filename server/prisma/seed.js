@@ -331,6 +331,10 @@ const request_data = [
 		long: -79.3902,
 		category_id: 5,
 		requester_id: 9,
+    helper_id: 2,
+    request_claimed: true,
+    request_completed: true,
+    points_value: 430,
 		time_sensitive: true,
 	},
 	{
