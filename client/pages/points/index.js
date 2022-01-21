@@ -81,7 +81,13 @@ export default function Home() {
                 }
                 {
                   data && data.map(person =>
-                    <ListItem key={person.id} data={person} setHover={() => setCurrentHoverId(person.id)} setLeave={() => setCurrentHoverId(-1)}/>
+                    <ListItem
+                    key={person.id}
+                    data={person}
+                    setHover={() => setCurrentHoverId(person.id)}
+                    setLeave={() => setCurrentHoverId(-1)}
+                    isHovered={currentHoverId === person.id}
+                    />
                   )
                 }
                 </tbody>

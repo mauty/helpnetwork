@@ -1,7 +1,8 @@
 import React from "react";
+import clsx from "clsx";
 import Link from "next/link";
 
-export default function ListItem({ data, setHover, setLeave }) {
+export default function ListItem({ data, setHover, setLeave, isHovered }) {
   return (
     <tr onMouseMoveCapture={setHover} onMouseLeave={setLeave}>
       <th></th>
@@ -18,7 +19,7 @@ export default function ListItem({ data, setHover, setLeave }) {
               />
             </div>
           </div>
-          <div>
+          <div className={clsx(isHovered && "text-yellow-500 text-xl")}>
             <div className="font-bold">{data.first_name}</div>
             <Link href={`/profile/${data.id}`}>
               <div className="text-sm opacity-50 link">View Profile</div>
