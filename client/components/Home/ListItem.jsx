@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import Link from "next/link";
 import { useMemo } from "react";
 import timeAgo from "../../utils/timeAgo";
@@ -15,6 +16,7 @@ export default function ListItem({
   },
   setHover,
   setLeave,
+  isHovered,
 }) {
   const ago = useMemo(() => timeAgo(new Date(createdAt)), [createdAt]);
 
@@ -23,7 +25,10 @@ export default function ListItem({
       <li
         onMouseEnter={setHover}
         onMouseLeave={setLeave}
-        className="py-4 flex first:pt-0 last:pb-0 items-center hover:bg-gray-100 p-2 rounded cursor-pointer"
+        className={clsx(
+          "py-4 flex first:pt-0 last:pb-0 items-center hover:bg-yellow-50 p-2 rounded cursor-pointer",
+          isHovered && "bg-indigo-100"
+        )}
       >
         <div className="basis-7 flex justify-center mask mask-hexagon p-1 bg-blue-500">
           <p className="text-white">{index + 1}</p>

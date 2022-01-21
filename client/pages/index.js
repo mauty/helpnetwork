@@ -92,6 +92,8 @@ export default function Home() {
               description={request.request_details}
               id={request.id}
               isHovered={currentHoverId === request.id}
+              setHover={() => setCurrentHoverId(request.id)}
+              setLeave={() => setCurrentHoverId(-1)}
               />
           ) }
         </Map>
@@ -107,6 +109,7 @@ export default function Home() {
                 id={request.id}
                 index={index}
                 data={request}
+                isHovered={currentHoverId === request.id}
                 setHover={() => setCurrentHoverId(request.id)}
                 setLeave={() => setCurrentHoverId(-1)}
                 />
