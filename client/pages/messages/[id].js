@@ -36,8 +36,10 @@ function Conversation(props) {
 
 	const { currentUser } = useContext(UserContext);
 
+	console.log ('currentUser', currentUser)
+
 	function handleSubmit() {
-		mutation.mutate({ body: text, sender_id: currentUser });
+		mutation.mutate({ body: text, sender_id: currentUser.id });
 		setText('');
 		setTimeout(() => {
 			refreshButton.current.click();
