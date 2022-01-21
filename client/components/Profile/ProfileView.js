@@ -1,8 +1,11 @@
 import { useRouter } from "next/router"
+import useCountStars from "../../hooks/useCountStars";
 import Container from '../ui/Container';
 
 export default function ProfileView({ data }) {
   const router = useRouter();
+  const { stars } = useCountStars(data?.points[0]?._sum?.points_value);
+  console.log(data);
 
   return (
     <Container title={`${data.first_name} ${data.last_name}`}>
@@ -39,26 +42,35 @@ export default function ProfileView({ data }) {
           </h1>
           <div className='flex gap-2'>
             <div className="rating rating-md px-2">
-              <input type="radio" checked="checked" className="mask mask-star-2 bg-warning" disabled/>
-              <input type="radio" className="mask mask-star-2 bg-warning" disabled/>
-              <input type="radio" className="mask mask-star-2 bg-warning"disabled/>
-              <input type="radio" className="mask mask-star-2 bg-warning" disabled/>
-              <input type="radio" className="mask mask-star-2 bg-warning" disabled/>
+              {
+                [1, 2, 3, 4, 5].map(num => (
+                  <input key={num} type="radio" checked={stars === num} className="mask mask-star-2 bg-warning" disabled/>
+                ))
+              }
             </div>
-            <label className='font-medium text-gray-800 text-xl'>{data.points}</label>
+            <label className='font-medium text-gray-800 text-xl'>{data.points[0] && data.points[0]._sum.points_value}</label>
           </div>
         </div>
-        <div>
-          <h1 className="text-lg font-bold text-gray-900 dark:text-gray-100 p-2">
-            Completed Requests
-          </h1>
-          <div className="alert-sm alert-success rounded m-1">
-              <div className="flex flex-col">
-                <label className='text-sm font-semibold'>Gutter Cleaning</label>
-                <label className='text-xs'>Betsy Johnson</label>
-              </div>
-          </div>
-        </div>
+        {
+          data.Helper && data.Helper.length > 0 && (
+            <div>
+              <h1 className="text-lg font-bold text-gray-900 dark:text-gray-100 p-2">
+                Completed Requests
+              </h1>
+              {
+                data.Helper.map(request =>
+                  <div key={request.id} className="alert-sm alert-success rounded m-1">
+                      <div className="flex flex-col">
+                        <label className='text-lg font-semibold'>{request.category.name}</label>
+                        <label className='text-xs'>{request.requester.first_name} {request.requester.last_name}</label>
+                        <label className='text-md mt-2'>Points received: <span className="text-lg text-yellow-500 font-semibold">{request.points_value}</span></label>
+                      </div>
+                  </div>
+                )
+              }
+            </div>
+          )
+        }
         {
           router.asPath !== '/profile' && (
             <div className='flex justify-center'>

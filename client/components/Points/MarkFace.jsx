@@ -17,7 +17,7 @@ export default function MarkFace({
       offsetLeft={-20}
       offsetTop={-10}
     >
-      <div className="flex flex-col items-center">
+      <div className="flex flex-col items-center cursor-pointer">
         <Link href={`/profile/${id}`}>
           <div
             className={clsx(
@@ -38,7 +38,8 @@ export default function MarkFace({
         <p
           className={clsx(
             "font-medium text-indigo-600",
-            isHovered && "text-yellow-500 font-semibold text-xl"
+            isHovered &&
+              "text-yellow-500 font-semibold text-xl bg-indigo-700 px-1 rounded"
           )}
         >
           {points}
