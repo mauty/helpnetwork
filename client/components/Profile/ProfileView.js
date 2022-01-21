@@ -4,14 +4,12 @@ import Container from '../ui/Container';
 export default function ProfileView({ data }) {
   const router = useRouter();
 
-  console.log(data);
-
   return (
     <Container title={`${data.first_name} ${data.last_name}`}>
       <div className="flex flex-col gap-6 mx-2">
         <div className='flex justify-between p-2'>
             <p>{data.bio}</p>
-            <img className="rounded-full border bg-gray-300 border-gray-600 h-32 w-32 block" src="https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80" alt="Image" />
+            <img className="rounded-full border bg-gray-300 border-gray-600 h-32 w-32 block" src={data.imgURL} alt="Image" />
         </div>
         <div>
           {

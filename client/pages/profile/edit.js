@@ -17,7 +17,6 @@ function EditProfile() {
   const router = useRouter();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [imgURL, setImgURL] = useState("https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80")
   const [personalResources, setPersonalResources] = useState([]);
 
   const { currentUser } = useContext(UserContext);
@@ -25,10 +24,6 @@ function EditProfile() {
   const { isLoading, isError, data } = useQuery('profile',
     () => useAxios({ url: `/profile/${currentUser.id}`, method: "get" }),
     { onSuccess: (data) => {
-      if (data && data.imgURL) {
-        setImgURL(data.imgURL);
-      }
-
       if (data && data.personal_resources) {
         setPersonalResources(data.personal_resources.map(resource => resource.resource_id));
       }
@@ -105,7 +100,7 @@ function EditProfile() {
             </div>
 
             <div className='basis-56 flex flex-col gap-2 h-32 w-32'>
-              <img className="rounded-3xl border bg-gray-300 border-gray-600 block" src={imgURL} alt="Image"/>
+              <img className="rounded-3xl border bg-gray-300 border-gray-600 block" src={data.imgURL} alt="Image"/>
               <button className='btn btn-sm' onClick={() => setIsModalOpen(true)}>Change</button>
             </div>
           </div>
