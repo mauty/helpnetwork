@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import Link from "next/link";
 import { useMemo } from "react";
 import timeAgo from "../../utils/timeAgo";
@@ -13,12 +14,22 @@ export default function ListItem({
     requester,
     requested_resources,
   },
+  setHover,
+  setLeave,
+  isHovered,
 }) {
   const ago = useMemo(() => timeAgo(new Date(createdAt)), [createdAt]);
 
   return (
     <Link href={`/requests/${id}`}>
-      <li className="py-4 flex first:pt-0 last:pb-0 items-center hover:bg-gray-100 p-2 rounded cursor-pointer">
+      <li
+        onMouseEnter={setHover}
+        onMouseLeave={setLeave}
+        className={clsx(
+          "py-4 flex first:pt-0 last:pb-0 items-center hover:bg-yellow-50 p-2 rounded cursor-pointer",
+          isHovered && "bg-indigo-100"
+        )}
+      >
         <div className="basis-7 flex justify-center mask mask-hexagon p-1 bg-blue-500">
           <p className="text-white">{index + 1}</p>
         </div>
@@ -39,7 +50,11 @@ export default function ListItem({
             ))}
           {time_sensitive && (
             <p className="text-xs">
-              {new Date(start_time).toLocaleTimeString()}
+              Time specified:{" "}
+              {new Date(start_time).toLocaleTimeString([], {
+                hour: "2-digit",
+                minute: "2-digit",
+              })}
             </p>
           )}
         </div>

@@ -1,6 +1,7 @@
 import { useState, useMemo } from "react";
 import Link from "next/link";
 import { Marker } from "react-map-gl";
+import clsx from "clsx";
 
 export default function Mark({
   longitude,
@@ -8,6 +9,9 @@ export default function Mark({
   index,
   description = "",
   id,
+  isHovered = false,
+  setHover,
+  setLeave,
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const desc = useMemo(() => description.slice(0, 90), [description]);
@@ -19,9 +23,16 @@ export default function Mark({
       offsetLeft={-20}
       offsetTop={-10}
     >
-      <div className="flex gap-1">
+      <div
+        className="flex gap-1"
+        onMouseEnter={setHover}
+        onMouseLeave={setLeave}
+      >
         <button
-          className="z-10 h-10 w-10 p-1 mask mask-hexagon font-bold rounded-full  text-white transition ease-in-out delay-150 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300"
+          className={clsx(
+            "z-10 h-10 w-10 p-1 mask mask-hexagon font-bold rounded-full  text-white transition ease-in-out delay-150 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300",
+            isHovered && "mask-parallelogram  bg-yellow-400"
+          )}
           onClick={() => setIsOpen((prevState) => !prevState)}
         >
           {index}
