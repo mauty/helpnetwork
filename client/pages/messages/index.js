@@ -16,7 +16,9 @@ function Messages(props) {
 		<>
 			<NavBar />
 			<Container title='Talk With Requester'>
-				{data && <ConversationList key={data.id} data={data} />}
+				{(data && <ConversationList key={data.id} data={data} />) || (
+					<h1>No Conversations to Display</h1>
+				)}
 			</Container>
 		</>
 	);

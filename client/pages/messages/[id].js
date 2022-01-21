@@ -5,6 +5,8 @@ import Link from 'next/link';
 import NavBar from '../../components/NavBar';
 import Container from '../../components/ui/Container';
 import MessageList from '../../components/Messaging/Messages';
+import { useContext } from 'react';
+import { UserContext } from '../_app';
 
 export const getServerSideProps = async (ctx) => {
 	// TODO: Get the data from the server here using ctx.params.id
@@ -23,7 +25,6 @@ function Conversation(props) {
 			refetchInterval: 10000,
 		},
 	);
-	console.log('Data >>>>', data);
 
 	const refreshButton = useRef(null);
 
@@ -33,14 +34,20 @@ function Conversation(props) {
 		useAxios({ url: `/conversations/1`, method: 'post', params: newMessage }),
 	);
 
+	const { currentUser } = useContext(UserContext);
+
+	console.log ('currentUser', currentUser)
+
 	function handleSubmit() {
-		mutation.mutate({ body: text, sender_id: 1 });
+		mutation.mutate({ body: text, sender_id: currentUser.id });
 		setText('');
 		setTimeout(() => {
 			refreshButton.current.click();
 			console.log('Reload function >>>>> ', refreshButton.current);
 		}, 1500);
 	}
+
+	console.log('Data >>>>', data);
 
 	return (
 		<>

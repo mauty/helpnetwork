@@ -53,6 +53,7 @@ export default function Home() {
   return (
     <>
       <Container size='full'>
+        <NavBar />
         <Map setViewport={setViewport} viewport={viewport}>
           <div className='flex justify-start gap-2 m-2'>
             <div className="dropdown">

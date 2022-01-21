@@ -8,8 +8,7 @@ export function FormProvider ( {children} ) {
     categoryId: 0,
     details: "",
     resources: {
-      1: true,
-      2: true,
+      
     },
     location: {
       long: 0,
