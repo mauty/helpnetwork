@@ -22,6 +22,7 @@ import { Empty } from '../components/ui/Empty';
 export default function Home() {
   const [ currentCategories, setCurrentCategories ] = useState([]);
   const [ currentResources, setCurrentResources ] = useState([]);
+  const [ currentHoverId, setCurrentHoverId ] = useState(-1);
 
   const [ time, setTime ] = useState({ from: "07:00:00", to: "15:00:00" });
   const [ isTimeFiltering, setIsTimeFiltering ] = useState(false);
@@ -89,7 +90,11 @@ export default function Home() {
               latitude={request.lat}
               index={index + 1}
               description={request.request_details}
-              id={request.id} />
+              id={request.id}
+              isHovered={currentHoverId === request.id}
+              setHover={() => setCurrentHoverId(request.id)}
+              setLeave={() => setCurrentHoverId(-1)}
+              />
           ) }
         </Map>
         <div className='flex w-full h-64 shadow overflow-y-scroll pt-2'>
@@ -104,6 +109,9 @@ export default function Home() {
                 id={request.id}
                 index={index}
                 data={request}
+                isHovered={currentHoverId === request.id}
+                setHover={() => setCurrentHoverId(request.id)}
+                setLeave={() => setCurrentHoverId(-1)}
                 />
               )) : (<Empty/>)
             )}

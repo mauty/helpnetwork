@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { useQuery } from 'react-query';
 import Link from 'next/link';
 
@@ -16,6 +16,7 @@ import { UserContext } from '../_app';
 
 export default function Home() {
   useAuth();
+  const [ currentHoverId, setCurrentHoverId ] = useState(-1);
   const { currentUser } = useContext(UserContext);
   const { viewport, copyViewport, setViewport, isViewportLoading } = useViewport();
   const {isLoading, isError, data} = useQuery(['points', copyViewport], () => useAxios({ url: '/points', method: "get", params: { long: viewport.longitude, lat: viewport.latitude }}));
@@ -26,7 +27,15 @@ export default function Home() {
       <Container size='full'>
         <Map setViewport={setViewport} viewport={viewport}>
           { data && data.map(person =>
-            <MarkFace key={person.id} longitude={person.long} latitude={person.lat} id={person.id} imgUrl={person.imgURL} points={person.points} />
+            <MarkFace
+              key={person.id}
+              longitude={person.long}
+              latitude={person.lat}
+              id={person.id}
+              imgUrl={person.imgURL}
+              points={person.points}
+              isHovered={currentHoverId === person.id}
+              />
           ) }
         </Map>
 
@@ -36,7 +45,6 @@ export default function Home() {
               <table className="table w-full">
                 <thead>
                   <tr>
-                    <th></th>
                     <th>Name</th>
                     <th>Points</th>
                   </tr>
@@ -45,7 +53,6 @@ export default function Home() {
                 {
                   userData && (
                   <tr>
-                    <th className='font-semibold text-blue-600'>YOU</th>
                     <td>
                       <div className="flex items-center space-x-3">
                         <div className="avatar">
@@ -57,7 +64,7 @@ export default function Home() {
                           </div>
                         </div>
                         <div>
-                          <div className="font-bold">{userData.first_name} {userData.last_name}</div>
+                          <div className="font-bold text-blue-500">YOU</div>
                           <Link href={`/profile/${userData.id}`}>
                             <span className="text-sm opacity-50 link hover:text-blue-500">
                               View Profile
@@ -72,7 +79,13 @@ export default function Home() {
                 }
                 {
                   data && data.map(person =>
-                    <ListItem key={person.id} data={person}/>
+                    <ListItem
+                    key={person.id}
+                    data={person}
+                    setHover={() => setCurrentHoverId(person.id)}
+                    setLeave={() => setCurrentHoverId(-1)}
+                    isHovered={currentHoverId === person.id}
+                    />
                   )
                 }
                 </tbody>

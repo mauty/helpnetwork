@@ -11,7 +11,7 @@ router.get('/points', async function (req, res) {
 
   const bounds = getBoundsOfDistance({
     latitude, longitude
-  }, 5000)
+  }, 500)
 
   const people = await prisma.person.findMany({
     where: {
