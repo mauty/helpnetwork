@@ -41,8 +41,6 @@ export default function Home() {
         resources: currentResources } }
   ));
 
-  console.log(data);
-
   function handleTimeChange({ target }) {
     const { name, value } = target;
     const currentTime = {...time};
@@ -54,6 +52,7 @@ export default function Home() {
   return (
     <>
       <Container size='full'>
+        <NavBar />
         <Map setViewport={setViewport} viewport={viewport}>
           <div className='flex justify-start gap-2 m-2'>
             <div className="dropdown">
