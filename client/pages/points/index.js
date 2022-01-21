@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { useQuery } from 'react-query';
 import Link from 'next/link';
 
@@ -16,6 +16,7 @@ import { UserContext } from '../_app';
 
 export default function Home() {
   useAuth();
+  const [ currentHoverId, setCurrentHoverId ] = useState(-1);
   const { currentUser } = useContext(UserContext);
   const { viewport, copyViewport, setViewport, isViewportLoading } = useViewport();
   const {isLoading, isError, data} = useQuery(['points', copyViewport], () => useAxios({ url: '/points', method: "get", params: { long: viewport.longitude, lat: viewport.latitude }}));
@@ -26,7 +27,15 @@ export default function Home() {
       <Container size='full'>
         <Map setViewport={setViewport} viewport={viewport}>
           { data && data.map(person =>
-            <MarkFace key={person.id} longitude={person.long} latitude={person.lat} id={person.id} imgUrl={person.imgURL} points={person.points} />
+            <MarkFace
+              key={person.id}
+              longitude={person.long}
+              latitude={person.lat}
+              id={person.id}
+              imgUrl={person.imgURL}
+              points={person.points}
+              isHovered={currentHoverId === person.id}
+              />
           ) }
         </Map>
 
@@ -72,7 +81,7 @@ export default function Home() {
                 }
                 {
                   data && data.map(person =>
-                    <ListItem key={person.id} data={person}/>
+                    <ListItem key={person.id} data={person} setHover={() => setCurrentHoverId(person.id)} setLeave={() => setCurrentHoverId(-1)}/>
                   )
                 }
                 </tbody>

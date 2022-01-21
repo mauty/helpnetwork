@@ -1,9 +1,9 @@
 import React from "react";
 import Link from "next/link";
 
-export default function ListItem({ data }) {
+export default function ListItem({ data, setHover, setLeave }) {
   return (
-    <tr>
+    <tr onMouseMoveCapture={setHover} onMouseLeave={setLeave}>
       <th></th>
       <td>
         <div className="flex items-center space-x-3">
