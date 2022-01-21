@@ -4,6 +4,11 @@ import { UserContext } from '../_app';
 
 import Container from "../../components/ui/Container";
 
+/*****************************************
+ * We are aware that this is not a proper implementation of Auth
+ * This is for demo purposes only
+ *****************************************/
+
 export default function Login() {
   const router = useRouter();
   const data = useContext(UserContext);

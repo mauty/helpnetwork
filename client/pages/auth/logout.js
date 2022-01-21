@@ -5,6 +5,11 @@ import { LogOut } from 'react-feather';
 
 import Container from "../../components/ui/Container";
 
+/*****************************************
+ * We are aware that this is not a proper implementation of Auth
+ * This is for demo purposes only
+ *****************************************/
+
 export default function Logout() {
   const router = useRouter();
   const { setCurrentUser } = useContext(UserContext);
