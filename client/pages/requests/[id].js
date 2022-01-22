@@ -10,6 +10,7 @@ import useAxios from "../../hooks/useAxios";
 import Shimmer from '../../components/ui/Shimmer';
 import ErrorMessage from "../../components/ui/ErrorMessage";
 import NavBar from "../../components/NavBar";
+import Message from "../../components/ui/Message";
 
 export const getServerSideProps = async (ctx) => {
   // TODO: Get the data from the server here using ctx.params.id
@@ -25,8 +26,8 @@ function RequestId({ id }) {
     useAxios({ url: `/request/help/${id}`, method: 'post', params: newHelp }),
   );
 
-  const mutationComplete = useMutation((completeRequest) =>
-    useAxios({ url: `/request/complete/${id}`, method: 'post', params: completeRequest }),
+  const mutationComplete = useMutation(() =>
+    useAxios({ url: `/request/complete/${id}`, method: 'post' }),
   );
 
   const {isLoading, isError, data} = useQuery('request', () => useAxios({ url: `/request/${id}`, method: "get" }));
@@ -40,7 +41,11 @@ function RequestId({ id }) {
   }
 
   function markComplete() {
-    mutationComplete.mutate();
+    mutationComplete.mutate({}, {
+      onSuccess: () => {
+        router.push(`/`);
+      }
+    });
   }
 
   function findConversation() {
@@ -53,6 +58,11 @@ function RequestId({ id }) {
       <Container title="Help For">
         { isLoading && <Shimmer/>}
         { isError && <ErrorMessage title="Error" error="Something unexpected... Try again"/> }
+        {
+          data && data.request_claimed && (
+            <Message message={"Someone is already helping with this request."}/>
+          )
+        }
         { data && (
           <div className="flex flex-col p-2 space-between">
             <h1 className="font-medium text-xl">{`${data.requester.first_name} ${data.requester.last_name}`}</h1>

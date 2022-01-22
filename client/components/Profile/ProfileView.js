@@ -1,11 +1,29 @@
 import { useRouter } from "next/router"
+import { useContext } from "react";
 import useCountStars from "../../hooks/useCountStars";
+import { UserContext } from "../../pages/_app";
 import NavBar from "../NavBar";
 import Container from '../ui/Container';
+import { useMutation } from "react-query";
+import useAxios from "../../hooks/useAxios";
+import Link from "next/link";
 
 export default function ProfileView({ data }) {
+  const { currentUser } = useContext(UserContext);
+
   const router = useRouter();
   const { stars } = useCountStars(data?.points[0]?._sum?.points_value | 0);
+  const mutation = useMutation((newHelp) =>
+    useAxios({ url: `/conversations/new`, method: 'post', params: newHelp }),
+  );
+
+  function handleContactPerson() {
+    mutation.mutate({ helper_id: currentUser.id, requester_id: data.id }, {
+      onSuccess: (data) => {
+        router.push(`/messages/${data.id}`);
+      }
+    })
+  }
 
   return (
     <NavBar currentNav={"profile"}>
@@ -73,10 +91,14 @@ export default function ProfileView({ data }) {
             )
           }
           {
-            router.asPath !== '/profile' && (
+            (router.asPath !== '/profile' && currentUser.id !== data.id) ? (
               <div className='flex justify-center'>
-                <button className="btn btn-primary">Contact Helper</button>
+                <button onClick={handleContactPerson} className="btn btn-primary">Contact Helper</button>
               </div>
+            ): (
+              <Link href={'/auth/logout'}>
+                <button className="btn btn-sm btn-warning">Logout</button>
+              </Link>
             )
           }
         </div>
