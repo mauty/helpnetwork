@@ -11,6 +11,7 @@ import ErrorMessage from '../../components/ui/ErrorMessage';
 import Shimmer from '../../components/ui/Shimmer';
 import useViewport from '../../hooks/useViewport';
 import ListItem from '../../components/Points/ListItem';
+import NavBar from '../../components/NavBar';
 
 import { UserContext } from '../_app';
 
@@ -21,9 +22,10 @@ export default function Home() {
   const { viewport, copyViewport, setViewport, isViewportLoading } = useViewport();
   const {isLoading, isError, data} = useQuery(['points', copyViewport], () => useAxios({ url: '/points', method: "get", params: { long: viewport.longitude, lat: viewport.latitude }}));
   const {data: userData} = useQuery(['profile', copyViewport], () => useAxios({ url: `/profile/${currentUser.id}`, method: "get" }));
+  console.log(userData);
 
   return (
-    <>
+    <NavBar currentNav={"points"}>
       <Container size='full'>
         <Map setViewport={setViewport} viewport={viewport}>
           { data && data.map(person =>
@@ -73,7 +75,7 @@ export default function Home() {
                         </div>
                       </div>
                     </td>
-                    <td className="text-orange-600 text-2xl">200</td>
+                    <td className="text-orange-600 text-2xl">{userData.points[0]? data.points[0]._sum.points_value : "0"}</td>
                   </tr>
                   )
                 }
@@ -93,6 +95,6 @@ export default function Home() {
           </div>
         ) }
       </Container>
-    </>
+    </NavBar>
   )
 }
