@@ -60,8 +60,35 @@ router.get('/conversations/:id', async function (req, res) {
 	res.json(conversation);
 });
 
-/* Route to post a new message to the db */
+/* Route to CREATE A NEW CONVO to the db IF DOESNT EXIST */
+router.post('/conversations/new', async function (req, res) {
+	const { helper_id, requester_id } = req.body.params;
 
+	const conversation = await prisma.conversation.findFirst({
+    where: {
+      request_id: null,
+      helper_id,
+      requester_id
+    },
+	});
+
+  if(!conversation) {
+    const newConversation = await prisma.conversation.create({
+      data: {
+        request_id: null,
+        helper_id,
+        requester_id
+      }
+    })
+
+    res.json(newConversation);
+    return;
+  }
+
+	res.json(conversation);
+});
+
+/* Route to post a new message to the db */
 router.post('/conversations/:id', async function (req, res) {
 	const id = req.params;
 	const { body, sender_id } = req.body.params;
