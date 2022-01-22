@@ -16,15 +16,15 @@ function ConversationList({convos} ) {
            <Link href={`/messages/${conversation.id}`} >
             <button class="flex w-full justify-between border-b-3 border-slate-500/2 shadow-md hover:bg-slate-400 active:bg-slate-600">
               <ConversationListItem
-            key={conversation.id}
-            id={conversation.id}
-            body={conversation.messages[0]?.body}
-            timestamp={conversation.messages[0]?.timestamp}
-            sender_id={conversation.messages[0]?.sender_id}
-            name={conversation.sender.first_name} 
-            avatar={conversation.sender.imgURL}
-            />
-            </button>
+                key={conversation.id}
+                id={conversation.id}
+                body={conversation.messages[0]?.body}
+                timestamp={conversation.messages[0]?.timestamp}
+                sender_id={conversation.messages[0]?.sender_id}
+                name={conversation.sender.first_name} 
+                avatar={conversation.sender.imgURL}
+                />
+              </button>
           </Link>
         </div>
       );

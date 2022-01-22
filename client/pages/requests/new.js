@@ -10,9 +10,10 @@ function NewRequestPage() {
     <div className="flex flex-col h-screen justify-between">
         <Header pageName="New Request Form" />
         <FormProvider>
+        <NavBar>
           <NewRequestForm />
+        </NavBar>
         </FormProvider>
-        <NavBar />
     </div>
   )
 }

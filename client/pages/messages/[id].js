@@ -56,22 +56,23 @@ function Conversation(props) {
 
 	return (
 		<>
-			<NavBar />
-			<Container title='Message'>
-				{data && <MessageList key={data.id} {...data} />}
-				{/* COMPOSE MESSAGE */}
-				<div className='w-full flex justify-between'>
-					<textarea
-						className='flex-grow focus:bg-white m-2 py-2 px-4 mr-1 rounded-full border border-gray-300 bg-gray-200 text-lg resize-none'
-						rows='1'
-						placeholder='Message...'
-						onChange={(event) => setText(event.target.value)}
-						value={text}></textarea>
-					<button className='p-5' onClick={handleSubmit}>
-						<ArrowUpCircle color='#0067ff' size={48} />
-					</button>
-				</div>
-			</Container>
+			<NavBar>
+				<Container title='Message'>
+					{data && <MessageList key={data.id} {...data} />}
+					{/* COMPOSE MESSAGE */}
+					<div className='w-full flex justify-between'>
+						<textarea
+							className='flex-grow focus:bg-white m-2 py-2 px-4 mr-1 rounded-full border border-gray-300 bg-gray-200 text-lg resize-none'
+							rows='1'
+							placeholder='Message...'
+							onChange={(event) => setText(event.target.value)}
+							value={text}></textarea>
+						<button className='p-5' onClick={handleSubmit}>
+							<ArrowUpCircle color='#0067ff' size={48} />
+						</button>
+					</div>
+				</Container>
+			</NavBar>
 			<button ref={refreshButton} onClick={refetch}>
 				{' '}
 				Do refetch NOW{' '}

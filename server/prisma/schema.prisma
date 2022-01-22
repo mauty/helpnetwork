@@ -41,7 +41,7 @@ model Request {
   request_completed   Boolean              @default(false)
   createdAt           DateTime             @default(now())
   time_sensitive      Boolean              @default(false)
-  start_time          DateTime             @default(now())
+  start_time          DateTime?            @default(now())
   end_time            DateTime?            @default(now())
   points_value        Int                  @default(0)
   helper_id           Int?
