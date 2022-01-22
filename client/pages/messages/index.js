@@ -16,7 +16,6 @@ function Messages(props) {
 	if (isLoading) return <p>Loading...</p>;
 
 	return (
-		<>
 			<NavBar>
 				<Container title='Messages'>
 					{(data && data.length && 
@@ -29,7 +28,6 @@ function Messages(props) {
 					)}
 				</Container>
 			</NavBar>
-		</>
 	);
 }
 export default Messages;

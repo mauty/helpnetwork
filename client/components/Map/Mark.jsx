@@ -31,7 +31,7 @@ export default function Mark({
         <button
           className={clsx(
             "z-10 h-10 w-10 p-1 mask mask-hexagon font-bold rounded-full  text-white transition ease-in-out delay-150 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300",
-            isHovered && "mask-parallelogram  bg-yellow-400"
+            isHovered && "mask-hexagon-2  bg-yellow-400"
           )}
           onClick={() => setIsOpen((prevState) => !prevState)}
         >

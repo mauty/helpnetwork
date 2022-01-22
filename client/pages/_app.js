@@ -18,7 +18,7 @@ const MyApp = ({ Component, pageProps }) => {
 
   function setNewUser(user) {
     if(user === null) {
-      removeCookie('user');
+      removeCookie('user', { path: '/' });
     } else {
       setCookie('user', user, { path: '/' });
       setCurrentUser(user);

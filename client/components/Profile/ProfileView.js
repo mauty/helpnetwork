@@ -6,12 +6,11 @@ import Container from '../ui/Container';
 export default function ProfileView({ data }) {
   const router = useRouter();
   const { stars } = useCountStars(data?.points[0]?._sum?.points_value | 0);
-  console.log(data);
 
   return (
     <NavBar currentNav={"profile"}>
       <Container title={`${data.first_name} ${data.last_name}`}>
-        <div className="flex flex-col gap-6 mx-2">
+        <div className="flex flex-col gap-6 mx-2 pb-20">
           <div className='flex justify-between p-2'>
               <p>{data.bio}</p>
               <img className="rounded-full border bg-gray-300 border-gray-600 h-32 w-32 block" src={data.imgURL} alt="Image" />
