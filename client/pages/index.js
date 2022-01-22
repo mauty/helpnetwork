@@ -51,9 +51,8 @@ export default function Home() {
   }
 
   return (
-    <>
+    <NavBar currentNav={"help"}>
       <Container size='full'>
-        <NavBar />
         <Map setViewport={setViewport} viewport={viewport}>
           <div className='flex justify-start gap-2 m-2'>
             <div className="dropdown">
@@ -97,7 +96,7 @@ export default function Home() {
               />
           ) }
         </Map>
-        <div className='flex w-full h-64 shadow overflow-y-scroll pt-2'>
+        <div className='flex flex-col w-full h-72 shadow overflow-y-scroll pt-2'>
           <ul className="p-4 pt-0 divide-y w-full">
 
             { isError && <ErrorMessage title="Error" error="Something unexpected... Try again"/> }
@@ -118,6 +117,6 @@ export default function Home() {
           </ul>
       </div>
       </Container>
-    </>
+    </NavBar>
   )
 }

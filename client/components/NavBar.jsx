@@ -1,29 +1,75 @@
 import Link from "next/link";
+import clsx from "clsx";
+import { Home, Star, PlusCircle, MessageCircle, User } from "react-feather";
 
-const NavBar = (props) => {
-  const {} = props;
+const NavBar = ({
+  children,
+  currentNav = "help" | "points" | "new" | "messages" | "profile",
+}) => {
+  const navigations = [
+    {
+      icon: Home,
+      name: "Help",
+      active: currentNav === "help",
+      link: "/",
+    },
+    {
+      icon: Star,
+      name: "Points",
+      active: currentNav === "points",
+      link: "/points",
+    },
+    {
+      icon: PlusCircle,
+      name: "New",
+      active: currentNav === "new",
+      link: "/requests/new",
+    },
+    {
+      icon: MessageCircle,
+      name: "Messages",
+      active: currentNav === "messages",
+      link: "/messages",
+    },
+    {
+      icon: User,
+      name: "Profile",
+      active: currentNav === "profile",
+      link: "/profile",
+    },
+  ];
 
   return (
-    <div className="navbar mb-2 shadow-lg bg-neutral text-neutral-content rounded-box inset-x-0 bottom-0 h-16 ...">
-      <div className="flex-1 px-2 mx-2">
-        <div className="items-stretch lg:flex">
-          <Link href="/">
-            <a className="btn btn-ghost btn-sm rounded-btn">Home</a>
-          </Link>
-          <Link href="/points">
-            <a className="btn btn-ghost btn-sm rounded-btn">Points</a>
-          </Link>
-          <Link href="/requests/new">
-            <a className="btn btn-ghost btn-sm rounded-btn">New Request</a>
-          </Link>
-          <Link href="/messages">
-            <a className="btn btn-ghost btn-sm rounded-btn">Messages</a>
-          </Link>
-          <Link href="/profile">
-            <a className="btn btn-ghost btn-sm rounded-btn">Profile</a>
-          </Link>
+    <div className="w-full h-screen">
+      {children}
+      <section
+        id="bottom-navigation"
+        className="block fixed inset-x-0 bottom-0 z-10 bg-white shadow"
+      >
+        <div id="tabs" className="flex justify-between">
+          {navigations.map((navigation, index) => (
+            <Link key={index} href={navigation.link}>
+              <div
+                className={clsx(
+                  "w-full flex flex-col items-center justify-center text-center hover:text-yellow-500 hover:font-semibold",
+                  navigation.active && "text-indigo-600 font-semibold"
+                )}
+              >
+                <navigation.icon />
+                <span
+                  className={clsx(
+                    "tab tab-home block text-xs",
+                    navigation.active &&
+                      "text-indigo-600 font-semibold underline"
+                  )}
+                >
+                  {navigation.name}
+                </span>
+              </div>
+            </Link>
+          ))}
         </div>
-      </div>
+      </section>
     </div>
   );
 };
