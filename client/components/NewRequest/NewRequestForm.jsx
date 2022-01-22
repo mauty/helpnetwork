@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import useAxios from "../../hooks/useAxios";
 import { useQuery, useMutation } from 'react-query';
+import { useRouter } from "next/router";
 
 
 import { FormContext } from "../../contexts/FormContext";
@@ -22,6 +23,8 @@ const NewRequestForm = (props) => {
   const { } = props;
   
   const { state, setState } = useContext(FormContext)
+
+  const router = useRouter()
 
   // State Needed for Each Component
   // - open/closed
@@ -63,6 +66,7 @@ const NewRequestForm = (props) => {
     // handleCreate(data)
     event.preventDefault()
     useAxios({ url: `/request`, method: 'post', params: requestPayload })
+    .then(router.push('/'))
   };
 
   const requestedResourcesArray = Object.keys(state.resources).map(key => parseInt(key))

@@ -29,7 +29,6 @@ function ConversationList({ convos }) {
   });
 
   //TODO: add state logic for if conversation is empty and if a new message is received
-
   return (
     // <div className="">
     //   <div className="h-96 flex flex-col overflow-y-scroll border border-indigo-600">

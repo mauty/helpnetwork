@@ -16,15 +16,18 @@ function Messages(props) {
 	if (isLoading) return <p>Loading...</p>;
 
 	return (
-		<>
-			<NavBar />
-			<Container title='Messages'>
-				{(data && data.length && <ConversationList key={data.id} convos={data.filter(convo => convo.messages.length > 0)} />) || (
-					//TODO: add styling for empty conversations
-					<h1>No Conversations to Display</h1>
-				)}
-			</Container>
-		</>
+			<NavBar>
+				<Container title='Messages'>
+					{(data && data.length && 
+					<ConversationList 
+						key={data.id} 
+						convos={data.filter(convo => convo.messages.length > 0)} 
+					/>) || (
+						//TODO: add styling for empty conversations
+						<h1>No Conversations to Display</h1>
+					)}
+				</Container>
+			</NavBar>
 	);
 }
 export default Messages;
