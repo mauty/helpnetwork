@@ -6,27 +6,28 @@ import Link from "next/link";
 
   //render conversations based on length of db query return, if empty 
 
-function ConversationList({data} ) {
+function ConversationList({data}) {
 
-  
-    const listOfConversations = data.map((conversation) => {
+
+    const listOfConversations = Object.values(data).map((conversation) => {
      // console.log('Conversation List Item Body', conversation.messages);
       const id = conversation.id;
-      console.log('Datakey conversation', conversation);
+      console.log('Conversation Messages', conversation.messages)
       return (
-        <>
+        <div flex flex-col justify-between>
           <Link href={`/messages/${conversation.id}`} >
             <a class="btn btn-ghost btn-lg rounded-btn">
               <ConversationListItem
             key={conversation.id}
-            body={conversation.messages[0]?.body}
-            timestamp={conversation.messages[0]?.timestamp}
-            sender_id={conversation.messages[0]?.sender_id}
-            name={conversation.sender.first_name} 
+            messages={conversation.messages || ''}
+            // timestamp={conversation.messages || ''}
+            // sender_id={conversation.messages[0].sender_id || ''}
+            // name={conversation.sender.first_name} 
             // avatar={conversation.sender.imgURL}
-            /></a>
+            />
+            </a>
           </Link>
-        </>
+        </div>
       );
     });
   
