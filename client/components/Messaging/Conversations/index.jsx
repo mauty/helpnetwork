@@ -14,7 +14,7 @@ function ConversationList({convos} ) {
       return (
         <div className="flex justify-between mb-2">
           <Link href={`/messages/${conversation.id}`} >
-            {/* <a class="btn btn-ghost btn-lg rounded-btn"> */}
+            <a class="btn btn-ghost btn-lg rounded-btn">
               <ConversationListItem
             key={conversation.id}
             id={conversation.id}
@@ -24,7 +24,7 @@ function ConversationList({convos} ) {
             name={conversation.sender.first_name} 
             avatar={conversation.sender.imgURL}
             />
-            {/* </a> */}
+            </a>
           </Link>
         </div>
       );
