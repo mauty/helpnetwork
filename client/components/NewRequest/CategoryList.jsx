@@ -8,7 +8,7 @@ const CategoryList = (props) => {
   const {state, setState} = useContext(FormContext)
   
   const clickHandler = (id) => {
-    setState((prev) => ({...prev, categoryId: id}));
+    // setState((prev) => ({...prev, categoryId: id}));
   }
 
   const categoriesArray = categoryData.map((category) => {
