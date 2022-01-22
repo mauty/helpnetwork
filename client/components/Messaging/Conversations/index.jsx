@@ -13,8 +13,8 @@ function ConversationList({convos} ) {
       const id = conversation.id;
       return (
         <div className="flex justify-between mb-2">
-          <Link href={`/messages/${conversation.id}`} >
-            {/* <a class="btn btn-ghost btn-lg rounded-btn"> */}
+           <Link href={`/messages/${conversation.id}`} >
+            <button class="flex w-full justify-between border-b-3 border-slate-500/2 shadow-md hover:bg-slate-400 active:bg-slate-600">
               <ConversationListItem
             key={conversation.id}
             id={conversation.id}
@@ -24,7 +24,7 @@ function ConversationList({convos} ) {
             name={conversation.sender.first_name} 
             avatar={conversation.sender.imgURL}
             />
-            {/* </a> */}
+            </button>
           </Link>
         </div>
       );
