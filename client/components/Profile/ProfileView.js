@@ -91,7 +91,7 @@ export default function ProfileView({ data }) {
             )
           }
           {
-            (router.asPath !== '/profile' && currentUser.id !== data.id) ? (
+            (router.asPath !== '/profile' && currentUser && currentUser.id !== data.id) ? (
               <div className='flex justify-center'>
                 <button onClick={handleContactPerson} className="btn btn-primary">Contact Helper</button>
               </div>
