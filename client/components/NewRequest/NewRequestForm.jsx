@@ -4,6 +4,8 @@ import { useForm } from "react-hook-form";
 import useAxios from "../../hooks/useAxios";
 import { useQuery, useMutation } from 'react-query';
 import { useRouter } from "next/router";
+import Geocode from "react-geocode";
+
 
 
 import { FormContext } from "../../contexts/FormContext";
@@ -61,12 +63,32 @@ const NewRequestForm = (props) => {
 
   };
 
+  const getCoordsFromPostal = (fromForm) => {
+    let lat = 0;
+    let lng = 0;
+    return Geocode.fromAddress(fromForm)
+    .then(
+      (response) => {
+        const { lat, lng } = response.results[0].geometry.location;
+        console.log('geocode>>>>',lat, lng);
+        setState((prevState) => ({...prevState, location: {...prevState.location, lat: lat, long: lng}}))
+        console.log('state from geocode then>>>', state);
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
+
   const onSubmit = (event) => {
     // setSubmitting(true)
     // handleCreate(data)
+    getCoordsFromPostal(state.location.postalCode)
+    // .then(console.log('requestPayloadBeforeSubmit>>>', requestPayload))
+    console.log('requestPayloadBeforeSubmit>>>', requestPayload)
     event.preventDefault()
-    useAxios({ url: `/request`, method: 'post', params: requestPayload })
-    .then(router.push('/'))
+    // useAxios({ url: `/request`, method: 'post', params: requestPayload })
+    // .then(router.push('/'))
   };
 
   const requestedResourcesArray = Object.keys(state.resources).map(key => parseInt(key))
@@ -86,7 +108,7 @@ const NewRequestForm = (props) => {
     requested_resources: requestedResourcesArray
   };
 
-  console.log('requestPayload', requestPayload)
+  // console.log('requestPayload', requestPayload)
 
   return (
     
