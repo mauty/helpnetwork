@@ -60,7 +60,7 @@ export default function Home() {
                         <div className="avatar">
                           <div className="w-12 h-12 mask mask-squircle">
                             <img
-                              src="https://daisyui.com/tailwind-css-component-profile-2@56w.png"
+                              src={userData.imgURL}
                               alt="Avatar Tailwind CSS Component"
                             />
                           </div>
@@ -75,7 +75,7 @@ export default function Home() {
                         </div>
                       </div>
                     </td>
-                    <td className="text-orange-600 text-2xl">{userData.points[0]? data.points[0]._sum.points_value : "0"}</td>
+                    <td className="text-orange-600 text-2xl">{userData.points[0]? userData.points[0]._sum.points_value : "0"}</td>
                   </tr>
                   )
                 }

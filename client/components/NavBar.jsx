@@ -1,11 +1,23 @@
+import { useContext } from "react";
 import Link from "next/link";
 import clsx from "clsx";
-import { Home, Star, PlusCircle, MessageCircle, User } from "react-feather";
+import {
+  Home,
+  Star,
+  PlusCircle,
+  MessageCircle,
+  User,
+  LogIn,
+} from "react-feather";
+import { UserContext } from "../pages/_app";
 
 const NavBar = ({
   children,
   currentNav = "help" | "points" | "new" | "messages" | "profile",
 }) => {
+  const { currentUser } = useContext(UserContext);
+  console.log(currentUser);
+
   const navigations = [
     {
       icon: Home,
@@ -32,10 +44,10 @@ const NavBar = ({
       link: "/messages",
     },
     {
-      icon: User,
-      name: "Profile",
+      icon: currentUser ? User : LogIn,
+      name: currentUser ? "Profile" : "Login",
       active: currentNav === "profile",
-      link: "/profile",
+      link: currentUser ? "/profile" : "/auth/login",
     },
   ];
 
@@ -46,7 +58,7 @@ const NavBar = ({
         id="bottom-navigation"
         className="block fixed inset-x-0 bottom-0 z-10 bg-white shadow"
       >
-        <div id="tabs" className="flex justify-between">
+        <div id="tabs" className="flex justify-between cursor-pointer">
           {navigations.map((navigation, index) => (
             <Link key={index} href={navigation.link}>
               <div
