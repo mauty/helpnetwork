@@ -6,27 +6,27 @@ import Link from "next/link";
 
   //render conversations based on length of db query return, if empty 
 
-function ConversationList({data} ) {
+function ConversationList({convos} ) {
 
-  
-    const listOfConversations = data.map((conversation) => {
-     // console.log('Conversation List Item Body', conversation.messages);
+    const listOfConversations = convos.map((conversation) => {
+      console.log('Conversation List Item Body', conversation.messages);
       const id = conversation.id;
-      console.log('Datakey conversation', conversation);
       return (
-        <>
+        <div className="flex justify-between mb-2">
           <Link href={`/messages/${conversation.id}`} >
-            <a class="btn btn-ghost btn-lg rounded-btn">
+            {/* <a class="btn btn-ghost btn-lg rounded-btn"> */}
               <ConversationListItem
             key={conversation.id}
+            id={conversation.id}
             body={conversation.messages[0]?.body}
             timestamp={conversation.messages[0]?.timestamp}
             sender_id={conversation.messages[0]?.sender_id}
             name={conversation.sender.first_name} 
-            // avatar={conversation.sender.imgURL}
-            /></a>
+            avatar={conversation.sender.imgURL}
+            />
+            {/* </a> */}
           </Link>
-        </>
+        </div>
       );
     });
   
@@ -38,12 +38,8 @@ function ConversationList({data} ) {
         
     //   </div>
     // </div>
-    <div className="overflow-x-auto">
-    <div className=" ">
-      <div>
+    <div className="overflow-x-auto flex flex-col">
       {listOfConversations}
-      </div>
-    </div>
     </div>
   );
 }
