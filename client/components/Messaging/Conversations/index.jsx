@@ -22,7 +22,7 @@ function ConversationList({convos} ) {
             timestamp={conversation.messages[0]?.timestamp}
             sender_id={conversation.messages[0]?.sender_id}
             name={conversation.sender.first_name} 
-            // avatar={conversation.sender.imgURL}
+            avatar={conversation.sender.imgURL}
             />
             {/* </a> */}
           </Link>
