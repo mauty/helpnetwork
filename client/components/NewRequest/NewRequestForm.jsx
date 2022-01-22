@@ -94,6 +94,24 @@ const NewRequestForm = (props) => {
   const requestedResourcesArray = Object.keys(state.resources).map(key => parseInt(key))
   console.log('requestedResourcesArray>>',requestedResourcesArray)
 
+  const calculatePointValue = () => {
+    let basePoints = 50
+    const resourcePoints = requestedResourcesArray.length * 10
+    let timePoints = 0
+    if (state.time_sensitive === true) {
+      timePoints += 30
+    }
+    const awardedPoints = basePoints + resourcePoints + timePoints
+    console.log('awardedPoints', awardedPoints)
+    return awardedPoints
+  }
+
+  useEffect(() => {
+      const awardedPoints = calculatePointValue()
+      // setState((prevState) => ({...prevState, pointsValue: awardedPoints}))
+  }, [state])
+
+
   const requestPayload = {
     request_details: state.details,
     lat: state.location.lat,
