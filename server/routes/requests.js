@@ -101,27 +101,40 @@ router.get('/requests', async function (req, res) {
 });
 
 /* POST request listing. */
-router.post('/request', async function (req, res) {
+router.post('/request', async function(req, res) {
 	const {
-		details,
-		category,
-		map_id,
+		request_details,
+		lat,
+		long,
+		postal_code,
+		category_id,
 		time_sensitive,
 		start_time,
 		end_time,
 		points_value,
-	} = req.body;
+		requester_id,
+		requested_resources,
+	} = req.body.params;
+
+	console.log('req.body>>>', req.body);
 
 	const request = await prisma.request.create({
 		data: {
-			details,
-			category,
-			map_id,
+			request_details,
+			lat,
+			long,
+			postal_code,
+			category_id,
 			time_sensitive,
-			start_time,
-			end_time,
+			start_time: new Date(start_time),
+			end_time: new Date(start_time),
 			points_value,
-			requester_id: 1, // TODO: USE cookie
+			requester_id,
+			requested_resources: {
+        createMany: {
+          data: requested_resources.map(resource => ({ resource_id: resource})),
+        }
+      }, // TODO: USE cookie
 			// TODO: for resources, use an array coming from the body and create each in the requested resource
 		},
 	});
