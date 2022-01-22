@@ -15,14 +15,11 @@ function Messages(props) {
 	//TODO: add styling for loading condition
 	if (isLoading) return <p>Loading...</p>;
 
-	const convos = data.filter((conversation) => {
-		return conversation.messages.length > 0;
-	});
 	return (
 		<>
 			<NavBar />
 			<Container title='Messages'>
-				{(data && <ConversationList key={data.id} convos={convos} />) || (
+				{(data && data.length && <ConversationList key={data.id} convos={data.filter(convo => convo.messages.length > 0)} />) || (
 					//TODO: add styling for empty conversations
 					<h1>No Conversations to Display</h1>
 				)}

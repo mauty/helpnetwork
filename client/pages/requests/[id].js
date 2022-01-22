@@ -32,8 +32,11 @@ function RequestId({ id }) {
   const {isLoading, isError, data} = useQuery('request', () => useAxios({ url: `/request/${id}`, method: "get" }));
 
   function offerHelp() {
-    mutation.mutate({ helper_id: currentUser.id });
-    router.reload(window.location.pathname);
+    mutation.mutate({ helper_id: currentUser.id }, {
+      onSuccess: (data) => {
+        router.push(`/messages/${data.id}`);
+      }
+    });
   }
 
   function markComplete() {
