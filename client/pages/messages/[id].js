@@ -1,7 +1,6 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useRef } from 'react';
 import { useQuery, useMutation } from 'react-query';
 import useAxios from '../../hooks/useAxios';
-import Link from 'next/link';
 import NavBar from '../../components/NavBar';
 import Container from '../../components/ui/Container';
 import MessageList from '../../components/Messaging/Messages';
