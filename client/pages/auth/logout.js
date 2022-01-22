@@ -4,6 +4,7 @@ import { UserContext } from '../_app';
 import { LogOut } from 'react-feather';
 
 import Container from "../../components/ui/Container";
+import Head from 'next/head';
 
 /*****************************************
  * We are aware that this is not a proper implementation of Auth
@@ -22,13 +23,18 @@ export default function Logout() {
   }, [])
 
   return (
-    <Container>
-      <div className='flex flex-col justify-center items-center p-2 h-screen'>
-        <LogOut/>
-        <p className='font-semibold text-2xl'>
-          Logging out...
-        </p>
-      </div>
-    </Container>
+    <>
+      <Head>
+        <title>helpnetwork | logout...</title>
+      </Head>
+      <Container>
+        <div className='flex flex-col justify-center items-center p-2 h-screen'>
+          <LogOut/>
+          <p className='font-semibold text-2xl'>
+            Logging out...
+          </p>
+        </div>
+      </Container>
+    </>
   )
 }

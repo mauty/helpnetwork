@@ -301,6 +301,7 @@ const request_data = [
 		lat: 38.8951,
 		category_id: 1,
 		requester_id: 1,
+    points_value: 300
 	},
 	{
 		request_details: 'I need help with picking up my groceries from Costco',
@@ -308,6 +309,7 @@ const request_data = [
 		lat: 43.6426,
 		category_id: 2,
 		requester_id: 2,
+    points_value: 200
 	},
 	{
 		request_details: 'I need a help clearing snow from my driveway',
@@ -315,6 +317,7 @@ const request_data = [
 		lat: 43.6677,
 		category_id: 4,
 		requester_id: 1,
+    points_value: 150
 	},
 	{
 		request_details:
@@ -323,6 +326,7 @@ const request_data = [
 		lat: 43.8977,
 		category_id: 3,
 		requester_id: 2,
+    points_value: 150
 	},
 	{
 		request_details:
@@ -345,6 +349,7 @@ const request_data = [
 		category_id: 2,
 		requester_id: 3,
 		time_sensitive: true,
+    points_value: 450
 	},
 	{
 		request_details:
@@ -353,6 +358,7 @@ const request_data = [
 		long: -79.3809,
 		category_id: 2,
 		requester_id: 25,
+    points_value: 420
 	},
 	{
 		request_details:
@@ -361,6 +367,7 @@ const request_data = [
 		long: -79.3924,
 		category_id: 8,
 		requester_id: 22,
+    points_value: 220
 	},
 	{
 		request_details:
@@ -369,6 +376,7 @@ const request_data = [
 		long: -79.3971,
 		category_id: 12,
 		requester_id: 14,
+    points_value: 120
 	},
 	{
 		request_details:
@@ -378,6 +386,7 @@ const request_data = [
 		category_id: 4,
 		requester_id: 23,
 		time_sensitive: true,
+    points_value: 320
 	},
 	{
 		request_details:
@@ -386,6 +395,7 @@ const request_data = [
 		long: -79.3914,
 		category_id: 4,
 		requester_id: 20,
+    points_value: 350
 	},
 	{
 		request_details:
@@ -394,6 +404,7 @@ const request_data = [
 		long: -79.3831,
 		category_id: 5,
 		requester_id: 23,
+    points_value: 360
 	},
 	{
 		request_details:
@@ -402,6 +413,7 @@ const request_data = [
 		long: -79.3872,
 		category_id: 8,
 		requester_id: 22,
+    points_value: 310
 	},
 	{
 		request_details:
@@ -411,6 +423,7 @@ const request_data = [
 		category_id: 8,
 		requester_id: 7,
 		time_sensitive: false,
+    points_value: 300
 	},
 	{
 		request_details:
@@ -419,6 +432,7 @@ const request_data = [
 		long: -79.3869,
 		category_id: 7,
 		requester_id: 24,
+    points_value: 200
 	},
 	{
 		request_details:
@@ -427,6 +441,7 @@ const request_data = [
 		long: -79.3899,
 		category_id: 5,
 		requester_id: 11,
+    points_value: 100
 	},
 	{
 		request_details:
@@ -435,6 +450,7 @@ const request_data = [
 		long: -79.3813,
 		category_id: 8,
 		requester_id: 19,
+    points_value: 150
 	},
 	{
 		request_details: 'I need help with age-related nuclear cataract, bilateral',
@@ -442,6 +458,7 @@ const request_data = [
 		long: -79.3889,
 		category_id: 5,
 		requester_id: 18,
+    points_value: 100
 	},
 	{
 		request_details:
@@ -451,6 +468,7 @@ const request_data = [
 		category_id: 3,
 		requester_id: 27,
 		time_sensitive: true,
+    points_value: 300
 	},
 	{
 		request_details:
@@ -459,6 +477,7 @@ const request_data = [
 		long: -79.3895,
 		category_id: 7,
 		requester_id: 27,
+    points_value: 350
 	},
 	{
 		request_details:
@@ -467,6 +486,7 @@ const request_data = [
 		long: -79.3907,
 		category_id: 1,
 		requester_id: 28,
+    points_value: 450
 	},
 	{
 		request_details: 'I need help with recurrent dislocation, unspecified hand',
@@ -474,6 +494,7 @@ const request_data = [
 		long: -79.394,
 		category_id: 3,
 		requester_id: 13,
+    points_value: 650
 	},
 	{
 		request_details:
@@ -482,6 +503,7 @@ const request_data = [
 		long: -79.389,
 		category_id: 2,
 		requester_id: 11,
+    points_value: 750
 	},
 	{
 		request_details:
@@ -490,6 +512,7 @@ const request_data = [
 		long: -79.3912,
 		category_id: 9,
 		requester_id: 26,
+    points_value: 850
 	},
 	{
 		request_details:
@@ -498,6 +521,7 @@ const request_data = [
 		long: -79.3917,
 		category_id: 12,
 		requester_id: 11,
+    points_value: 950
 	},
 	{
 		request_details:
@@ -506,6 +530,7 @@ const request_data = [
 		long: -79.3806,
 		category_id: 4,
 		requester_id: 20,
+    points_value: 350
 	},
 	{
 		request_details:
@@ -514,6 +539,7 @@ const request_data = [
 		long: -79.391,
 		category_id: 8,
 		requester_id: 14,
+    points_value: 250
 	},
 	{
 		request_details: 'I need help with unspecified subluxation of left knee',
@@ -521,6 +547,7 @@ const request_data = [
 		long: -79.3962,
 		category_id: 6,
 		requester_id: 6,
+    points_value: 220
 	},
 	{
 		request_details:
@@ -529,6 +556,7 @@ const request_data = [
 		long: -79.386,
 		category_id: 5,
 		requester_id: 28,
+    points_value: 120
 	},
 	{
 		request_details:
@@ -537,6 +565,7 @@ const request_data = [
 		long: -79.3897,
 		category_id: 3,
 		requester_id: 30,
+    points_value: 420
 	},
 	{
 		request_details: 'I need help with primary syphilis of other sites',
@@ -544,6 +573,7 @@ const request_data = [
 		long: -79.389,
 		category_id: 10,
 		requester_id: 18,
+    points_value: 520
 	},
 	{
 		request_details:
@@ -552,6 +582,7 @@ const request_data = [
 		long: -79.3896,
 		category_id: 11,
 		requester_id: 23,
+    points_value: 320
 	},
 	{
 		request_details:
@@ -560,6 +591,7 @@ const request_data = [
 		long: -79.3942,
 		category_id: 4,
 		requester_id: 22,
+    points_value: 620
 	},
 	{
 		request_details:
@@ -569,6 +601,7 @@ const request_data = [
 		category_id: 11,
 		requester_id: 31,
 		time_sensitive: false,
+    points_value: 250
 	},
 	{
 		request_details:
@@ -577,6 +610,7 @@ const request_data = [
 		long: -79.3835,
 		category_id: 8,
 		requester_id: 1,
+    points_value: 270
 	},
 ];
 

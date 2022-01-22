@@ -77,6 +77,7 @@ router.get('/requests', async function (req, res) {
 
   const requests = await prisma.request.findMany({
     where: {
+      request_completed: false,
       lat: { gte: bounds[0].latitude, lte: bounds[1].latitude },
       long: { gte: bounds[0].longitude, lte: bounds[1].longitude },
       ...conditional,

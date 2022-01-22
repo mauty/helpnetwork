@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import { UserContext } from '../_app';
 import { useQuery } from 'react-query';
 import useAxios from '../../hooks/useAxios';
+import Head from 'next/head';
 
 import Shimmer from '../../components/ui/Shimmer';
 import ErrorMessage from '../../components/ui/ErrorMessage';
@@ -13,5 +14,12 @@ export default function Profile() {
 
   if(isLoading) return <div className="p-2"><Shimmer/></div>;
   if(isError) return <div className="p-2"><ErrorMessage title="Error" error="Something unexpected... Try again"/></div>;
-  return <ProfileView data={data}/>
+  return (
+    <>
+      <Head>
+        <title>helpnetwork | my profile</title>
+      </Head>
+      <ProfileView data={data}/>
+    </>
+  )
 }

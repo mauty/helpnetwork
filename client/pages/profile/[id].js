@@ -1,3 +1,4 @@
+import Head from "next/head";
 import Shimmer from "../../components/ui/Shimmer";
 import ProfileView from "../../components/Profile/ProfileView";
 import useAxios from "../../hooks/useAxios";
@@ -11,11 +12,17 @@ export const getServerSideProps = async (ctx) => {
 
 function ProfileId({ id }) {
   const { isLoading, isError, data } = useQuery('profile', () => useAxios({ url: `/profile/${id}`, method: "get" }));
-  console.log(data);
 
   if(isLoading) return <div className="p-2"><Shimmer/></div>;
   if(isError) return <div className="p-2"><ErrorMessage title="Error" error="Something unexpected... Try again"/></div>;
-  return <ProfileView data={data}/>
+  return (
+    <>
+      <Head>
+        <title>helpnetwork | profile</title>
+      </Head>
+      <ProfileView data={data}/>
+    </>
+  )
 }
 
 export default ProfileId
