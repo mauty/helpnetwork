@@ -4,7 +4,7 @@ const ConversationListItem = (props) => {
 
   const ago = timeAgo(new Date(timestamp));
   return (
-    <div className="flex w-full justify-between border-b-3 border-slate-500/2 shadow-md">
+    <>
       <div class="avatar">
     <div class="bg-neutral-focus text-neutral-content rounded-full w-14 h-14 m-2">
       <img src={avatar}></img>
@@ -17,7 +17,7 @@ const ConversationListItem = (props) => {
       <div className="text-xs text-gray-400 text-right mx-2">
         {ago} ago
       </div>
-    </div>
+    </>
 
   );
 }
