@@ -38,7 +38,7 @@ const MessageList = ({ messages = [], request, request_id }) => {
           </Link>
         </header>
       )}
-      <div className="h-96 flex flex-col-reverse divider overflow-y-scroll justify-items-end">
+      <div className="h-96 flex flex-col-reverse inset-x-0 bottom-0 overflow-y-scroll">
         {listOfMessages}
       </div>
     </>
