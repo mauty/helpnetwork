@@ -17,10 +17,15 @@ const LocationChooser = (props) => {
   const [locationToggle, setLocationToggle] = useState(false)
 
   const getCoordsFromPostal = (fromForm) => {
-    Geocode.fromAddress(fromForm).then(
+    let lat = 0;
+    let lng = 0;
+    Geocode.fromAddress(fromForm)
+    .then(
       (response) => {
         const { lat, lng } = response.results[0].geometry.location;
         console.log('geocode>>>>',lat, lng);
+        setState((prevState) => ({...prevState, location: {...prevState.location, lat: lat, long: lng}}))
+        console.log('state from geocode then>>>', state);
       },
       (error) => {
         console.error(error);
@@ -30,6 +35,7 @@ const LocationChooser = (props) => {
 
   const setPostalCodeState = (postalCodeInput) => {
     setState((prevState) => ({...prevState, location: {...prevState.location, postalCode: postalCodeInput}}))
+    getCoordsFromPostal(postalCodeInput)
   }
 
   const handleLocationClick = () => {

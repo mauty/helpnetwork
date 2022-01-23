@@ -9,6 +9,8 @@ import Geocode from "react-geocode";
 
 
 import { FormContext } from "../../contexts/FormContext";
+import { UserContext } from "../../pages/_app";
+
 
 import Container from "../ui/Container";
 import NavBar from "../NavBar";
@@ -25,6 +27,8 @@ const NewRequestForm = (props) => {
   const { } = props;
   
   const { state, setState } = useContext(FormContext)
+  const { currentUser } = useContext(UserContext);
+
 
   const router = useRouter()
 
@@ -83,33 +87,36 @@ const NewRequestForm = (props) => {
   const onSubmit = (event) => {
     // setSubmitting(true)
     // handleCreate(data)
-    getCoordsFromPostal(state.location.postalCode)
+    // getCoordsFromPostal(state.location.postalCode)
     // .then(console.log('requestPayloadBeforeSubmit>>>', requestPayload))
     console.log('requestPayloadBeforeSubmit>>>', requestPayload)
     event.preventDefault()
     // useAxios({ url: `/request`, method: 'post', params: requestPayload })
-    // .then(router.push('/'))
+    // .then(router.push('/request/confirm'))
   };
 
   const requestedResourcesArray = Object.keys(state.resources).map(key => parseInt(key))
   console.log('requestedResourcesArray>>',requestedResourcesArray)
 
   const calculatePointValue = () => {
-    let basePoints = 50
+    const basePoints = 50
     const resourcePoints = requestedResourcesArray.length * 10
     let timePoints = 0
-    if (state.time_sensitive === true) {
-      timePoints += 30
-    }
-    const awardedPoints = basePoints + resourcePoints + timePoints
-    console.log('awardedPoints', awardedPoints)
-    return awardedPoints
+    if (state.timeSensitive === true) {
+      timePoints = 30
+    } else {
+      timePoints = 0
+    }    
+    const totalPoints = basePoints + resourcePoints + timePoints
+    console.log('awardedPoints', totalPoints)
+    return totalPoints
   }
 
   useEffect(() => {
       const awardedPoints = calculatePointValue()
-      // setState((prevState) => ({...prevState, pointsValue: awardedPoints}))
-  }, [state])
+      console.log('awardedPoints>>>', awardedPoints)
+      setState((prevState) => ({...prevState, pointsValue: awardedPoints}))
+  }, [])
 
 
   const requestPayload = {
@@ -121,12 +128,12 @@ const NewRequestForm = (props) => {
     time_sensitive: state.timeSensitive,
     start_time: `${state.date} ${state.startTime}:00`,
     end_time: '0000-00-00 00:00:00',
-    points_value: 50,
-    requester_id: 1, // TO DO get user.id from auth context
+    points_value: state.pointsValue,
+    requester_id: currentUser.id, // TO DO get user.id from auth context
     requested_resources: requestedResourcesArray
   };
 
-  // console.log('requestPayload', requestPayload)
+  console.log('requestPayload', requestPayload)
 
   return (
     
