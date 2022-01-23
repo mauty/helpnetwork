@@ -40,6 +40,7 @@ model Review {
   reviewer                Person    @relation(name: "reviewerId", fields: [reviewerId], references: [id])
   personId                Int
   personBeingReviewed     Person    @relation(name: "personId", fields: [personId], references: [id])
+  createdAt               DateTime? @default(now())
 }
 
 model Request {
