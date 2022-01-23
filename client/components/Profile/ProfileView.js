@@ -30,8 +30,18 @@ export default function ProfileView({ data }) {
       <Container title={`${data.first_name} ${data.last_name}`}>
         <div className="flex flex-col gap-6 mx-2 pb-20">
           <div className='flex justify-between p-2'>
-              <p>{data.bio}</p>
-              <img className="rounded-full border bg-gray-300 border-gray-600 h-32 w-32 block" src={data.imgURL} alt="Image" />
+              <p className="w-72 sm:w-auto">{data.bio}</p>
+              <div className="flex flex-col h-32 w-32 px-2 items-center gap-2">
+                <img className="rounded-full border bg-gray-300 border-gray-600 block" src={data.imgURL} alt="Image" />
+                <div class="rating rating-sm">
+                  <input type="radio" name="rating-3" class="mask mask-heart bg-error"/>
+                  <input type="radio" name="rating-3" checked="checked" class="mask mask-heart bg-error"/>
+                  <input type="radio" name="rating-3" class="mask mask-heart bg-error"/>
+                  <input type="radio" name="rating-3" class="mask mask-heart bg-error"/>
+                  <input type="radio" name="rating-3" class="mask mask-heart bg-error"/>
+                </div>
+                <p className="text-xs link">402 reviews</p>
+              </div>
           </div>
           <div>
             {
