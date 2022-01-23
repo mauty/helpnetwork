@@ -17,7 +17,8 @@ export function FormProvider ( {children} ) {
     },
     timeSensitive: false,
     startTime: '00:00',
-    date: '0000-00-00'
+    date: '0000-00-00',
+    pointsValue: 0
   }
   
   const [state, setState] = useState(stateObject);
