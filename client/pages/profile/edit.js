@@ -19,21 +19,12 @@ function EditProfile() {
   const router = useRouter();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [personalResources, setPersonalResources] = useState([]);
 
   const { currentUser } = useContext(UserContext);
 
-  const { isLoading, isError, data } = useQuery('profile',
-    () => useAxios({ url: `/profile/${currentUser.id}`, method: "get" }),
-    { onSuccess: (data) => {
-      if (data && data.personal_resources) {
-        setPersonalResources(data.personal_resources.map(resource => resource.resource_id));
-      }
-    }}
-  );
-
   const { isLoading: isResourcesLoading, isError: isResourcesError, data: resourceData } = useQuery('resources', () => useAxios({ url: `/resources`, method: "get" }));
-
+  const { isLoading, isError, data } = useQuery('profile', () => useAxios({ url: `/profile/${currentUser.id}`, method: "get" }));
+  console.log(data);
 
   const mutation = useMutation(newProfile => useAxios({ url: `/profile`, method: "post", params: newProfile }))
 
@@ -44,8 +35,11 @@ function EditProfile() {
       }
     })
 
-    mutation.mutate({ id: currentUser.id, ...formData, personal_resources: enabledResources.map(value => parseInt(value)) });
-    router.push('/profile');
+    mutation.mutate({ id: currentUser.id, ...formData, personal_resources: enabledResources.map(value => parseInt(value)) }, {
+      onSuccess: () => {
+        router.push('/profile');
+      }
+    });
   }
 
   const { register, handleSubmit, _watch, formState: { errors } } = useForm();
@@ -141,7 +135,7 @@ function EditProfile() {
               { isResourcesLoading && <Shimmer/> }
               { isResourcesError && <ErrorMessage title="Error" error="Something unexpected... Try again"/> }
               {
-                resourceData && resourceData.length && (
+                data && resourceData && resourceData.length > 0 && (
                   <div className='mt-4'>
                     <h1 className="text-lg font-bold text-gray-900 dark:text-gray-100 p-2">
                     Resources
@@ -156,7 +150,17 @@ function EditProfile() {
                                 type="checkbox"
                                 className="toggle toggle-primary"
                                 value={resource.id}
-                                defaultChecked={personalResources.includes(resource.id)}
+                                // defaultChecked={data.personal_resources.filter(personalResource => personalResource.resource_id === resource.id).length}
+                                defaultChecked={(() => {
+                                  for(const personalResource of data.personal_resources) {
+                                    console.log(personalResource);
+                                    if(personalResource.resource_id === resource.id) {
+                                      return true;
+                                    }
+                                  }
+
+                                  return false;
+                                })()}
                                 {...register(`personal_resources.${index}`)}/>
 
                             </div>
