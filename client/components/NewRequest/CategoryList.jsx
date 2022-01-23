@@ -18,6 +18,7 @@ const CategoryList = (props) => {
           className={clsx("btn btn-sm", {"btn-primary": category.id === state.categoryId})} 
           onClick={() => clickHandler(category.id)} 
         >
+          <img src={category.image} />
           {category.name}
         </button>
       </li>
