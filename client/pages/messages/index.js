@@ -29,7 +29,7 @@ export default function Messages() {
         <Head>
           <title>helpnetwork | messages</title>
         </Head>
-        <NavBar>
+        <NavBar currentNav={'messages'}>
           <Container title='Messages'>
             { data && data.length > 0 ?
               <ConversationList

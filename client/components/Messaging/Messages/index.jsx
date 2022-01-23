@@ -31,7 +31,7 @@ const MessageList = ({ messages = [], request, request_id }) => {
   });
 
   return (
-    <div className="">
+    <>
       {request && (
         <header className="bg-blue-500 bg-opacity-25 flex flex-row justify-between">
           <p>{request.category.name}</p>
@@ -45,7 +45,7 @@ const MessageList = ({ messages = [], request, request_id }) => {
       <div className="h-96 flex flex-col-reverse divider overflow-y-scroll">
         {listOfMessages}
       </div>
-    </div>
+    </>
   );
 };
 
