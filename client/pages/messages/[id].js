@@ -64,19 +64,21 @@ function Conversation(props) {
 				<Container title='Message'>
 					{data && <MessageList key={data.id} {...data} />}
 					{/* COMPOSE MESSAGE */}
-					<div className='w-full flex justify-between'>
-						<textarea
-							className='flex-grow focus:bg-white m-2 py-2 px-4 mr-1 rounded-full border border-gray-300 bg-gray-200 text-lg resize-none'
-							rows='1'
-							placeholder='Message...'
-							onChange={(event) => setText(event.target.value)}
-							value={text}></textarea>
-						<button
-							className='p-5'
-							disabled={text === ''}
-							onClick={handleSubmit}>
-							<ArrowUpCircle color='#0067ff' size={48} />
-						</button>
+					<div className='block fixed inset-x-0 bottom-16 z-10 bg-white'>
+            <div className="flex w-full justify-between">
+              <textarea
+                className='flex-grow focus:bg-white m-2 py-2 px-4 mr-1 rounded-xl border border-gray-300 bg-gray-200 text-lg resize-none'
+                rows='1'
+                placeholder='Message...'
+                onChange={(event) => setText(event.target.value)}
+                value={text}></textarea>
+              <button
+                className='py-5 pr-3 pl-2'
+                disabled={text === ''}
+                onClick={handleSubmit}>
+                <ArrowUpCircle color='#0067ff' size={48} />
+              </button>
+            </div>
 					</div>
 				</Container>
 			</NavBar>
