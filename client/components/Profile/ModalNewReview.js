@@ -1,38 +1,41 @@
 import React, { useState } from 'react';
 import { useMutation } from 'react-query';
 import { useForm } from 'react-hook-form';
+import clsx from 'clsx';
 
 import useAxios from '../../hooks/useAxios';
 
 export default function ModalNewReview() {
-  const mutation = useMutation(newProfile => useAxios({ url: `/profile`, method: "post", params: newProfile }))
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const mutation = useMutation(newReview => useAxios({ url: `/profile/${id}/newReview`, method: "post", params: newReview }))
+
+  const { register, handleSubmit, formState: { errors }, resetField } = useForm({
+    defaultValues: {
+      body: "",
+      rating: "5"
+    }
+  });
 
   function onSubmit(formData) {
-    // mutation.mutate({ id: currentUser.id, ...formData, personal_resources: enabledResources.map(value => parseInt(value)) }, {
-    //   onSuccess: () => {
-    //     // Add the data to the list or refetch
-    //   }
-    // });
-
-    console.log(formData);
-  }
-
-  const { register, handleSubmit, formState: { errors } } = useForm();
-
-  function handleClose() {
-
+    mutation.mutate(formData, {
+      onSuccess: () => {
+        resetField('body');
+        setIsModalOpen(false);
+      }
+    });
   }
 
   return (
     <>
-      <label for="my-modal-2" className="btn btn-xs btn-warning hover:bg-orange-500 modal-button">Leave a review</label>
+      <button onClick={() => { setIsModalOpen(true) }} className="btn btn-xs btn-warning hover:bg-orange-500 modal-button">Leave a review</button>
       <input type="checkbox" id="my-modal-2" className="modal-toggle"/>
-      <div className="modal items-center">
+      <div className={clsx("modal items-center", isModalOpen && "modal-open")}>
         <div className="modal-box">
           <div className="flex flex-col justify-center w-full">
             <div className="flex justify-between items-center modal-action">
-              <label className='text-sm font-semibold'>Bob Johnson</label>
-              <label for="my-modal-2" className="btn btn-xs btn-error rounded-full">x cancel</label>
+              <p className='text-sm font-semibold'>Bob Johnson</p>
+              <button className="btn btn-xs btn-error rounded-full modal-button" onClick={() => setIsModalOpen(false)}>x cancel</button>
             </div>
             <div className="form-control">
               <label className="label">
@@ -41,20 +44,25 @@ export default function ModalNewReview() {
               <textarea className="textarea h-24 textarea-bordered textarea-info" {...register('body', { required: true, maxLength: 400 })}></textarea>
               {
                 errors.body && (
-                  <span className='text-sm text-red-700'>{errors.body.message}</span>
+                  <span className='text-sm text-red-700'>Please leave a message after the beat...</span>
                 )
               }
             </div>
           </div>
+          {
+            mutation.isError && (
+              <p className='text-error'>Something unexpected happened while posting... Please try again</p>
+            )
+          }
           <div className="modal-action justify-between items-center">
             <div className="rating rating-lg">
               {
                 [1, 2, 3, 4, 5].map(num => (
-                  <input key={num} type="radio" value={num} checked className="mask mask-heart bg-error" {...register('rating')}/>
+                  <input key={num} type="radio" value={num} className="mask mask-heart bg-error" {...register('rating')}/>
                 ))
               }
             </div>
-            <label for="my-modal-2" onClick={handleSubmit(onSubmit)} className="btn btn-primary">POST</label>
+            <button onClick={handleSubmit(onSubmit)} className={clsx("btn btn-primary btn-sm modal-button", mutation.isLoading && "loading")}>POST</button>
           </div>
         </div>
       </div>

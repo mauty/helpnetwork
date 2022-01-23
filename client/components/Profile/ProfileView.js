@@ -35,12 +35,12 @@ export default function ProfileView({ data }) {
               <p className="w-3/4">{data.bio}</p>
               <div className="flex flex-col px-2 items-center gap-2">
                 <img className="rounded-full border bg-gray-300 border-gray-600 block" src={data.imgURL} alt="Image" />
-                <div class="rating rating-sm">
-                  <input type="radio" name="rating-3" class="mask mask-heart bg-error"/>
-                  <input type="radio" name="rating-3" checked="checked" class="mask mask-heart bg-error"/>
-                  <input type="radio" name="rating-3" class="mask mask-heart bg-error"/>
-                  <input type="radio" name="rating-3" class="mask mask-heart bg-error"/>
-                  <input type="radio" name="rating-3" class="mask mask-heart bg-error"/>
+                <div className="rating rating-sm">
+                  <input type="radio" name="rating-3" className="mask mask-heart bg-error"/>
+                  <input type="radio" name="rating-3" className="mask mask-heart bg-error"/>
+                  <input type="radio" name="rating-3" className="mask mask-heart bg-error"/>
+                  <input type="radio" name="rating-3" className="mask mask-heart bg-error"/>
+                  <input type="radio" name="rating-3" className="mask mask-heart bg-error"/>
                 </div>
                 <p onClick={() => {
                   scrollRef.current.scrollIntoView({
@@ -115,7 +115,11 @@ export default function ProfileView({ data }) {
               <h1 className="text-lg font-bold text-gray-900 dark:text-gray-100 p-2">
                 Reviews
               </h1>
-              <ModalNewReview />
+              {
+                currentUser && data && currentUser.id !== data.id && (
+                  <ModalNewReview currentUser={currentUser} profileId={data.id} />
+                )
+              }
             </div>
             <div className="flex flex-col">
               <div className="flex my-2 shadow-md py-4 px-1">
