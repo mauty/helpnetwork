@@ -4,10 +4,10 @@ const express = require('express');
 const router = express.Router();
 const prisma = new PrismaClient();
 
-const user_id = 1;
-
 // Get all conversations that user has
 router.get('/conversations', async function (req, res) {
+  const user_id = parseInt(req.query.user_id);
+
 	const conversations = await prisma.conversation.findMany({
 		where: {
 			OR: [
