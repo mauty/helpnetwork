@@ -23,6 +23,7 @@ router.get('/conversations', async function (req, res) {
 		},
 
 		include: {
+      receiver: true,
 			sender: true,
 			messages: {
 				orderBy: {
