@@ -5,12 +5,12 @@ import clsx from 'clsx';
 
 import useAxios from '../../hooks/useAxios';
 
-export default function ModalNewReview() {
+export default function ModalNewReview({ currentUser, profileId, router }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const mutation = useMutation(newReview => useAxios({ url: `/profile/${id}/newReview`, method: "post", params: newReview }))
+  const mutation = useMutation(newReview => useAxios({ url: `/profile/${profileId}/newReview`, method: "post", params: newReview }))
 
-  const { register, handleSubmit, formState: { errors }, resetField } = useForm({
+  const { register, handleSubmit, formState: { errors } } = useForm({
     defaultValues: {
       body: "",
       rating: "5"
@@ -18,10 +18,9 @@ export default function ModalNewReview() {
   });
 
   function onSubmit(formData) {
-    mutation.mutate(formData, {
+    mutation.mutate({ ...formData, userId: currentUser.id }, {
       onSuccess: () => {
-        resetField('body');
-        setIsModalOpen(false);
+        router.reload(window.location.pathname);
       }
     });
   }
@@ -58,7 +57,7 @@ export default function ModalNewReview() {
             <div className="rating rating-lg">
               {
                 [1, 2, 3, 4, 5].map(num => (
-                  <input key={num} type="radio" value={num} className="mask mask-heart bg-error" {...register('rating')}/>
+                  <input key={`NotOnlyUI${num}`} type="radio" value={num} className="mask mask-heart bg-error" {...register('rating')}/>
                 ))
               }
             </div>
