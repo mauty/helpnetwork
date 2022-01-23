@@ -70,7 +70,7 @@ const NewRequestForm = (props) => {
   const getCoordsFromPostal = (fromForm) => {
     let lat = 0;
     let lng = 0;
-    return Geocode.fromAddress(fromForm)
+    Geocode.fromAddress(fromForm)
     .then(
       (response) => {
         const { lat, lng } = response.results[0].geometry.location;
@@ -87,12 +87,12 @@ const NewRequestForm = (props) => {
   const onSubmit = (event) => {
     // setSubmitting(true)
     // handleCreate(data)
-    // getCoordsFromPostal(state.location.postalCode)
+    getCoordsFromPostal(state.location.postalCode)
     // .then(console.log('requestPayloadBeforeSubmit>>>', requestPayload))
     console.log('requestPayloadBeforeSubmit>>>', requestPayload)
     event.preventDefault()
-    // useAxios({ url: `/request`, method: 'post', params: requestPayload })
-    // .then(router.push('/request/confirm'))
+    useAxios({ url: `/request`, method: 'post', params: requestPayload })
+    .then(router.push('/request/confirm'))
   };
 
   const requestedResourcesArray = Object.keys(state.resources).map(key => parseInt(key))
@@ -108,7 +108,7 @@ const NewRequestForm = (props) => {
       timePoints = 0
     }    
     const totalPoints = basePoints + resourcePoints + timePoints
-    console.log('awardedPoints', totalPoints)
+    console.log('totalPoints', totalPoints)
     return totalPoints
   }
 
@@ -116,7 +116,7 @@ const NewRequestForm = (props) => {
       const awardedPoints = calculatePointValue()
       console.log('awardedPoints>>>', awardedPoints)
       setState((prevState) => ({...prevState, pointsValue: awardedPoints}))
-  }, [])
+  }, [state.resources, state.timeSensitive])
 
 
   const requestPayload = {
@@ -129,11 +129,11 @@ const NewRequestForm = (props) => {
     start_time: `${state.date} ${state.startTime}:00`,
     end_time: '0000-00-00 00:00:00',
     points_value: state.pointsValue,
-    requester_id: currentUser.id, // TO DO get user.id from auth context
+    requester_id: currentUser?.id, // TO DO get user.id from auth context
     requested_resources: requestedResourcesArray
   };
 
-  console.log('requestPayload', requestPayload)
+  console.log('requestPayload line 136>>>>', requestPayload)
 
   return (
     
