@@ -48,7 +48,7 @@ function EditProfile() {
     router.push('/profile');
   }
 
-  const { register, handleSubmit, watch, formState: { errors } } = useForm();
+  const { register, handleSubmit, _watch, formState: { errors } } = useForm();
 
   return (
     <>
@@ -60,7 +60,7 @@ function EditProfile() {
           { isLoading && <Shimmer/> }
           { isError && <ErrorMessage title="Error" error="Something unexpected... Try again"/> }
           { data && (
-            <div className="mx-2">
+            <div className="mx-2 pb-16">
               <div className='flex p-2 gap-4'>
                 <div className="form-control gap-2 w-full">
                   <div>
@@ -72,6 +72,9 @@ function EditProfile() {
                       type="text"
                       className="input input-sm input-bordered w-full sm:w-80"
                       {...register('first_name', { required: true, maxLength: 15 })}/>
+                    {errors.first_name && (
+                      <label className='text-xs text-red-800'>First name is required.</label>
+                    )}
                   </div>
 
                   <div>
@@ -83,6 +86,9 @@ function EditProfile() {
                       type="text"
                       className="input input-sm input-bordered w-full sm:w-80"
                       {...register('last_name', { required: true, maxLength: 15 })}/>
+                    {errors.first_name && (
+                      <label className='text-xs text-red-800'>Last name is required.</label>
+                    )}
                   </div>
                   <div>
                     <label className="label">
@@ -92,7 +98,17 @@ function EditProfile() {
                       defaultValue={data.email}
                       type="email"
                       className="input input-sm input-bordered w-full sm:w-80"
-                      {...register('email', { required: true, maxLength: 30, pattern: /^[A-Z0-9+_.-]+@[A-Z0-9.-]+$/i })}/>
+                      {...register('email', {
+                        required: true,
+                        maxLength: 30,
+                        pattern: {
+                          value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                          message: "Invalid email address"
+                        }
+                      })}/>
+                    {errors.email && (
+                      <label className='text-xs text-red-800'>{errors.email.message}</label>
+                    )}
                   </div>
                   <div>
                     <label className="label">
@@ -103,6 +119,9 @@ function EditProfile() {
                       type="text"
                       className="input input-sm input-bordered w-full sm:w-80"
                       {...register('postal_code', { maxLength: 7 })} />
+                    {errors.postal_code && (
+                      <label className='text-xs text-red-800'>Email is required.</label>
+                    )}
                   </div>
                 </div>
 
