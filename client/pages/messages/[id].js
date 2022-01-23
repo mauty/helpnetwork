@@ -7,6 +7,7 @@ import MessageList from '../../components/Messaging/Messages';
 import { ArrowUpCircle, ArrowDownCircle } from 'react-feather';
 import { useContext } from 'react';
 import { UserContext } from '../_app';
+import Head from 'next/head';
 
 export const getServerSideProps = async (ctx) => {
 	// TODO: Get the data from the server here using ctx.params.id
@@ -26,6 +27,8 @@ function Conversation(props) {
 		},
 	);
 
+  console.log(data);
+
 	const refreshButton = useRef(null);
 
 	const [text, setText] = useState('');
@@ -41,8 +44,6 @@ function Conversation(props) {
 
 	const { currentUser } = useContext(UserContext);
 
-	console.log('currentUser', currentUser);
-
 	function handleSubmit() {
 		mutation.mutate({ body: text, sender_id: currentUser.id });
 		setText('');
@@ -56,6 +57,9 @@ function Conversation(props) {
 
 	return (
 		<>
+      <Head>
+        <title>helpnetwork | message</title>
+      </Head>
 			<NavBar>
 				<Container title='Message'>
 					{data && <MessageList key={data.id} {...data} />}

@@ -1,9 +1,10 @@
-import { useState, useEffect, useRef, useContext } from 'react';
-import { useQuery, useMutation } from 'react-query';
+import { useContext } from 'react';
+import { useQuery } from 'react-query';
 import useAxios from '../../hooks/useAxios';
 import Shimmer from '../../components/ui/Shimmer';
 import ErrorMessage from '../../components/ui/ErrorMessage';
 import Empty from '../../components/ui/Empty';
+import Head from 'next/head';
 
 import NavBar from '../../components/NavBar';
 import Container from '../../components/ui/Container';
@@ -11,7 +12,7 @@ import ConversationList from '../../components/Messaging/Conversations';
 import useAuth from '../../hooks/useAuth';
 import { UserContext } from '../_app';
 
-function Messages(props) {
+export default function Messages() {
   useAuth();
 
   const { currentUser } = useContext(UserContext);
@@ -24,17 +25,21 @@ function Messages(props) {
   if(isError) return <div className='p-2'><ErrorMessage title="Error" error="Something unexpected... Try again"/></div>
 
 	return (
-			<NavBar>
-				<Container title='Messages'>
-					{data && data.length > 0 ?
-					(<ConversationList
-						key={data.id}
-						convos={data.filter(convo => convo.messages.length > 0)}
-					/>) : (
-            <Empty/>
-					)}
-				</Container>
-			</NavBar>
+      <>
+        <Head>
+          <title>helpnetwork | messages</title>
+        </Head>
+        <NavBar>
+          <Container title='Messages'>
+            { data && data.length > 0 ?
+              <ConversationList
+                key={data.id}
+                currentUser={currentUser}
+                convos={data.filter(convo => convo.messages.length > 0)}
+              /> : <Empty/>
+            }
+          </Container>
+        </NavBar>
+      </>
 	);
 }
-export default Messages;
