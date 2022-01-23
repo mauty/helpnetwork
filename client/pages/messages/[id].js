@@ -27,7 +27,7 @@ function Conversation(props) {
 		},
 	);
 
-  console.log(data);
+	console.log(data);
 
 	const refreshButton = useRef(null);
 
@@ -57,14 +57,14 @@ function Conversation(props) {
 
 	return (
 		<>
-      <Head>
-        <title>helpnetwork | message</title>
-      </Head>
+			<Head>
+				<title>helpnetwork | message</title>
+			</Head>
 			<NavBar>
 				<Container title='Message'>
 					{data && <MessageList key={data.id} {...data} />}
 					{/* COMPOSE MESSAGE */}
-					<div className='w-full flex justify-between'>
+					<div className='w-full flex justify-between mt-2'>
 						<textarea
 							className='flex-grow focus:bg-white m-2 py-2 px-4 mr-1 rounded-full border border-gray-300 bg-gray-200 text-lg resize-none'
 							rows='1'
