@@ -92,7 +92,7 @@ const NewRequestForm = (props) => {
     console.log('requestPayloadBeforeSubmit>>>', requestPayload)
     event.preventDefault()
     useAxios({ url: `/request`, method: 'post', params: requestPayload })
-    .then(router.push('/request/confirm'))
+    .then(router.push('/requests/confirm'))
   };
 
   const requestedResourcesArray = Object.keys(state.resources).map(key => parseInt(key))
