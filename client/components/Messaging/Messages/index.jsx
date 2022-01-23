@@ -13,7 +13,7 @@ const MessageList = ({ messages = [], request, request_id }) => {
 
     return (
 
-      <div className={clsx({"self-end bg-blue-600 text-white border border-indigo-600 rounded-full shadow-sm py-1 px-4 text-md break-all": currentUser.id === message.sender_id, "self-start bg-slate-200 text-black border border-grey-600 rounded-full shadow-sm py-1 px-4 text-md break-all": currentUser.id !== message.sender_id })}>
+      <div className={clsx({"self-end bg-blue-600 text-white border border-indigo-600 rounded-full shadow-sm py-1 px-4 text-md break-all ml-2 mb-1": currentUser.id === message.sender_id, "self-start bg-slate-200 text-black border border-grey-600 rounded-full shadow-sm py-1 px-4 text-md break-all mr-2 mb-1": currentUser.id !== message.sender_id })}>
           <MessageListItem
             key={message.id}
             id={message.id}
@@ -32,7 +32,7 @@ const MessageList = ({ messages = [], request, request_id }) => {
 					<p>{request && request.request_details}</p>
 					{/* link to unique request page */}
 					<Link href={`/requests/${request_id}`}>
-					<button className='btn btn-primary'>See Detail</button>
+					<button className='btn btn-primary'>See Details</button>
 					</Link>
 				</header>
       <div className="h-96 flex flex-col-reverse divider overflow-y-scroll">

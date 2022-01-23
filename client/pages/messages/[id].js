@@ -67,7 +67,10 @@ function Conversation(props) {
 							placeholder='Message...'
 							onChange={(event) => setText(event.target.value)}
 							value={text}></textarea>
-						<button className='p-5' onClick={handleSubmit}>
+						<button
+							className='p-5'
+							disabled={text === ''}
+							onClick={handleSubmit}>
 							<ArrowUpCircle color='#0067ff' size={48} />
 						</button>
 					</div>
