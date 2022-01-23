@@ -96,9 +96,14 @@ export default function ProfileView({ data }) {
                 <button onClick={handleContactPerson} className="btn btn-primary">Contact Helper</button>
               </div>
             ): (
-              <Link href={'/auth/logout'}>
-                <button className="btn btn-sm btn-warning">Logout</button>
-              </Link>
+              <>
+                <Link href={'/profile/edit'}>
+                  <button className="btn btn-sm btn-primary">Edit Profile</button>
+                </Link>
+                <Link href={'/auth/logout'}>
+                  <button className="btn btn-sm btn-warning">Logout</button>
+                </Link>
+              </>
             )
           }
         </div>
