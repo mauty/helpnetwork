@@ -74,7 +74,7 @@ CREATE TABLE "Category" (
 CREATE TABLE "Resource" (
     "id" SERIAL NOT NULL,
     "name" TEXT NOT NULL,
-    "category" TEXT NOT NULL,
+    "category_id" INTEGER NOT NULL DEFAULT 1,
     "detail" TEXT,
     "image" TEXT,
 
