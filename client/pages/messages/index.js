@@ -32,7 +32,7 @@ export default function Messages() {
         </Head>
         <NavBar currentNav={'messages'}>
 					<Header pageName="Messages" />
-          <Container title='Messages'>
+          <Container>
             { data && data.length > 0 ?
               <ConversationList
                 key={data.id}
