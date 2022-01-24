@@ -33,12 +33,14 @@ const MessageList = ({ messages = [], request, request_id }) => {
   return (
     <>
       {request && (
-        <header className="bg-blue-500 bg-opacity-25 flex flex-row justify-between">
-          <p>{request.category.name}</p>
-          <p>{request.request_details}</p>
+        <header className="flex items-start justify-between px-2">
+          <div className="flex-col">
+            <p className="text-md font-bold">🗒 {request.category.name}</p>
+            <p className="break-all text-sm">{request.request_details}</p>
+          </div>
           {/* link to unique request page */}
           <Link href={`/requests/${request_id}`}>
-            <button className="btn btn-primary">See Details</button>
+            <button className="btn btn-primary btn-sm">Details</button>
           </Link>
         </header>
       )}
