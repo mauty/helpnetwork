@@ -22,6 +22,7 @@ router.get('/request/:id', async function (req, res) {
 			requester: true,
 			category: true,
 			comments: true,
+      helper: true
 		},
 	});
 

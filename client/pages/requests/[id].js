@@ -132,9 +132,11 @@ function RequestId({ id }) {
 						error='Something unexpected... Try again'
 					/>
 				)}
-				{data && data.request_claimed && (
-					<Message message={'Someone is already helping with this request.'} />
-				)}
+        {
+          data && data.request_claimed && (
+            <Message message={`${currentUser && data.helper.id === currentUser.id? "You are" : "Someone is"} already helping with this request.`}/>
+          )
+        }
 				{data && (
 					<div className='flex flex-col p-2 space-between'>
 						<h1 className='font-medium text-xl'>{`${data.requester.first_name} ${data.requester.last_name}`}</h1>
