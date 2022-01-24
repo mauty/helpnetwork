@@ -614,18 +614,18 @@ const request_data = [
 ];
 
 const category_data = [
-	{ name: 'Groceries', image: '/feather/cpu.svg' },
-	{ name: 'Pharmacy Items', image: '/feather/cpu.svg'},
-	{ name: 'Pet Care', image: '/feather/cpu.svg' },
-	{ name: 'Cleaning', image: '/feather/cpu.svg' },
-	{ name: 'Home Maintenance', image: '/feather/cpu.svg' },
-	{ name: 'Meal Preparation', image: '/feather/cpu.svg' },
-	{ name: 'Tech Support', image: '/feather/cpu.svg' },
-	{ name: 'Gardening', image: '/feather/cpu.svg' },
-	{ name: 'Exercise', image: '/feather/cpu.svg' },
-	{ name: 'Moving Furniture', image: '/feather/cpu.svg' },
-	{ name: 'Mental Wellness', image: '/feather/cpu.svg' },
-	{ name: 'House Sitting', image: '/feather/cpu.svg' },
+	{ name: 'Groceries', image: '/material/shopping_cart_black_24dp.svg' },
+	{ name: 'Pharmacy Items', image: '/material/medication_black_24dp.svg'},
+	{ name: 'Pet Care', image: '/material/pets_black_24dp.svg' },
+	{ name: 'Cleaning', image: '/material/cleaning_services_black_24dp.svg' },
+	{ name: 'Home Maintenance', image: '/material/home_black_24dp.svg' },
+	{ name: 'Meal Preparation', image: '/material/restaurant_black_24dp.svg' },
+	{ name: 'Tech Support', image: '/material/computer_black_24dp.svg' },
+	{ name: 'Gardening', image: '/material/park_black_24dp.svg' },
+	{ name: 'Exercise', image: '/material/fitness_center_black_24dp.svg' },
+	{ name: 'Moving Furniture', image: '/material/weekend_black_24dp.svg' },
+	{ name: 'Mental Wellness', image: '/material/psychology_black_24dp.svg' },
+	{ name: 'House Sitting', image: '/material/mail_outline_black_24dp.svg' },
 ];
 
 const resource_data = [
