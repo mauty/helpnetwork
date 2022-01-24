@@ -63,8 +63,8 @@ function Conversation(props) {
 				<Container title='Message'>
 					{data && <MessageList key={data.id} {...data} />}
 					{/* COMPOSE MESSAGE */}
-					<div className='block fixed inset-x-0 bottom-16 z-10 bg-white'>
-						<div className='flex w-full justify-between'>
+					<div className='block fixed inset-x-0 sm:left-32 bottom-16 z-10 bg-white'>
+						<div className='flex w-full sm:w-11/12 justify-between'>
 							<textarea
 								className='flex-grow focus:bg-white m-2 py-2 px-4 mr-1 rounded-xl border border-gray-300 bg-gray-200 text-lg resize-none'
 								rows='1'
