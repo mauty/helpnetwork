@@ -60,7 +60,7 @@ function RequestId({ id }) {
         { isError && <ErrorMessage title="Error" error="Something unexpected... Try again"/> }
         {
           data && data.request_claimed && (
-            <Message message={"Someone is already helping with this request."}/>
+            <Message message={`${currentUser && data.helper.id === currentUser.id? "You are" : "Someone is"} already helping with this request.`}/>
           )
         }
         { data && (
