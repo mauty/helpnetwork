@@ -12,12 +12,15 @@ const MessageList = ({ messages = [], request, request_id }) => {
     return (
       <div
         key={message.id}
-        className={clsx({
-          "self-end bg-blue-600 text-white border border-indigo-600 rounded-full shadow-sm py-1 px-4 text-md break-all ml-2 mb-1":
-            currentUser.id === message.sender_id,
-          "self-start bg-slate-200 text-black border border-grey-600 rounded-full shadow-sm py-1 px-4 text-md break-all mr-2 mb-1":
-            currentUser.id !== message.sender_id,
-        })}
+        className={clsx(
+          "max-w-xl mx-1 rounded-3xl shadow-sm px-2 text-md mb-2",
+          {
+            "self-end bg-blue-600 text-white border border-indigo-600 ml-2":
+              currentUser.id === message.sender_id,
+            "self-start bg-slate-200 text-black border border-grey-600 mr-2":
+              currentUser.id !== message.sender_id,
+          }
+        )}
       >
         <MessageListItem
           key={message.id}
