@@ -24,7 +24,6 @@ function EditProfile() {
 
   const { isLoading: isResourcesLoading, isError: isResourcesError, data: resourceData } = useQuery('resources', () => useAxios({ url: `/resources`, method: "get" }));
   const { isLoading, isError, data } = useQuery('profile', () => useAxios({ url: `/profile/${currentUser.id}`, method: "get" }));
-  console.log(data);
 
   const mutation = useMutation(newProfile => useAxios({ url: `/profile`, method: "post", params: newProfile }))
 

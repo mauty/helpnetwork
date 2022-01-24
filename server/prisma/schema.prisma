@@ -29,6 +29,19 @@ model Person {
   Sender             Conversation[]      @relation("sender_id")
   Receiver           Conversation[]      @relation("receiver_id")
   comments           Comment[]
+  reviewsByMe        Review[]            @relation("reviewerId")
+  reviewsToMe        Review[]            @relation("personId")
+}
+
+model Review {
+  id                      Int       @id @default(autoincrement())
+  body                    String?
+  rating                  Int       @default(1)
+  reviewerId              Int
+  reviewer                Person    @relation(name: "reviewerId", fields: [reviewerId], references: [id])
+  personId                Int
+  personBeingReviewed     Person    @relation(name: "personId", fields: [personId], references: [id])
+  createdAt               DateTime? @default(now())
 }
 
 model Request {
