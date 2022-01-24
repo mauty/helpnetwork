@@ -12,6 +12,7 @@ import Shimmer from '../../components/ui/Shimmer';
 import ErrorMessage from '../../components/ui/ErrorMessage';
 import Link from 'next/link';
 import Header from '../../components/Header';
+import useAuth from '../../hooks/useAuth';
 
 export const getServerSideProps = async (ctx) => {
 	// TODO: Get the data from the server here using ctx.params.id
@@ -20,6 +21,8 @@ export const getServerSideProps = async (ctx) => {
 };
 
 function Conversation(props) {
+  useAuth();
+
 	const { isLoading, isError, data, refetch } = useQuery(
 		'conversations',
 		() => {
@@ -53,8 +56,13 @@ function Conversation(props) {
 		}, 1500);
 	}
 
-	if (isLoading) return <div className='p-2'><Shimmer/></div>;
-  if(isError) return <div className='p-2'><ErrorMessage title="Error" error="Something unexpected... Try again"/></div>
+	if (!data && isLoading) return <div className='p-2'><Shimmer/></div>;
+  if(!data && isError) return <div className='p-2'><ErrorMessage title="Error" error="Something unexpected... Try again"/></div>
+
+  const user =
+    data.sender.id === currentUser.id
+      ? data.receiver
+      : data.sender;
 
 	return (
 		<>
@@ -66,27 +74,17 @@ function Conversation(props) {
           data && (
             <Container title={
               data.sender && data.receiver && (
-                <div className="flex justify-between">
+                <div className="flex items-center gap-2">
                   <div class="-space-x-6 avatar-group">
                     <div class="avatar">
                       <div class="w-12 h-12">
-                        <img src={data.sender.imgURL}/>
-                      </div>
-                    </div>
-                    <div class="avatar">
-                      <div class="w-12 h-12">
-                        <img src={data.receiver.imgURL}/>
+                        <img src={user.imgURL}/>
                       </div>
                     </div>
                   </div>
-                  <div className="flex flex-col">
-                    <Link href={`/profile/${data.sender.id}`}>
-                      <p className='hover:text-blue-600 hover:underline cursor-pointer'>{data.sender.first_name} {data.sender.last_name}</p>
-                    </Link>
-                    <Link href={`/profile/${data.receiver.id}`}>
-                      <p className='hover:text-blue-600 hover:underline cursor-pointer'>{data.receiver.first_name} {data.receiver.last_name}</p>
-                    </Link>
-                  </div>
+                  <Link href={`/profile/${user.id}`}>
+                    <p className='hover:text-blue-600 hover:underline cursor-pointer'>{user.first_name} {user.last_name}</p>
+                  </Link>
                 </div>
               )
             }>
