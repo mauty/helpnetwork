@@ -17,6 +17,18 @@ CREATE TABLE "Person" (
 );
 
 -- CreateTable
+CREATE TABLE "Review" (
+    "id" SERIAL NOT NULL,
+    "body" TEXT,
+    "rating" INTEGER NOT NULL DEFAULT 1,
+    "reviewerId" INTEGER NOT NULL,
+    "personId" INTEGER NOT NULL,
+    "createdAt" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "Review_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "Request" (
     "id" SERIAL NOT NULL,
     "request_details" TEXT NOT NULL,
@@ -43,6 +55,7 @@ CREATE TABLE "Comment" (
     "id" SERIAL NOT NULL,
     "body" TEXT NOT NULL,
     "timestamp" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "sender_id" INTEGER NOT NULL,
     "request_id" INTEGER NOT NULL,
 
     CONSTRAINT "Comment_pkey" PRIMARY KEY ("id")
@@ -111,6 +124,12 @@ CREATE TABLE "Message" (
 CREATE UNIQUE INDEX "Person_email_key" ON "Person"("email");
 
 -- AddForeignKey
+ALTER TABLE "Review" ADD CONSTRAINT "Review_reviewerId_fkey" FOREIGN KEY ("reviewerId") REFERENCES "Person"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Review" ADD CONSTRAINT "Review_personId_fkey" FOREIGN KEY ("personId") REFERENCES "Person"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
 ALTER TABLE "Request" ADD CONSTRAINT "Request_category_id_fkey" FOREIGN KEY ("category_id") REFERENCES "Category"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
@@ -118,6 +137,9 @@ ALTER TABLE "Request" ADD CONSTRAINT "Request_helper_id_fkey" FOREIGN KEY ("help
 
 -- AddForeignKey
 ALTER TABLE "Request" ADD CONSTRAINT "Request_requester_id_fkey" FOREIGN KEY ("requester_id") REFERENCES "Person"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Comment" ADD CONSTRAINT "Comment_sender_id_fkey" FOREIGN KEY ("sender_id") REFERENCES "Person"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Comment" ADD CONSTRAINT "Comment_request_id_fkey" FOREIGN KEY ("request_id") REFERENCES "Request"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

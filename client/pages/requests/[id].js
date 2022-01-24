@@ -76,7 +76,7 @@ function RequestId({ id }) {
 
 	/************ Comments logic Begin  **************/
 
-	const [text, setText] = useState('');
+	const [commentText, setText] = useState('');
 
 	const commentMutation = useMutation((newComment) =>
 		useAxios({
@@ -89,18 +89,13 @@ function RequestId({ id }) {
 	function postComment() {
 		commentMutation.mutate({
 			// avatar:
-			commentBody: text,
-			sender_id: sender_id,
+			commentBody: commentText,
+			sender_id: currentUser.id,
 			request_id: id,
 		});
 		setText('');
-		setTimeout(() => {
-			refreshButton.current.click();
-			console.log('Reload Comment function >>>>> ', refreshButton.current);
-		}, 1500);
-
-		/************ Comments logic End  **************/
 	}
+	/************ Comments logic End  **************/
 
 	const comments = commentData?.map((comment, index) => {
 		return (
@@ -130,11 +125,15 @@ function RequestId({ id }) {
 						error='Something unexpected... Try again'
 					/>
 				)}
-        {
-          data && data.request_claimed && (
-            <Message message={`${currentUser && data.helper.id === currentUser.id? "You are" : "Someone is"} already helping with this request.`}/>
-          )
-        }
+				{data && data.request_claimed && (
+					<Message
+						message={`${
+							currentUser && data.helper.id === currentUser.id
+								? 'You are'
+								: 'Someone is'
+						} already helping with this request.`}
+					/>
+				)}
 				{data && (
 					<div className='flex flex-col p-2 space-between'>
 						<h1 className='font-medium text-xl'>{`${data.requester.first_name} ${data.requester.last_name}`}</h1>
@@ -242,7 +241,7 @@ function RequestId({ id }) {
 										name='body'
 										placeholder='Write something...'
 										onChange={(event) => setText(event.target.value)}
-										value={text}
+										value={commentText}
 										required></textarea>
 								</div>
 								{/* <!-- comment form --> */}
@@ -250,7 +249,7 @@ function RequestId({ id }) {
 									type='submit'
 									className='float-right bg-white text-gray-700 font-medium py-1 px-4 border border-gray-400 rounded-lg mr-2 hover:bg-gray-100'
 									value='Post Comment'
-									disabled={text === ''}
+									disabled={commentText === ''}
 									onClick={postComment}>
 									Post Comment
 								</button>
@@ -260,8 +259,9 @@ function RequestId({ id }) {
 				</div>
 				<footer className='antialiased mx-auto max-w-screen-sm'>
 					<h3 className='mb-4 text-lg font-semibold text-gray-900'>Comments</h3>
-					<div className='space-y-4'></div>
-					{commentData && comments}
+					<div className='space-y-4 flex flex-col-reverse'>
+						{commentData && comments}
+					</div>
 				</footer>
 			</Container>
 		</NavBar>
