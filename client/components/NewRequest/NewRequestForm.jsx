@@ -84,6 +84,12 @@ const NewRequestForm = (props) => {
     );
   }
 
+	const mutation = useMutation((newHelp) =>
+		useAxios({ url: `/request/`, method: 'post', params: requestPayload }),
+	);
+
+
+
   const onSubmit = (event) => {
     // setSubmitting(true)
     // handleCreate(data)
@@ -91,8 +97,15 @@ const NewRequestForm = (props) => {
     // .then(console.log('requestPayloadBeforeSubmit>>>', requestPayload))
     console.log('requestPayloadBeforeSubmit>>>', requestPayload)
     event.preventDefault()
-    useAxios({ url: `/request`, method: 'post', params: requestPayload })
-    .then(router.push('/requests/confirm'))
+    mutation.mutate(
+      { requestPayload },
+      {
+      onSuccess: (data) => {
+        router.push(`/requests/${data.id}`);
+      },
+    },);
+    // useAxios({ url: `/request`, method: 'post', params: requestPayload })
+    // .then(router.push('/requests/confirm'))
   };
 
   const requestedResourcesArray = Object.keys(state.resources).map(key => parseInt(key))
@@ -137,7 +150,7 @@ const NewRequestForm = (props) => {
 
   return (
     
-      <div className="mb-auto">
+      <div className="pb-14">
         {/* <form className=""  autoComplete="off"> */}
           <h2 className="text-xl font-bold">What kind of help do you need?</h2>
           {categoryData && <CategoryList categoryData={categoryData} />}

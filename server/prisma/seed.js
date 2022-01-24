@@ -646,27 +646,30 @@ const request_data = [
 ];
 
 const category_data = [
-	{ name: 'Groceries' },
-	{ name: 'Pharmacy Items' },
-	{ name: 'Pet Care' },
-	{ name: 'Cleaning' },
-	{ name: 'Home Maintenance' },
-	{ name: 'Meal Preparation' },
-	{ name: 'Tech Support' },
-	{ name: 'Gardening' },
-	{ name: 'Exercise' },
-	{ name: 'Moving Furniture' },
-	{ name: 'Mental Wellness' },
-	{ name: 'House Sitting' },
+	{ name: 'Groceries', image: '/feather/cpu.svg' },
+	{ name: 'Pharmacy Items', image: '/feather/cpu.svg'},
+	{ name: 'Pet Care', image: '/feather/cpu.svg' },
+	{ name: 'Cleaning', image: '/feather/cpu.svg' },
+	{ name: 'Home Maintenance', image: '/feather/cpu.svg' },
+	{ name: 'Meal Preparation', image: '/feather/cpu.svg' },
+	{ name: 'Tech Support', image: '/feather/cpu.svg' },
+	{ name: 'Gardening', image: '/feather/cpu.svg' },
+	{ name: 'Exercise', image: '/feather/cpu.svg' },
+	{ name: 'Moving Furniture', image: '/feather/cpu.svg' },
+	{ name: 'Mental Wellness', image: '/feather/cpu.svg' },
+	{ name: 'House Sitting', image: '/feather/cpu.svg' },
 ];
 
 const resource_data = [
-	{ name: 'Snow Blower', category: 'Tool' },
-	{ name: 'Lawn Mower', category: 'Tool' },
-	{ name: 'Pickup Truck', category: 'Transportation' },
-	{ name: 'Ladder', category: 'Tool' },
-	{ name: 'Wheelbarrow', category: 'Tool' },
-	{ name: 'Hammer Drill', category: 'Tool' },
+	{ name: 'Snow Blower', category_id: 5 },
+	{ name: 'Lawn Mower', category_id: 5 },
+	{ name: 'Pickup Truck', category_id: 10 },
+	{ name: 'Ladder', category_id: 5 },
+	{ name: 'Wheelbarrow', category_id: 8 },
+	{ name: 'Hammer Drill', category_id: 5 },
+	{ name: 'Mac', category_id: 7 },
+	{ name: 'Windows', category_id: 7 },
+	{ name: 'Networking', category_id: 7 },
 ];
 
 const requested_resource_data = [

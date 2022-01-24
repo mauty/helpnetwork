@@ -5,6 +5,7 @@ import Shimmer from '../../components/ui/Shimmer';
 import ErrorMessage from '../../components/ui/ErrorMessage';
 import Empty from '../../components/ui/Empty';
 import Head from 'next/head';
+import Header from '../../components/Header';
 
 import NavBar from '../../components/NavBar';
 import Container from '../../components/ui/Container';
@@ -20,7 +21,6 @@ export default function Messages() {
 		return useAxios({ url: `/conversations/`, method: 'get', params: { user_id: currentUser.id } });
 	});
 
-	console.log('Conversation List from Index.js >>>>', data);
 	if (isLoading) return <div className='p-2'><Shimmer/></div>;
   if(isError) return <div className='p-2'><ErrorMessage title="Error" error="Something unexpected... Try again"/></div>
 
@@ -30,7 +30,8 @@ export default function Messages() {
           <title>helpnetwork | messages</title>
         </Head>
         <NavBar currentNav={'messages'}>
-          <Container title='Messages'>
+					<Header pageName="Messages" />
+          <Container>
             { data && data.length > 0 ?
               <ConversationList
                 key={data.id}

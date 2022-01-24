@@ -12,6 +12,7 @@ import ErrorMessage from '../../components/ui/ErrorMessage';
 import NavBar from '../../components/NavBar';
 import Message from '../../components/ui/Message';
 import timeAgo from '../../utils/timeAgo';
+import Header from '../../components/Header';
 
 export const getServerSideProps = async (ctx) => {
 	// TODO: Get the data from the server here using ctx.params.id
@@ -93,6 +94,7 @@ function RequestId({ id }) {
 		commentMutation.mutate({
 			// avatar:
 			commentBody: commentText,
+			commentBody: text,
 			sender_id: currentUser.id,
 			request_id: id,
 		});
