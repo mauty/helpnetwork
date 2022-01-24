@@ -61,7 +61,7 @@ const LocationChooser = (props) => {
         // setLng(position.coords.longitude);
         console.log('navigator>>>>',lat, lng)
         setState((prevState) => {
-          return {...prevState, location: {lat: lat, long: lng}}
+          return {...prevState, location: {lat: lat, long: lng }}
         });
       }, () => {
         setStatus('Unable to retrieve your location');

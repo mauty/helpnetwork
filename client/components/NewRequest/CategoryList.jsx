@@ -4,7 +4,7 @@ import CategoryListItem from "./CategoryListItem";
 import clsx from "clsx";
 
 const CategoryList = (props) => {
-  const { categoryData } = props;
+  const { categoryData, register, errors } = props;
   const {state, setState} = useContext(FormContext)
   
   const clickHandler = (id) => {
