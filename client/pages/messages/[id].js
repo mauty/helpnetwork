@@ -11,6 +11,7 @@ import Head from 'next/head';
 import Shimmer from '../../components/ui/Shimmer';
 import ErrorMessage from '../../components/ui/ErrorMessage';
 import Link from 'next/link';
+import Header from '../../components/Header';
 
 export const getServerSideProps = async (ctx) => {
 	// TODO: Get the data from the server here using ctx.params.id

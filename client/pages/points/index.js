@@ -13,6 +13,7 @@ import Shimmer from '../../components/ui/Shimmer';
 import useViewport from '../../hooks/useViewport';
 import ListItem from '../../components/Points/ListItem';
 import NavBar from '../../components/NavBar';
+import Header from '../../components/Header';
 
 import { UserContext } from '../_app';
 
@@ -32,6 +33,7 @@ export default function Home() {
       </Head>
       <NavBar currentNav={"points"}>
         <Container size='full'>
+          <Header pageName="Points" />
           <Map setViewport={setViewport} viewport={viewport}>
             { data && data.map(person =>
               <MarkFace

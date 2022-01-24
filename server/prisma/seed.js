@@ -646,18 +646,18 @@ const request_data = [
 ];
 
 const category_data = [
-	{ name: 'Groceries' },
-	{ name: 'Pharmacy Items' },
-	{ name: 'Pet Care' },
-	{ name: 'Cleaning' },
-	{ name: 'Home Maintenance' },
-	{ name: 'Meal Preparation' },
-	{ name: 'Tech Support' },
-	{ name: 'Gardening' },
-	{ name: 'Exercise' },
-	{ name: 'Moving Furniture' },
-	{ name: 'Mental Wellness' },
-	{ name: 'House Sitting' },
+	{ name: 'Groceries', image: '/feather/cpu.svg' },
+	{ name: 'Pharmacy Items', image: '/feather/cpu.svg'},
+	{ name: 'Pet Care', image: '/feather/cpu.svg' },
+	{ name: 'Cleaning', image: '/feather/cpu.svg' },
+	{ name: 'Home Maintenance', image: '/feather/cpu.svg' },
+	{ name: 'Meal Preparation', image: '/feather/cpu.svg' },
+	{ name: 'Tech Support', image: '/feather/cpu.svg' },
+	{ name: 'Gardening', image: '/feather/cpu.svg' },
+	{ name: 'Exercise', image: '/feather/cpu.svg' },
+	{ name: 'Moving Furniture', image: '/feather/cpu.svg' },
+	{ name: 'Mental Wellness', image: '/feather/cpu.svg' },
+	{ name: 'House Sitting', image: '/feather/cpu.svg' },
 ];
 
 const resource_data = [

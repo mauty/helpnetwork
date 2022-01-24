@@ -137,7 +137,7 @@ const NewRequestForm = (props) => {
 
   return (
     
-      <div className="mb-auto">
+      <div className="pb-14">
         {/* <form className=""  autoComplete="off"> */}
           <h2 className="text-xl font-bold">What kind of help do you need?</h2>
           {categoryData && <CategoryList categoryData={categoryData} />}

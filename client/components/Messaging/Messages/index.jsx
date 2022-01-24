@@ -23,8 +23,9 @@ const MessageList = ({ messages = [], request, request_id }) => {
   return (
     <>
       {request && (
-        <header className="flex items-center justify-between px-2">
+        <header className="flex items-start justify-between px-2 bg-stone-200 p-4">
           <div className="flex-col">
+            <h3 className="text-lg">Regarding Request:</h3>
             <p className="text-md font-bold">🗒 {request.category.name}</p>
             <p className="break-words text-sm">{request.request_details}</p>
           </div>

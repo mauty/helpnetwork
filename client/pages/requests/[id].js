@@ -11,6 +11,7 @@ import Shimmer from '../../components/ui/Shimmer';
 import ErrorMessage from '../../components/ui/ErrorMessage';
 import NavBar from '../../components/NavBar';
 import Message from '../../components/ui/Message';
+import Header from '../../components/Header';
 
 export const getServerSideProps = async (ctx) => {
 	// TODO: Get the data from the server here using ctx.params.id
@@ -122,7 +123,8 @@ function RequestId({ id }) {
 	});
 	return (
 		<NavBar currentNav={'help'}>
-			<Container title='Help For'>
+			<Container>
+				<Header pageName="Help Request" />
 				{isLoading && <Shimmer />}
 				{isError && (
 					<ErrorMessage
