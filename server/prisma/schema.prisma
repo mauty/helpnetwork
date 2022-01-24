@@ -89,7 +89,7 @@ model Category {
 model Resource {
   id                  Int                  @id @default(autoincrement())
   name                String
-  category            String
+  category_id         Int                  @default(1)
   detail              String?
   image               String?
   personal_resources  Personal_resource[]
