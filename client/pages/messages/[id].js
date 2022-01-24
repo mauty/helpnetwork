@@ -10,6 +10,7 @@ import { UserContext } from '../_app';
 import Head from 'next/head';
 import Shimmer from '../../components/ui/Shimmer';
 import ErrorMessage from '../../components/ui/ErrorMessage';
+import Link from 'next/link';
 
 export const getServerSideProps = async (ctx) => {
 	// TODO: Get the data from the server here using ctx.params.id
@@ -78,8 +79,12 @@ function Conversation(props) {
                     </div>
                   </div>
                   <div className="flex flex-col">
-                    <p>{data.sender.first_name} {data.sender.last_name}</p>
-                    <p>{data.receiver.first_name} {data.receiver.last_name}</p>
+                    <Link href={`/profile/${data.sender.id}`}>
+                      <p className='hover:text-blue-600 hover:underline cursor-pointer'>{data.sender.first_name} {data.sender.last_name}</p>
+                    </Link>
+                    <Link href={`/profile/${data.receiver.id}`}>
+                      <p className='hover:text-blue-600 hover:underline cursor-pointer'>{data.receiver.first_name} {data.receiver.last_name}</p>
+                    </Link>
                   </div>
                 </div>
               )
