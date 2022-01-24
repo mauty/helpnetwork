@@ -60,7 +60,7 @@ function Conversation(props) {
   if(!data && isError) return <div className='p-2'><ErrorMessage title="Error" error="Something unexpected... Try again"/></div>
 
   const user =
-    data.sender.id === currentUser.id
+    data.sender?.id === currentUser?.id
       ? data.receiver
       : data.sender;
 
