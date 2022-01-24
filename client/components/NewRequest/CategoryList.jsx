@@ -13,13 +13,15 @@ const CategoryList = (props) => {
 
   const categoriesArray = categoryData.map((category) => {
     return (
-      <li key={category.id} className="mb-1">
+      <li key={category.id} className="mb-1 w-full">
         <button 
-          className={clsx("btn btn-sm", {"btn-primary": category.id === state.categoryId})} 
+          className={clsx("btn btn-sm w-full text-left justify-start", {"btn-primary": category.id === state.categoryId})} 
           onClick={() => clickHandler(category.id)} 
         >
           <img src={category.image} />
-          {category.name}
+          <div className="ml-4">
+            {category.name}
+          </div>
         </button>
       </li>
     // <CategoryListItem key={category.id} name={category.name}/>
