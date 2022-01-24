@@ -20,7 +20,8 @@ router.get('/request/:id', async function (req, res) {
       },
       conversations: true,
       requester: true,
-      category: true
+      category: true,
+      helper: true
     }
 	});
 
