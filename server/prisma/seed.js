@@ -1127,7 +1127,10 @@ const message_data = [
 	},
 ];
 
-const comment_data = [{ body: 'Helloooo', sender_id: 10, request_id: 1 }];
+const comment_data = [
+	{ body: 'Helloooo', request_id: 1 },
+	{ body: 'How are you?', request_id: 1 },
+];
 const main = async () => {
 	console.log('Start seeding');
 
@@ -1163,7 +1166,7 @@ const main = async () => {
 		data: message_data,
 	});
 
-	await prisma.message.create({
+	await prisma.comment.createMany({
 		data: comment_data,
 	});
 

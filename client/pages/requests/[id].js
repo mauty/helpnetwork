@@ -51,6 +51,7 @@ function RequestId({ id }) {
 			},
 		);
 	}
+	console.log('Comment Data >>> ', commentData);
 
 	function markComplete() {
 		mutationComplete.mutate(
@@ -240,14 +241,16 @@ function RequestId({ id }) {
 							<div className='flex-shrink-0 mr-3'>
 								<img
 									className='mt-2 rounded-full w-8 h-8 sm:w-10 sm:h-10'
-									src={commenterAvatar}
+									src='https://randomuser.me/api/portraits/men/51.jpg'
 									alt=''
 								/>
 							</div>
 							<div className='flex-1 border rounded-lg px-4 py-2 sm:px-6 sm:py-4 leading-relaxed'>
 								<strong>{commenter}</strong>{' '}
-								<span className='text-xs text-gray-400'>{commentTime}</span>
-								<p className='text-sm'>{commentBody}</p>
+								<span className='text-xs text-gray-400'>
+									{commentData.body}
+								</span>
+								<p className='text-sm'>12.00</p>
 							</div>
 						</div>
 					</div>

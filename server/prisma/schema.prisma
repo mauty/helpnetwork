@@ -28,7 +28,6 @@ model Person {
   personal_resources Personal_resource[]
   Sender             Conversation[]      @relation("sender_id")
   Receiver           Conversation[]      @relation("receiver_id")
-  comments           Comment[]
 }
 
 model Request {
@@ -60,9 +59,7 @@ model Comment {
   id              Int          @id @default(autoincrement())
   body            String
   timestamp       DateTime     @default(now())
-  sender_id       Int
   request_id      Int
-  person          Person @relation(fields: [sender_id], references: [id])
   request         Request @relation(fields: [request_id], references: [id])
 }
 
