@@ -278,10 +278,7 @@ function RequestId({ id }) {
 					</footer>
 				</Container>
 			</NavBar>
-			<button ref={refreshButton} onClick={refetch}>
-				{' '}
-				Do refetch NOW{' '}
-			</button>
+			<button className='-z-2' ref={refreshButton} onClick={refetch}></button>
 		</>
 	);
 }
