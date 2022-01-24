@@ -1,5 +1,5 @@
 import { useRouter } from "next/router"
-import { useContext, useRef } from "react";
+import { useContext, useRef, useMemo } from "react";
 import useCountStars from "../../hooks/useCountStars";
 import { UserContext } from "../../pages/_app";
 import NavBar from "../NavBar";
@@ -43,7 +43,7 @@ export default function ProfileView({ data }) {
                   {
                     data.reviewHearts[0] && (
                       [1, 2, 3, 4, 5].map(num =>
-                        <input key={num} type="radio" name="rating-3" readOnly checked={num === Math.floor(data.reviewHearts[0]._avg.rating)} className="mask mask-heart bg-error"/>
+                        <input key={num} type="radio" name="rating-3" readOnly checked={num === useMemo(() => Math.floor(data.reviewHearts[0]._avg.rating), [data])} className="mask mask-heart bg-error"/>
                       )
                     )
                   }
