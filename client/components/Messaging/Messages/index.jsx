@@ -36,7 +36,7 @@ const MessageList = ({ messages = [], request, request_id }) => {
         <header className="flex items-start justify-between px-2">
           <div className="flex-col">
             <p className="text-md font-bold">🗒 {request.category.name}</p>
-            <p className="break-all text-sm">{request.request_details}</p>
+            <p className="break-words text-sm">{request.request_details}</p>
           </div>
           {/* link to unique request page */}
           <Link href={`/requests/${request_id}`}>
