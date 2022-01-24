@@ -10,26 +10,14 @@ const MessageList = ({ messages = [], request, request_id }) => {
   console.log("THE CURRENT USER >>>>>", currentUser);
   const listOfMessages = messages.map((message) => {
     return (
-      <div
+      <MessageListItem
         key={message.id}
-        className={clsx(
-          "max-w-sm sm:max-w-xl mx-1 rounded-3xl shadow-sm px-2 text-md mb-2",
-          {
-            "self-end bg-blue-600 text-white border border-indigo-600 ml-2":
-              currentUser.id === message.sender_id,
-            "self-start bg-slate-200 text-black border border-grey-600 mr-2":
-              currentUser.id !== message.sender_id,
-          }
-        )}
-      >
-        <MessageListItem
-          key={message.id}
-          id={message.id}
-          body={message.body}
-          timestamp={message.timestamp}
-          sender_id={message.sender_id}
-        />
-      </div>
+        id={message.id}
+        body={message.body}
+        timestamp={message.timestamp}
+        sender_id={message.sender_id}
+        currentUser={currentUser}
+      />
     );
   });
 
