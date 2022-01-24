@@ -34,6 +34,13 @@ function RequestId({ id }) {
 		useAxios({ url: `/request/${id}`, method: 'get' }),
 	);
 
+	const {
+		isLoading: commentLoading,
+		isError: commentError,
+		data: commentData,
+	} = useQuery('request', () =>
+		useAxios({ url: `/comments/${id}`, method: 'get' }),
+	);
 	function offerHelp() {
 		mutation.mutate(
 			{ helper_id: currentUser.id },
@@ -65,6 +72,33 @@ function RequestId({ id }) {
 		router.push(`/messages/${conversation[0].id}`);
 	}
 
+	/************ Comments logic Begin  **************/
+
+	const [text, setText] = useState('');
+
+	const commentMutation = useMutation((newComment) =>
+		useAxios({
+			url: `/comments/${id}`,
+			method: 'post',
+			params: newComment,
+		}),
+	);
+
+	function postComment() {
+		commentMutation.mutate({
+			// avatar:
+			commentBody: text,
+			sender_id: sender_id,
+			request_id: id,
+		});
+		setText('');
+		setTimeout(() => {
+			refreshButton.current.click();
+			console.log('Reload Comment function >>>>> ', refreshButton.current);
+		}, 1500);
+
+		/************ Comments logic End  **************/
+	}
 	return (
 		<NavBar currentNav={'help'}>
 			<Container title='Help For'>
@@ -184,13 +218,17 @@ function RequestId({ id }) {
 										className='bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full h-20 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white'
 										name='body'
 										placeholder='Write something...'
+										onChange={(event) => setText(event.target.value)}
+										value={text}
 										required></textarea>
 								</div>
 								{/* <!-- comment form --> */}
-								<input
+								<button
 									type='submit'
 									className='float-right bg-white text-gray-700 font-medium py-1 px-4 border border-gray-400 rounded-lg mr-2 hover:bg-gray-100'
-									value='Post Comment'></input>
+									value='Post Comment'
+									disabled={text === ''}
+									onClick={postComment}></button>
 							</div>
 						</div>
 					</form>
@@ -202,54 +240,14 @@ function RequestId({ id }) {
 							<div className='flex-shrink-0 mr-3'>
 								<img
 									className='mt-2 rounded-full w-8 h-8 sm:w-10 sm:h-10'
-									src='https://images.unsplash.com/photo-1604426633861-11b2faead63c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=200&h=200&q=80'
+									src={commenterAvatar}
 									alt=''
 								/>
 							</div>
 							<div className='flex-1 border rounded-lg px-4 py-2 sm:px-6 sm:py-4 leading-relaxed'>
-								<strong>Sarah</strong>{' '}
-								<span className='text-xs text-gray-400'>3:34 PM</span>
-								<p className='text-sm'>
-									Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-									diam nonumy eirmod tempor invidunt ut labore et dolore magna
-									aliquyam erat, sed diam voluptua.
-								</p>
-							</div>
-						</div>
-						<div className='flex'>
-							<div className='flex-shrink-0 mr-3'>
-								<img
-									className='mt-2 rounded-full w-8 h-8 sm:w-10 sm:h-10'
-									src='https://images.unsplash.com/photo-1604426633861-11b2faead63c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=200&h=200&q=80'
-									alt=''
-								/>
-							</div>
-							<div className='flex-1 border rounded-lg px-4 py-2 sm:px-6 sm:py-4 leading-relaxed'>
-								<strong>Sarah</strong>{' '}
-								<span className='text-xs text-gray-400'>3:34 PM</span>
-								<p className='text-sm'>
-									Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-									diam nonumy eirmod tempor invidunt ut labore et dolore magna
-									aliquyam erat, sed diam voluptua.
-								</p>
-							</div>
-						</div>
-						<div className='flex'>
-							<div className='flex-shrink-0 mr-3'>
-								<img
-									className='mt-2 rounded-full w-8 h-8 sm:w-10 sm:h-10'
-									src='https://images.unsplash.com/photo-1604426633861-11b2faead63c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=200&h=200&q=80'
-									alt=''
-								/>
-							</div>
-							<div className='flex-1 border rounded-lg px-4 py-2 sm:px-6 sm:py-4 leading-relaxed'>
-								<strong>Sarah</strong>{' '}
-								<span className='text-xs text-gray-400'>3:34 PM</span>
-								<p className='text-sm'>
-									Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-									diam nonumy eirmod tempor invidunt ut labore et dolore magna
-									aliquyam erat, sed diam voluptua.
-								</p>
+								<strong>{commenter}</strong>{' '}
+								<span className='text-xs text-gray-400'>{commentTime}</span>
+								<p className='text-sm'>{commentBody}</p>
 							</div>
 						</div>
 					</div>
