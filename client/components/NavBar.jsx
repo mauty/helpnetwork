@@ -55,7 +55,7 @@ const NavBar = ({
       {children}
       <section
         id="bottom-navigation"
-        className="block fixed inset-x-0 bottom-0 z-10 bg-white"
+        className="md:hidden block fixed inset-x-0 bottom-0 z-10 bg-white"
       >
         <div id="tabs" className="flex justify-between cursor-pointer">
           {navigations.map((navigation, index) => (
