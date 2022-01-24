@@ -1,11 +1,11 @@
-import CommentPost from './CommentPost';
-const CommentList = ( commentData =[]) => {
+import CommentListItem from "./CommentListItem";
+import { useContext } from "react";
+import { UserContext } from "../../../pages/_app";
 
+const CommentList = ( {commentsData}) => {
+  const { currentUser } = useContext(UserContext);
 
-
-
-
-	const listOfComments = commentData?.map((comment, index) => {
+	const listOfComments = commentsData?.map((comment, index) => {
     return (
       <CommentListItem
         key={index}
@@ -26,13 +26,12 @@ const CommentList = ( commentData =[]) => {
 return (
   <><div className='flex mx-auto items-center border rounded-lg px-4 py-2 sm:px-6 sm:py-4 leading-relaxed'>
     {/* comment post */}
-		<CommentPost />
   </div><footer className='mx-auto max-w-screen-sm pb-5'>
       <h3 className='mb-4 text-lg font-semibold text-gray-900'>
         Comments
       </h3>
       <div className='space-y-4 flex flex-col-reverse gap-3'>
-        {commentData && listOfComments}
+        {commentsData && listOfComments}
       </div>
     </footer>
 		</>
