@@ -7,7 +7,6 @@ import clsx from "clsx";
 const MessageList = ({ messages = [], request, request_id }) => {
   const { currentUser } = useContext(UserContext);
 
-  console.log("THE CURRENT USER >>>>>", currentUser);
   const listOfMessages = messages.map((message) => {
     return (
       <MessageListItem
@@ -24,14 +23,14 @@ const MessageList = ({ messages = [], request, request_id }) => {
   return (
     <>
       {request && (
-        <header className="flex items-start justify-between px-2">
+        <header className="flex items-center justify-between px-2">
           <div className="flex-col">
             <p className="text-md font-bold">🗒 {request.category.name}</p>
             <p className="break-words text-sm">{request.request_details}</p>
           </div>
           {/* link to unique request page */}
           <Link href={`/requests/${request_id}`}>
-            <button className="btn btn-primary btn-sm">Details</button>
+            <button className="btn btn-outline btn-sm">Details</button>
           </Link>
         </header>
       )}

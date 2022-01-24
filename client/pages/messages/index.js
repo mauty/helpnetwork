@@ -20,7 +20,6 @@ export default function Messages() {
 		return useAxios({ url: `/conversations/`, method: 'get', params: { user_id: currentUser.id } });
 	});
 
-	console.log('Conversation List from Index.js >>>>', data);
 	if (isLoading) return <div className='p-2'><Shimmer/></div>;
   if(isError) return <div className='p-2'><ErrorMessage title="Error" error="Something unexpected... Try again"/></div>
 
