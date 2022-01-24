@@ -94,7 +94,6 @@ function RequestId({ id }) {
 		commentMutation.mutate({
 			// avatar:
 			commentBody: commentText,
-			commentBody: text,
 			sender_id: currentUser.id,
 			request_id: id,
 		});
@@ -272,11 +271,11 @@ function RequestId({ id }) {
 							</div>
 						</form>
 					</div>
-					<footer className='antialiased mx-auto max-w-screen-sm'>
+					<footer className='mx-auto max-w-screen-sm pb-5'>
 						<h3 className='mb-4 text-lg font-semibold text-gray-900'>
 							Comments
 						</h3>
-						<div className='space-y-4 flex flex-col-reverse'>
+						<div className='space-y-4 flex flex-col-reverse gap-3'>
 							{commentData && comments}
 						</div>
 					</footer>
