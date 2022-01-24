@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { useQuery, useMutation } from 'react-query';
 import { useRouter } from 'next/router';
 import { Send, File, Check, MessageSquare } from 'react-feather';
@@ -33,14 +33,15 @@ function RequestId({ id }) {
 	const { isLoading, isError, data } = useQuery('request', () =>
 		useAxios({ url: `/request/${id}`, method: 'get' }),
 	);
-
+	/*Coomments query */
 	const {
 		isLoading: commentLoading,
 		isError: commentError,
 		data: commentData,
-	} = useQuery('request', () =>
+	} = useQuery('comments', () =>
 		useAxios({ url: `/comments/${id}`, method: 'get' }),
 	);
+
 	function offerHelp() {
 		mutation.mutate(
 			{ helper_id: currentUser.id },
@@ -100,6 +101,27 @@ function RequestId({ id }) {
 
 		/************ Comments logic End  **************/
 	}
+
+	const comments = commentData?.map((comment, index) => {
+		return comment.length > 0 ? (
+			<div key={index} className='flex'>
+				<div className='flex-shrink-0 mr-3'>
+					<img
+						className='mt-2 rounded-full w-8 h-8 sm:w-10 sm:h-10'
+						src='https://randomuser.me/api/portraits/men/51.jpg'
+						alt=''
+					/>
+				</div>
+				<div className='flex-1 border rounded-lg px-4 py-2 sm:px-6 sm:py-4 leading-relaxed'>
+					<strong>'Amir'</strong>{' '}
+					<span className='text-xs text-gray-400'>{comment.body}</span>
+					<p className='text-sm'>{comment.timestamp}</p>
+				</div>
+			</div>
+		) : (
+			<p>Empty Comments Section</p>
+		);
+	});
 	return (
 		<NavBar currentNav={'help'}>
 			<Container title='Help For'>
@@ -229,31 +251,17 @@ function RequestId({ id }) {
 									className='float-right bg-white text-gray-700 font-medium py-1 px-4 border border-gray-400 rounded-lg mr-2 hover:bg-gray-100'
 									value='Post Comment'
 									disabled={text === ''}
-									onClick={postComment}></button>
+									onClick={postComment}>
+									Post Comment
+								</button>
 							</div>
 						</div>
 					</form>
 				</div>
 				<footer className='antialiased mx-auto max-w-screen-sm'>
 					<h3 className='mb-4 text-lg font-semibold text-gray-900'>Comments</h3>
-					<div className='space-y-4'>
-						<div className='flex'>
-							<div className='flex-shrink-0 mr-3'>
-								<img
-									className='mt-2 rounded-full w-8 h-8 sm:w-10 sm:h-10'
-									src='https://randomuser.me/api/portraits/men/51.jpg'
-									alt=''
-								/>
-							</div>
-							<div className='flex-1 border rounded-lg px-4 py-2 sm:px-6 sm:py-4 leading-relaxed'>
-								<strong>{commenter}</strong>{' '}
-								<span className='text-xs text-gray-400'>
-									{commentData.body}
-								</span>
-								<p className='text-sm'>12.00</p>
-							</div>
-						</div>
-					</div>
+					<div className='space-y-4'></div>
+					{comments}
 				</footer>
 			</Container>
 		</NavBar>
