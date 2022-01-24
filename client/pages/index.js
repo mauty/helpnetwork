@@ -17,7 +17,7 @@ import MapCollapseTab from '../components/Home/MapCollapseTab';
 import Mark from '../components/Map/Mark';
 import TimeInput from '../components/Home/TimeInput';
 import FilterButton from '../components/Home/FilterButton';
-import { Empty } from '../components/ui/Empty';
+import Empty from '../components/ui/Empty';
 
 
 export default function Home() {
