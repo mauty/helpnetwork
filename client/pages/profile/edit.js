@@ -15,6 +15,16 @@ import { UserContext } from '../_app';
 import NavBar from '../../components/NavBar';
 import Header from '../../components/Header';
 
+/*******
+ * WE KNOW THIS IS A MANY TO MANY SOLUTION
+ * WE ARE JUST OUT OF TIME
+ */
+export const SAFETY_DETAILS = [
+  "vaccinated",
+  "will wear a mask",
+  "willing to socially distance"
+]
+
 function EditProfile() {
   useAuth();
   const router = useRouter();
@@ -35,7 +45,18 @@ function EditProfile() {
       }
     })
 
-    mutation.mutate({ id: currentUser.id, ...formData, personal_resources: enabledResources.map(value => parseInt(value)) }, {
+    const enabledSafetyDetails = formData.safety_details.filter(detail => {
+      if(detail !== false) {
+        return true;
+      }
+    })
+
+    mutation.mutate({
+      id: currentUser.id,
+      ...formData,
+      personal_resources: enabledResources.map(value => parseInt(value)),
+      safety_details: enabledSafetyDetails.map(value => SAFETY_DETAILS[parseInt(value)]
+    ) }, {
       onSuccess: () => {
         router.push('/profile');
       }
@@ -133,6 +154,45 @@ function EditProfile() {
                 <textarea defaultValue={data.bio} className="textarea h-24 textarea-bordered" {...register('bio')}></textarea>
               </div>
 
+              {
+                (data.safety_details !== "[]" && Array.isArray(JSON.parse(data.safety_details))) && (
+                  <div className='mt-4'>
+                    <h1 className="text-lg font-bold text-gray-900 dark:text-gray-100 p-2">
+                      Safety Details
+                    </h1>
+                    <div className="flex flex-col sm:w-96">
+                      {
+                        SAFETY_DETAILS.map((detail, index) => (
+                          <div key={detail} className="alert-sm alert-info rounded m-1">
+                            <div className="flex justify-between items-center">
+                              <label className='text-sm font-semibold capitalize'>{detail}</label>
+                              <input
+                                type="checkbox"
+                                className="toggle toggle-primary"
+                                value={index}
+                                // defaultChecked={data.personal_resources.filter(personalResource => personalResource.resource_id === resource.id).length}
+                                defaultChecked={(() => {
+                                  if(data.safety_details !== "[]" && Array.isArray(JSON.parse(data.safety_details))) {
+                                    for(const safetyDetail of JSON.parse(data.safety_details)) {
+                                      if(safetyDetail === detail) {
+                                        return true;
+                                      }
+                                    }
+                                  }
+
+                                  return false;
+                                })()}
+                                {...register(`safety_details.${index}`)}/>
+
+                            </div>
+                          </div>
+                        ))
+                      }
+                    </div>
+                  </div>
+                )
+              }
+
               { isResourcesLoading && <Shimmer/> }
               { isResourcesError && <ErrorMessage title="Error" error="Something unexpected... Try again"/> }
               {
@@ -154,7 +214,6 @@ function EditProfile() {
                                 // defaultChecked={data.personal_resources.filter(personalResource => personalResource.resource_id === resource.id).length}
                                 defaultChecked={(() => {
                                   for(const personalResource of data.personal_resources) {
-                                    console.log(personalResource);
                                     if(personalResource.resource_id === resource.id) {
                                       return true;
                                     }

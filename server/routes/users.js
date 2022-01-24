@@ -64,9 +64,7 @@ router.get('/profile/:id', async function (req, res) {
 /* Post route to see edit own profile*/
 router.post('/profile', async function (req, res) {
 	// TODO: Get the ID from the session
-  const { id, first_name, last_name, email, postal_code, bio, personal_resources } = req.body.params;
-  console.log(req.body.params);
-
+  const { id, first_name, last_name, email, postal_code, bio, personal_resources, safety_details } = req.body.params;
 
 	const person = await prisma.person.update({
 		where: { id },
@@ -76,6 +74,7 @@ router.post('/profile', async function (req, res) {
       email,
       postal_code,
       bio,
+      safety_details: JSON.stringify(safety_details),
       personal_resources: {
         deleteMany: {},
         createMany: {
