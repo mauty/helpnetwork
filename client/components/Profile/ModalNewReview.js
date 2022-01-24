@@ -61,7 +61,7 @@ export default function ModalNewReview({ currentUser, profileId, router }) {
                 ))
               }
             </div>
-            <button onClick={handleSubmit(onSubmit)} className={clsx("btn btn-primary btn-sm modal-button", mutation.isLoading && "loading")}>POST</button>
+            <button onClick={handleSubmit(onSubmit)} className={clsx("btn btn-primary btn-sm modal-button", mutation.isLoading && "loading disabled")}>POST</button>
           </div>
         </div>
       </div>
