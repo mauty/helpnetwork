@@ -58,7 +58,7 @@ export default function Home() {
       <Head>
         <title>helpnetwork | home</title>
       </Head>
-      <DesktopNav/>
+      <DesktopNav current={'home'}/>
       <NavBar currentNav={"help"}>
         <Container size='full'>
           <Map setViewport={setViewport} viewport={viewport}>

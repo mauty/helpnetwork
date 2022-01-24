@@ -4,20 +4,21 @@ import { Disclosure, Menu, Transition } from "@headlessui/react";
 import clsx from "clsx";
 import { UserContext } from "../../pages/_app";
 
-const navigation = [
-  { name: "Home", href: "/", current: true },
-  { name: "Points", href: "/points", current: false },
-  { name: "Messages", href: "/messages", current: false },
-];
-
 const userNavigation = [
   { name: "Your Profile", href: "/profile" },
   { name: "Edit Profile", href: "/profile/edit" },
   { name: "Sign out", href: "/auth/logout" },
 ];
 
-export default function Example() {
+export default function DesktopNav({
+  current = "home" | "points" | "messages",
+}) {
   const { currentUser } = useContext(UserContext);
+  const navigation = [
+    { name: "Home", href: "/", current: current === "home" },
+    { name: "Points", href: "/points", current: current === "points" },
+    { name: "Messages", href: "/messages", current: current === "messages" },
+  ];
 
   return (
     <>
@@ -41,9 +42,12 @@ export default function Example() {
                           <Link href={item.href}>
                             <span
                               key={item.name}
-                              className={
-                                "text-gray-300 hover:bg-gray-700 hover:text-white px-3 cursor-pointer py-2 rounded-md text-sm font-medium"
-                              }
+                              className={clsx(
+                                item.current
+                                  ? "bg-gray-900 text-white"
+                                  : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                                "block px-3 py-2 cursor-pointer rounded-md text-base font-medium"
+                              )}
                               aria-current={item.current ? "page" : undefined}
                             >
                               {item.name}
@@ -140,7 +144,10 @@ export default function Example() {
                       as="a"
                       href={item.href}
                       className={clsx(
-                        "text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                        item.current
+                          ? "bg-blue-900 text-white"
+                          : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                        "block px-3 py-2 rounded-md text-base font-medium"
                       )}
                       aria-current={item.current ? "page" : undefined}
                     >
