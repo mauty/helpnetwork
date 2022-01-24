@@ -18,6 +18,7 @@ import Mark from '../components/Map/Mark';
 import TimeInput from '../components/Home/TimeInput';
 import FilterButton from '../components/Home/FilterButton';
 import Empty from '../components/ui/Empty';
+import DesktopNav from '../components/ui/DesktopNav';
 
 
 export default function Home() {
@@ -57,6 +58,7 @@ export default function Home() {
       <Head>
         <title>helpnetwork | home</title>
       </Head>
+      <DesktopNav current={'home'}/>
       <NavBar currentNav={"help"}>
         <Container size='full'>
           <Map setViewport={setViewport} viewport={viewport}>
