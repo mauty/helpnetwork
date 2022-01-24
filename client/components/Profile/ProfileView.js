@@ -9,6 +9,7 @@ import useAxios from "../../hooks/useAxios";
 import Link from "next/link";
 import ModalNewReview from "./ModalNewReview";
 import ProfileReviewItem from "./ProfileReviewItem";
+import { SAFETY_DETAILS } from "../../pages/profile/edit";
 
 export default function ProfileView({ data }) {
   const scrollRef = useRef(null);
@@ -28,8 +29,6 @@ export default function ProfileView({ data }) {
       }
     })
   }
-
-  console.log(data);
 
   return (
     <NavBar currentNav={"profile"}>
@@ -59,6 +58,30 @@ export default function ProfileView({ data }) {
                 </p>
               </div>
           </div>
+
+          <div>
+            {
+              data.safety_details && Array.isArray(JSON.parse(data.safety_details)) && JSON.parse(data.safety_details).length > 0 && (
+                <>
+                  <h1 className="text-lg font-bold text-gray-900 dark:text-gray-100 p-2">
+                    Safety Details
+                  </h1>
+                  <div className="flex flex-col sm:w-96">
+                    {
+                      JSON.parse(data.safety_details).map(detail => (
+                        <div key={`Personalresource${detail}`} className="alert-sm alert-info rounded m-1">
+                          <div className="flex-1">
+                            <label className='text-sm font-semibold capitalize'>{detail}</label>
+                          </div>
+                        </div>
+                      ))
+                    }
+                  </div>
+                </>
+              )
+            }
+          </div>
+
           <div>
             {
               data.personal_resources && data.personal_resources.length > 0 && (
