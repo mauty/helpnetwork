@@ -5,7 +5,13 @@ const prisma = new PrismaClient();
 
 /* GET comments. */
 router.get('/comments/:id', async function (req, res) {
-	const comments = await prisma.category.findMany();
+	const { id } = req.params;
+
+	const comments = await prisma.comment.findMany({
+		where: {
+			request_id: parseInt(id),
+		},
+	});
 	console.log('hit comments route');
 	res.json(comments);
 });
