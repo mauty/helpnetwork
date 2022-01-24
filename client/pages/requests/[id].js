@@ -91,7 +91,7 @@ function RequestId({ id }) {
 		commentMutation.mutate({
 			// avatar:
 			commentBody: text,
-			sender_id: sender_id,
+			sender_id: currentUser.id,
 			request_id: id,
 		});
 		setText('');

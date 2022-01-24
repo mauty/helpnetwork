@@ -3,6 +3,7 @@ import Shimmer from "../../components/ui/Shimmer";
 import ProfileView from "../../components/Profile/ProfileView";
 import useAxios from "../../hooks/useAxios";
 import { useQuery } from "react-query";
+import ErrorMessage from "../../components/ui/ErrorMessage";
 import Header from "../../components/Header";
 
 export const getServerSideProps = async (ctx) => {

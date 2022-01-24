@@ -55,6 +55,8 @@ router.get('/conversations/:id', async function (req, res) {
 					timestamp: 'desc',
 				},
 			},
+      sender: true,
+      receiver: true
 		},
 	});
 
