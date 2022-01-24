@@ -1128,8 +1128,8 @@ const message_data = [
 ];
 
 const comment_data = [
-	{ body: 'Helloooo', request_id: 1 },
-	{ body: 'How are you?', request_id: 1 },
+	{ body: 'Helloooo', request_id: 1, sender_id: 1 },
+	{ body: 'How are you?', request_id: 1, sender_id: 2 },
 ];
 const main = async () => {
 	console.log('Start seeding');

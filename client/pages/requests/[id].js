@@ -103,7 +103,7 @@ function RequestId({ id }) {
 	}
 
 	const comments = commentData?.map((comment, index) => {
-		return comment.length > 0 ? (
+		return (
 			<div key={index} className='flex'>
 				<div className='flex-shrink-0 mr-3'>
 					<img
@@ -118,8 +118,6 @@ function RequestId({ id }) {
 					<p className='text-sm'>{comment.timestamp}</p>
 				</div>
 			</div>
-		) : (
-			<p>Empty Comments Section</p>
 		);
 	});
 	return (
@@ -263,7 +261,7 @@ function RequestId({ id }) {
 				<footer className='antialiased mx-auto max-w-screen-sm'>
 					<h3 className='mb-4 text-lg font-semibold text-gray-900'>Comments</h3>
 					<div className='space-y-4'></div>
-					{comments}
+					{commentData && comments}
 				</footer>
 			</Container>
 		</NavBar>
