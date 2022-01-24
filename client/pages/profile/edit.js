@@ -13,6 +13,7 @@ import ErrorMessage from '../../components/ui/ErrorMessage';
 import Container from '../../components/ui/Container';
 import { UserContext } from '../_app';
 import NavBar from '../../components/NavBar';
+import Header from '../../components/Header';
 
 function EditProfile() {
   useAuth();
@@ -49,7 +50,8 @@ function EditProfile() {
         <title>helpnetwork | edit profile</title>
       </Head>
       <NavBar currentNav={'profile'}>
-        <Container title='Edit Profile'>
+        <Container>
+          <Header pageName="Edit Profile" />
           { isLoading && <Shimmer/> }
           { isError && <ErrorMessage title="Error" error="Something unexpected... Try again"/> }
           { data && (

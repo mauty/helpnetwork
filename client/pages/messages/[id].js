@@ -8,6 +8,7 @@ import { ArrowUpCircle, ArrowDownCircle } from 'react-feather';
 import { useContext } from 'react';
 import { UserContext } from '../_app';
 import Head from 'next/head';
+import Header from '../../components/Header';
 
 export const getServerSideProps = async (ctx) => {
 	// TODO: Get the data from the server here using ctx.params.id
@@ -60,7 +61,8 @@ function Conversation(props) {
 				<title>helpnetwork | message</title>
 			</Head>
 			<NavBar>
-				<Container title='Message'>
+				<Header pageName="Message" />
+				<Container>
 					{data && <MessageList key={data.id} {...data} />}
 					{/* COMPOSE MESSAGE */}
 					<div className='block fixed inset-x-0 bottom-16 z-10 bg-white'>
