@@ -42,9 +42,8 @@ export default function ProfileView({ data }) {
                 <div className="rating rating-sm mt-2">
                   {
                     data.reviewHearts[0] && (
-                      [1, 2, 3, 4, 5].map(num => {
-                        return <input type="radio" name="rating-3" checked={num === Math.floor(data.reviewHearts[0]._avg.rating)} className="mask mask-heart bg-error"/>
-                      }
+                      [1, 2, 3, 4, 5].map(num =>
+                        <input key={num} type="radio" name="rating-3" readOnly checked={num === Math.floor(data.reviewHearts[0]._avg.rating)} className="mask mask-heart bg-error"/>
                       )
                     )
                   }
@@ -123,7 +122,7 @@ export default function ProfileView({ data }) {
                 Reviews
               </h1>
               {
-                currentUser && data && currentUser.id !== data.id && (
+                currentUser && data && currentUser.id !== data.id && data.reviewsToMe.filter(review => review.reviewerId === currentUser.id).length === 0 && (
                   <ModalNewReview currentUser={currentUser} profileId={data.id} router={router} />
                 )
               }
@@ -132,6 +131,11 @@ export default function ProfileView({ data }) {
               {
                 data && data.reviewsToMe.map(review =>
                   <ProfileReviewItem key={review.id} data={review}/>
+                )
+              }
+              {
+                data.reviewsToMe.length === 0 && (
+                  <p className="px-2 text-md">no reviews found</p>
                 )
               }
             </div>
