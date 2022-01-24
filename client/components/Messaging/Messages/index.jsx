@@ -12,12 +12,15 @@ const MessageList = ({ messages = [], request, request_id }) => {
     return (
       <div
         key={message.id}
-        className={clsx({
-          "self-end bg-blue-600 text-white border border-indigo-600 rounded-full shadow-sm py-1 px-4 text-md break-all ml-2 mb-1":
-            currentUser.id === message.sender_id,
-          "self-start bg-slate-200 text-black border border-grey-600 rounded-full shadow-sm py-1 px-4 text-md break-all mr-2 mb-1":
-            currentUser.id !== message.sender_id,
-        })}
+        className={clsx(
+          "max-w-sm sm:max-w-xl mx-1 rounded-3xl shadow-sm px-2 text-md mb-2",
+          {
+            "self-end bg-blue-600 text-white border border-indigo-600 ml-2":
+              currentUser.id === message.sender_id,
+            "self-start bg-slate-200 text-black border border-grey-600 mr-2":
+              currentUser.id !== message.sender_id,
+          }
+        )}
       >
         <MessageListItem
           key={message.id}
@@ -33,12 +36,14 @@ const MessageList = ({ messages = [], request, request_id }) => {
   return (
     <>
       {request && (
-        <header className="bg-blue-500 bg-opacity-25 flex flex-row justify-between">
-          <p>{request.category.name}</p>
-          <p>{request.request_details}</p>
+        <header className="flex items-start justify-between px-2">
+          <div className="flex-col">
+            <p className="text-md font-bold">🗒 {request.category.name}</p>
+            <p className="break-words text-sm">{request.request_details}</p>
+          </div>
           {/* link to unique request page */}
           <Link href={`/requests/${request_id}`}>
-            <button className="btn btn-primary">See Details</button>
+            <button className="btn btn-primary btn-sm">Details</button>
           </Link>
         </header>
       )}

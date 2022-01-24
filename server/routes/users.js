@@ -6,10 +6,11 @@ const prisma = new PrismaClient();
 /*Get route to see other users profiles*/
 router.get('/profile/:id', async function (req, res) {
 	const { id } = req.params;
+  const parseId = parseInt(id);
 
 	const person = await prisma.person.findFirst({
 		where: {
-      id: parseInt(id),
+      id: parseId,
     },
     include: {
       personal_resources: {
@@ -26,8 +27,23 @@ router.get('/profile/:id', async function (req, res) {
           requester: true
         }
       },
+      reviewsToMe: {
+        include: {
+          reviewer: true
+        }
+      }
     }
 	});
+
+  const reviewHearts = await prisma.review.groupBy({
+    where: {
+      personId: parseId
+    },
+    by: ['personId'],
+    _avg: {
+      rating: true
+    }
+  })
 
   const points = await prisma.request.groupBy({
     where: {
@@ -42,7 +58,7 @@ router.get('/profile/:id', async function (req, res) {
     }
   })
 
-	res.json({ ...person, points });
+	res.json({ ...person, points, reviewHearts });
 });
 
 /* Post route to see edit own profile*/
