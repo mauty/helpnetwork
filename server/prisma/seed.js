@@ -661,12 +661,15 @@ const category_data = [
 ];
 
 const resource_data = [
-	{ name: 'Snow Blower', category: 'Tool' },
-	{ name: 'Lawn Mower', category: 'Tool' },
-	{ name: 'Pickup Truck', category: 'Transportation' },
-	{ name: 'Ladder', category: 'Tool' },
-	{ name: 'Wheelbarrow', category: 'Tool' },
-	{ name: 'Hammer Drill', category: 'Tool' },
+	{ name: 'Snow Blower', category_id: 5 },
+	{ name: 'Lawn Mower', category_id: 5 },
+	{ name: 'Pickup Truck', category_id: 10 },
+	{ name: 'Ladder', category_id: 5 },
+	{ name: 'Wheelbarrow', category_id: 8 },
+	{ name: 'Hammer Drill', category_id: 5 },
+	{ name: 'Mac', category_id: 7 },
+	{ name: 'Windows', category_id: 7 },
+	{ name: 'Networking', category_id: 7 },
 ];
 
 const requested_resource_data = [
