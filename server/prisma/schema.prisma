@@ -50,8 +50,17 @@ model Request {
   category            Category             @relation(fields: [category_id], references: [id])
   helper              Person?              @relation(name: "helper_id", fields: [helper_id], references: [id])
   requester           Person               @relation(name: "requester_id", fields: [requester_id], references: [id])
+  comments            Comment[]
   conversations       Conversation[]
   requested_resources Requested_resource[]
+}
+
+model Comment {
+  id              Int          @id @default(autoincrement())
+  body            String
+  timestamp       DateTime     @default(now())
+  request_id      Int
+  request         Request @relation(fields: [request_id], references: [id])
 }
 
 model Category {
