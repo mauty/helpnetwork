@@ -11,7 +11,7 @@ const person_data = [
 		postal_code: 'M6B 1L9',
 		lat: 43.649744918000685,
 		long: -79.46447462733938,
-		safety_details: 'Masks are good',
+		safety_details: `["vaccinated", "will wear a mask", "willing to socially distance"]`
 	},
 	{
 		email: 'sender@example.com',
@@ -22,7 +22,7 @@ const person_data = [
 		lat: 43.671488,
 		long: -79.350599,
 		postal_code: 'M4D 2U8',
-		safety_details: 'Masks are evil',
+		safety_details: `["will wear a mask", "willing to socially distance"]`
 	},
 	{
 		email: 'george@email.com',
@@ -33,7 +33,6 @@ const person_data = [
 		postal_code: 'M5A T8E',
 		lat: 43.65818641884621,
 		long: -79.4805399308699,
-		safety_details: 'Masks, vaccines, boosted',
 	},
 	{
 		email: 'amir@email.com',
@@ -44,7 +43,7 @@ const person_data = [
 		postal_code: 'M9N 0B1',
 		lat: 43.639695,
 		long: -79.426847,
-		safety_details: 'Masks, vaccines, boosted',
+		safety_details: `["will wear a mask", "willing to socially distance"]`
 	},
 	{
 		email: 'malcolm@email.com',
@@ -55,7 +54,7 @@ const person_data = [
 		postal_code: 'M5A T8E',
 		lat: 43.651286,
 		long: -79.422843,
-		safety_details: 'Masks are evil',
+		safety_details: `["willing to socially distance"]`
 	},
 	{
 		email: 'cbushen0@privacy.gov.au',
@@ -65,7 +64,7 @@ const person_data = [
 		bio: 'Removal of Nonautologous Tissue Substitute from Sternum, Percutaneous Endoscopic Approach',
 		lat: 43.6442,
 		long: -79.3933,
-		safety_details: 'Poisoning by methadone, assault, initial encounter',
+		safety_details: `["willing to socially distance"]`
 	},
 	{
 		email: 'chackelton1@soundcloud.com',
@@ -75,8 +74,6 @@ const person_data = [
 		bio: 'Voice Prosthetic Assessment using Audiovisual Equipment',
 		lat: 43.6578,
 		long: -79.3846,
-		safety_details:
-			'Collapsed vert, NEC, lumbar region, subs for fx w delay heal',
 	},
 	{
 		email: 'rgrubb2@loc.gov',
@@ -86,7 +83,6 @@ const person_data = [
 		bio: 'Dilation of Gastric Vein with  Intraluminal Device, Open Approach',
 		lat: 43.6628,
 		long: -79.3848,
-		safety_details: 'Eosinophilic cellulitis [Wells]',
 	},
 	{
 		email: 'bkroger3@yellowpages.com',
@@ -96,7 +92,6 @@ const person_data = [
 		bio: 'Occlusion of Right Peroneal Artery with  Extraluminal Device, Open Approach',
 		lat: 43.6641,
 		long: -79.398,
-		safety_details: 'Unspecified injury of right elbow',
 	},
 	{
 		email: 'htiesman4@auda.org.au',
@@ -106,7 +101,6 @@ const person_data = [
 		bio: 'Replacement of Abdomen Skin with  Nonautologous Tissue Substitute, Partial Thickness, External Approach',
 		lat: 43.658,
 		long: -79.382,
-		safety_details: 'Activity, swimming',
 	},
 	{
 		email: 'ashippard5@diigo.com',
@@ -116,7 +110,6 @@ const person_data = [
 		bio: 'Release Left Thorax Tendon, Percutaneous Endoscopic Approach',
 		lat: 43.6521,
 		long: -79.3909,
-		safety_details: 'Ant disp fx of sternal end r clavicle, 7thP',
 	},
 	{
 		email: 'tkeers6@opensource.org',
@@ -126,7 +119,6 @@ const person_data = [
 		bio: 'Excision of Left Upper Lung Lobe, Via Natural or Artificial Opening',
 		lat: 43.6586,
 		long: -79.3821,
-		safety_details: 'Fracture of unspecified phalanx of left middle finger',
 	},
 	{
 		email: 'tsheryn7@nasa.gov',
@@ -136,7 +128,6 @@ const person_data = [
 		bio: 'Drainage of Right Lower Lobe Bronchus with  Drainage Device, Open Approach',
 		lat: 43.6456,
 		long: -79.3907,
-		safety_details: 'Fracture of unspecified phalanx of right ring finger',
 	},
 	{
 		email: 'hgribbin8@foxnews.com',
@@ -146,7 +137,6 @@ const person_data = [
 		bio: 'Supplement Right Atrium with  Zooplastic Tissue, Open Approach',
 		lat: 43.6539,
 		long: -79.3964,
-		safety_details: 'Oth athscl type of bypass of the extremities, right leg',
 	},
 	{
 		email: 'msterzaker9@facebook.com',
@@ -156,7 +146,6 @@ const person_data = [
 		bio: 'Supplement Right Humeral Head with  Nonautologous Tissue Substitute, Percutaneous Approach',
 		lat: 43.6651,
 		long: -79.3907,
-		safety_details: 'Multiple fx of ribs, unsp side, subs for fx w routn heal',
 	},
 	{
 		email: 'rmayhewa@state.gov',
@@ -166,7 +155,6 @@ const person_data = [
 		bio: 'Insertion of Infusion Device into Left Colic Artery, Open Approach',
 		lat: 43.6447,
 		long: -79.3963,
-		safety_details: 'Bursitis of right shoulder',
 	},
 	{
 		email: 'bkuschkeb@baidu.com',
@@ -176,7 +164,6 @@ const person_data = [
 		bio: 'Dilation of Right Temporal Artery, Bifurcation, with  Drug-eluting Intraluminal Device, Percutaneous Approach',
 		lat: 43.6466,
 		long: -79.3958,
-		safety_details: 'Ciguatera fish poisoning, accidental (unintentional)',
 	},
 	{
 		email: 'ctassellc@europa.eu',
@@ -186,7 +173,6 @@ const person_data = [
 		bio: 'Excision of Left Upper Leg Subcutaneous Tissue and Fascia, Percutaneous Approach, Diagnostic',
 		lat: 43.6427,
 		long: -79.3895,
-		safety_details: 'Contusion of right foot, sequela',
 	},
 	{
 		email: 'cmccannd@google.com.br',
@@ -196,8 +182,6 @@ const person_data = [
 		bio: 'Bypass Left Foot Vein to Lower Vein with  Synthetic Substitute, Percutaneous Endoscopic Approach',
 		lat: 43.6559,
 		long: -79.3875,
-		safety_details:
-			'Nondisp fx of med condyle of l humer, subs for fx w malunion',
 	},
 	{
 		email: 'egosseline@bigcartel.com',
@@ -207,7 +191,6 @@ const person_data = [
 		bio: 'Excision of Femoral Nerve, Percutaneous Endoscopic Approach, Diagnostic',
 		lat: 43.6401,
 		long: -79.3875,
-		safety_details: 'Poisoning by antirheumatics, NEC, self-harm, sequela',
 	},
 	{
 		email: 'dbotterillf@google.de',
@@ -217,7 +200,6 @@ const person_data = [
 		bio: 'Revision of Synthetic Substitute in Left Extraocular Muscle, Open Approach',
 		lat: 43.6443,
 		long: -79.3975,
-		safety_details: 'Hit by object due to uncontrolled fire, not in bldg, init',
 	},
 	{
 		email: 'cgerbig@netlog.com',
@@ -227,7 +209,6 @@ const person_data = [
 		bio: 'Dilation of Right Main Bronchus, Via Natural or Artificial Opening Endoscopic',
 		lat: 43.6614,
 		long: -79.3999,
-		safety_details: 'Bus occupant injured in collision w rail trn/veh',
 	},
 	{
 		email: 'lmackellarh@microsoft.com',
@@ -237,7 +218,6 @@ const person_data = [
 		bio: 'Replacement of Left Brachial Vein with  Nonautologous Tissue Substitute, Percutaneous Endoscopic Approach',
 		lat: 43.6454,
 		long: -79.3935,
-		safety_details: 'Car driver injured in collision w SUV nontraf, sequela',
 	},
 	{
 		email: 'ajehui@alibaba.com',
@@ -247,7 +227,6 @@ const person_data = [
 		bio: 'Excision of Esophageal Vein, Open Approach',
 		lat: 43.6475,
 		long: -79.3886,
-		safety_details: 'Abnormal cytologic smear of anus',
 	},
 	{
 		email: 'estonnerj@wordpress.com',
@@ -257,7 +236,6 @@ const person_data = [
 		bio: 'Bypass Left Common Iliac Artery to Bilateral External Iliac Arteries with  Autologous Arterial Tissue, Open Approach',
 		lat: 43.6533,
 		long: -79.3821,
-		safety_details: 'Twins, one liveborn and one stillborn',
 	},
 	{
 		email: 'gtarrenk@typepad.com',
@@ -267,7 +245,6 @@ const person_data = [
 		bio: 'Revision of Internal Fixation Device in Left Finger Phalanx, Percutaneous Endoscopic Approach',
 		lat: 43.6664,
 		long: -79.3861,
-		safety_details: 'Age-rel osteopor w crnt path fx, l hand, 7thG',
 	},
 	{
 		email: 'cprisleyl@narod.ru',
@@ -277,8 +254,6 @@ const person_data = [
 		bio: 'Revision of Drainage Device in Penis, Via Natural or Artificial Opening Endoscopic',
 		lat: 43.6574,
 		long: -79.3925,
-		safety_details:
-			'Unsp fx upper end unsp radius, subs for clos fx w delay heal',
 	},
 	{
 		email: 'pdoalem@stanford.edu',
@@ -288,8 +263,6 @@ const person_data = [
 		bio: 'Release Right Parotid Gland, Percutaneous Approach',
 		lat: 43.6458,
 		long: -79.3821,
-		safety_details:
-			'Toxic effect of lead and its compounds, undetermined, subs',
 	},
 	{
 		email: 'jduckern@upenn.edu',
@@ -299,8 +272,6 @@ const person_data = [
 		bio: 'Drainage of Left Lower Lobe Bronchus with  Drainage Device, Percutaneous Approach',
 		lat: 43.6624,
 		long: -79.3812,
-		safety_details:
-			'Corrosion of first degree of back of right hand, init encntr',
 	},
 	{
 		email: 'lfearneleyo@pagesperso-orange.fr',
@@ -310,7 +281,6 @@ const person_data = [
 		bio: 'Performance of Biliary Filtration, Multiple',
 		lat: 43.6404,
 		long: -79.3855,
-		safety_details: 'Blister (nonthermal) of other finger',
 	},
 	{
 		email: 'atommenp@cpanel.net',
@@ -320,8 +290,6 @@ const person_data = [
 		bio: 'Removal of Infusion Device from Peritoneal Cavity, Open Approach',
 		lat: 43.6682,
 		long: -79.3995,
-		safety_details:
-			'Displaced fracture of pisiform, unspecified wrist, sequela',
 	},
 ];
 
