@@ -11,6 +11,9 @@ router.get('/comments/:id', async function (req, res) {
 		where: {
 			request_id: parseInt(id),
 		},
+		include: {
+			person: true,
+		},
 	});
 	console.log('hit comments route');
 	res.json(comments);
