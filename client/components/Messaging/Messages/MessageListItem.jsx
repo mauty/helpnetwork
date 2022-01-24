@@ -4,7 +4,7 @@ const MessageListItem = ({ body, timestamp }) => {
   const ago = timeAgo(new Date(timestamp));
   return (
     <div className="flex flex-col my-2 mx-1">
-      <div className="">
+      <div className="break-words">
         {body}
         <p className="text-2xs text-gray-400 text-right">{ago} ago</p>
       </div>
