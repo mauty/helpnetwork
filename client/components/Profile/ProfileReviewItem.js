@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useMemo} from 'react';
 import timeAgo from '../../utils/timeAgo';
 
 export default function ProfileReviewItem({ data }) {
@@ -12,7 +12,7 @@ export default function ProfileReviewItem({ data }) {
       <div className="flex flex-col justify-center w-full">
           <div className="flex justify-between">
             <label className='text-md font-semibold'>{data.reviewer.first_name}</label>
-            <p className="font-medium text-xs text-gray-600">{timeAgo(new Date(data.createdAt))} ago</p>
+            <p className="font-medium text-xs text-gray-600">{useMemo(() => timeAgo(new Date(data.createdAt)), [data.createdAt])} ago</p>
           </div>
           <div className="rating rating-xs">
             {
