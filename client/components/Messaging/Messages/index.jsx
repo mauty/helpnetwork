@@ -13,7 +13,7 @@ const MessageList = ({ messages = [], request, request_id }) => {
       <div
         key={message.id}
         className={clsx(
-          "max-w-xl mx-1 rounded-3xl shadow-sm px-2 text-md mb-2",
+          "max-w-sm sm:max-w-xl mx-1 rounded-3xl shadow-sm px-2 text-md mb-2",
           {
             "self-end bg-blue-600 text-white border border-indigo-600 ml-2":
               currentUser.id === message.sender_id,
