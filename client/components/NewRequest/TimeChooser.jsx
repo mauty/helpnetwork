@@ -5,7 +5,7 @@ import { FormContext } from "../../contexts/FormContext";
 import clsx from "clsx";
 
 const TimeChooser = (props) => {
-  const { } = props;
+  const { register, errors } = props;
 
   const { state, setState } = useContext(FormContext)
 
@@ -44,7 +44,7 @@ const TimeChooser = (props) => {
           <input
             type="checkbox" 
             className="toggle toggle-primary" 
-            checked={timeSensitiveToggle} 
+            checked={timeSensitiveToggle}
             onChange={updateTimeSensitive}/>
         </div>
         { timeSensitiveToggle &&
@@ -56,8 +56,12 @@ const TimeChooser = (props) => {
               <input
                 type="date"
                 className="input input-sm input-bordered w-full sm:w-80"
+                {...register('date', { required: true })}
                 onChange={(event) => updateDateState(event.target.value) }
               />
+              {errors.date && (
+                <label className='text-xs text-red-800'>Provide a date for your help request.</label>
+              )}
             </div>
             <div>
               <label className="label">
@@ -66,8 +70,12 @@ const TimeChooser = (props) => {
               <input
                 type="time"
                 className="input input-sm input-bordered w-full sm:w-80"
+                {...register('time', { required: true })}
                 onChange={(event) => updateTimeState(event.target.value)}
               />
+              {errors.time && (
+                <label className='text-xs text-red-800'>Provide a time for your help request.</label>
+              )}
             </div>
           </div>
         }

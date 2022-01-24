@@ -1,24 +1,20 @@
 import { useEffect, useState } from "react";
 import { useContext } from "react";
-import { useForm } from "react-hook-form";
 import useAxios from "../../hooks/useAxios";
 import { useQuery, useMutation } from 'react-query';
 import { useRouter } from "next/router";
 import Geocode from "react-geocode";
-
+import { useForm } from "react-hook-form";
 
 
 import { FormContext } from "../../contexts/FormContext";
 import { UserContext } from "../../pages/_app";
 
 
-import Container from "../ui/Container";
-import NavBar from "../NavBar";
 import CategoryList from "./CategoryList";
 import ResourceList from "./ResourceList";
 import LocationChooser from "./LocationChooser";
 import TimeChooser from "./TimeChooser";
-import Stepper from "./Stepper";
 import FormDetails from "./FormDetails";
 import { User } from "react-feather";
 
@@ -28,7 +24,7 @@ const NewRequestForm = (props) => {
   
   const { state, setState } = useContext(FormContext)
   const { currentUser } = useContext(UserContext);
-
+  const [ submitDisabled, setSubmitDisabled ] = useState(true)
 
   const router = useRouter()
 
@@ -53,10 +49,7 @@ const NewRequestForm = (props) => {
 
   const resourceData = getAllResources()
 
-  // REACT-HOOK-FORM CODE
-  // const { register, handleSubmit, setValue, watch, formState: { errors } } = useForm({
-  //   defaultValues: {}
-  // });
+  
 
   // useEffect(() => {
   //   register()
@@ -90,13 +83,14 @@ const NewRequestForm = (props) => {
 
 
 
-  const onSubmit = (event) => {
+  const onSubmit = (data) => {
     // setSubmitting(true)
     // handleCreate(data)
     getCoordsFromPostal(state.location.postalCode)
     // .then(console.log('requestPayloadBeforeSubmit>>>', requestPayload))
+    console.log('datafrom onsubmit', data)
     console.log('requestPayloadBeforeSubmit>>>', requestPayload)
-    event.preventDefault()
+    // event.preventDefault()
     mutation.mutate(
       { requestPayload },
       {
@@ -131,6 +125,19 @@ const NewRequestForm = (props) => {
       setState((prevState) => ({...prevState, pointsValue: awardedPoints}))
   }, [state.resources, state.timeSensitive])
 
+  useEffect(() => {
+    console.log('state.location.lat', state.location.lat)
+    if (state.location.lat === 0 || state.location.lat === undefined) {
+      setSubmitDisabled(true)
+    } else if (state.categoryId === 0 ) {
+      setSubmitDisabled(true)
+    } else if (state.location.postalCode && state.location.postalCode.length < 6 ) {
+      setSubmitDisabled(true)
+    } else {
+      setSubmitDisabled(false)
+    }
+  },[state.location.lat, state.location.long])
+
 
   const requestPayload = {
     request_details: state.details,
@@ -148,20 +155,26 @@ const NewRequestForm = (props) => {
 
   console.log('requestPayload line 136>>>>', requestPayload)
 
+  // REACT-HOOK-FORM CODE
+  const { register, handleSubmit, setValue, watch, formState: { errors } } = useForm();
+
+
   return (
     
       <div className="pb-14">
         {/* <form className=""  autoComplete="off"> */}
           <h2 className="text-xl font-bold">What kind of help do you need?</h2>
-          {categoryData && <CategoryList categoryData={categoryData} />}
-          <FormDetails />
+          {categoryData && <CategoryList categoryData={categoryData} register={register} errors={errors} />}
+          <FormDetails register={register} errors={errors}/>
           {resourceData && <ResourceList resourceData={resourceData}/>}
           <LocationChooser />
-          <TimeChooser />
+          <TimeChooser register={register} errors={errors} />
           <div className="flex justify-center">
             <button className="btn btn-wide btn-md btn-primary m-4"
               type="submit" 
-              onClick={onSubmit} >Create Help Request</button>
+              onClick={handleSubmit(onSubmit)}
+              disabled={submitDisabled}
+            >Create Help Request</button>
           </div>
         {/* </form> */}
       </div>
