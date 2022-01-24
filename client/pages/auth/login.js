@@ -15,9 +15,9 @@ export default function Login() {
   const data = useContext(UserContext);
 
   const USERS = [
-    { id: 1, email: "helper@example.com", name: "Bob Johnson" },
-    { id: 2, email: "sender@example.com", name: "Sally Smith" },
-    { id: 3, email: "george@email.com", name: "George Hollinger" },
+    { id: 1, email: "helper@example.com", name: "Bob Johnson", imgURL: 'https://randomuser.me/api/portraits/men/3.jpg'},
+    { id: 2, email: "sender@example.com", name: "Sally Smith", imgURL: 'https://randomuser.me/api/portraits/women/85.jpg'},
+    { id: 3, email: "george@email.com", name: "George Hollinger", imgURL: 'https://randomuser.me/api/portraits/men/51.jpg'},
   ];
 
   function handleLogin(id) {
