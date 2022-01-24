@@ -16,7 +16,6 @@ const NavBar = ({
   currentNav = "help" | "points" | "new" | "messages" | "profile",
 }) => {
   const { currentUser } = useContext(UserContext);
-  console.log(currentUser);
 
   const navigations = [
     {
