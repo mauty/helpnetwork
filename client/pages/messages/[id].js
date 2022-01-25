@@ -71,9 +71,8 @@ function Conversation(props) {
 				<title>helpnetwork | message</title>
 			</Head>
       <DesktopNav current={"messages"}/>
-      <Header pageName={"Messages"}/>
+      <Header pageName="Messages"/>
 			<NavBar>
-        <Header pageName="Messages" />
         {
           data && (
             <Container title={
