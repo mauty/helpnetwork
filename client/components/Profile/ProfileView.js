@@ -9,7 +9,6 @@ import useAxios from "../../hooks/useAxios";
 import Link from "next/link";
 import ModalNewReview from "./ModalNewReview";
 import ProfileReviewItem from "./ProfileReviewItem";
-import { SAFETY_DETAILS } from "../../pages/profile/edit";
 
 export default function ProfileView({ data }) {
   const scrollRef = useRef(null);

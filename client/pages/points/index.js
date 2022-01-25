@@ -14,6 +14,7 @@ import useViewport from '../../hooks/useViewport';
 import ListItem from '../../components/Points/ListItem';
 import NavBar from '../../components/NavBar';
 import Header from '../../components/Header';
+import DesktopNav from '../../components/ui/DesktopNav';
 
 import { UserContext } from '../_app';
 
@@ -24,16 +25,16 @@ export default function Home() {
   const { viewport, copyViewport, setViewport, isViewportLoading } = useViewport();
   const {isLoading, isError, data} = useQuery(['points', copyViewport], () => useAxios({ url: '/points', method: "get", params: { long: viewport.longitude, lat: viewport.latitude }}));
   const {data: userData} = useQuery(['profile', copyViewport], () => useAxios({ url: `/profile/${currentUser.id}`, method: "get" }));
-  console.log(userData);
 
   return (
     <>
       <Head>
         <title>helpnetwork | points</title>
       </Head>
+      <DesktopNav current={"points"}/>
+      <Header pageName="Points" />
       <NavBar currentNav={"points"}>
         <Container size='full'>
-          <Header pageName="Points" />
           <Map setViewport={setViewport} viewport={viewport}>
             { data && data.map(person =>
               <MarkFace
