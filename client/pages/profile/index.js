@@ -8,6 +8,7 @@ import Shimmer from '../../components/ui/Shimmer';
 import ErrorMessage from '../../components/ui/ErrorMessage';
 import ProfileView from '../../components/Profile/ProfileView';
 import Header from '../../components/Header';
+import DesktopNav from '../../components/ui/DesktopNav';
 
 export default function Profile() {
   const { currentUser } = useContext(UserContext);
@@ -20,6 +21,7 @@ export default function Profile() {
       <Head>
         <title>helpnetwork | my profile</title>
       </Head>
+      <DesktopNav/>
       <Header pageName="My Profile" />
       <ProfileView data={data}/>
     </>
