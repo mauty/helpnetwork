@@ -31,9 +31,8 @@ export default function Messages() {
           <title>helpnetwork | messages</title>
         </Head>
         <DesktopNav current={"messages"}/>
-        <Header pageName="Messages" />
+        <Header pageName="Conversations" />
         <NavBar currentNav={'messages'}>
-					<Header pageName="Conversations" />
           <Container>
             { data && data.length > 0 ?
               <ConversationList
