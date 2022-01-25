@@ -30,7 +30,7 @@ export default function Messages() {
           <title>helpnetwork | messages</title>
         </Head>
         <NavBar currentNav={'messages'}>
-					<Header pageName="Messages" />
+					<Header pageName="Conversations" />
           <Container>
             { data && data.length > 0 ?
               <ConversationList

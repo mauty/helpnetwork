@@ -70,6 +70,7 @@ function Conversation(props) {
 				<title>helpnetwork | message</title>
 			</Head>
 			<NavBar>
+        <Header pageName="Messages" />
         {
           data && (
             <Container title={
