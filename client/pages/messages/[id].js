@@ -87,8 +87,28 @@ function Conversation(props) {
 			<Head>
 				<title>helpnetwork | message</title>
 			</Head>
+			<DesktopNav current={"messages"}/>
+			<Header pageName="Messages" />
 			<NavBar>
-				<Container title='Message'>
+			{
+          data && (
+            <Container title={
+              data.sender && data.receiver && (
+                <div className="flex items-center gap-2">
+                  <div class="-space-x-6 avatar-group">
+                    <div class="avatar">
+                      <div class="w-12 h-12">
+                        <img src={user.imgURL}/>
+                      </div>
+                    </div>
+                  </div>
+                  <Link href={`/profile/${user.id}`}>
+                    <p className='hover:text-blue-600 hover:underline cursor-pointer'>{user.first_name} {user.last_name}</p>
+                  </Link>
+                </div>
+              )
+            }>
+				
 					{data && <MessageList key={data.id} {...data} />}
 					{/* COMPOSE MESSAGE */}
 					<form className='w-full flex justify-between mt-2'>
@@ -107,6 +127,7 @@ function Conversation(props) {
 						</button>
 					</form>
 				</Container>
+			)}
 			</NavBar>
 			<button ref={refreshButton} className='invisible' onClick={refetch}>
 				{' '}
