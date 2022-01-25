@@ -127,7 +127,7 @@ export default function ProfileView({ data }) {
                 </h1>
                 {
                   data.Helper.map(request =>
-                    <div key={request.id} className="alert-sm alert-success rounded m-1">
+                    <div key={request.id} className="alert-sm alert-success rounded m-1 sm:w-96">
                         <div className="flex flex-col">
                           <label className='text-lg font-semibold'>{request.category.name}</label>
                           <label className='text-xs'>{request.requester.first_name} {request.requester.last_name}</label>
