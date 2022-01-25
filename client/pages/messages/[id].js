@@ -22,7 +22,7 @@ export const getServerSideProps = async (ctx) => {
 };
 
 function Conversation(props) {
-  useAuth();
+	useAuth();
 
 	const { isLoading, isError, data, refetch } = useQuery(
 		'conversations',
@@ -35,9 +35,18 @@ function Conversation(props) {
 		},
 	);
 
+	console.log(data);
+
 	const refreshButton = useRef(null);
 
 	const [text, setText] = useState('');
+
+	const handleKeypress = (e) => {
+		//it triggers by pressing the enter key
+		if (e.keyCode === 13) {
+			handleSubmit();
+		}
+	};
 
 	const mutation = useMutation((newMessage) =>
 		useAxios({
@@ -57,61 +66,47 @@ function Conversation(props) {
 		}, 1500);
 	}
 
-	if (!data && isLoading) return <div className='p-2'><Shimmer/></div>;
-  if(!data && isError) return <div className='p-2'><ErrorMessage title="Error" error="Something unexpected... Try again"/></div>
+	if (!data && isLoading)
+		return (
+			<div className='p-2'>
+				<Shimmer />
+			</div>
+		);
+	if (!data && isError)
+		return (
+			<div className='p-2'>
+				<ErrorMessage title='Error' error='Something unexpected... Try again' />
+			</div>
+		);
 
-  const user =
-    data.sender?.id === currentUser?.id
-      ? data.receiver
-      : data.sender;
+	const user =
+		data.sender?.id === currentUser?.id ? data.receiver : data.sender;
 
 	return (
 		<>
 			<Head>
 				<title>helpnetwork | message</title>
 			</Head>
-      <DesktopNav current={"messages"}/>
-      <Header pageName="Messages"/>
 			<NavBar>
-        {
-          data && (
-            <Container title={
-              data.sender && data.receiver && (
-                <div className="flex items-center gap-2">
-                  <div class="-space-x-6 avatar-group">
-                    <div class="avatar">
-                      <div class="w-12 h-12">
-                        <img src={user.imgURL}/>
-                      </div>
-                    </div>
-                  </div>
-                  <Link href={`/profile/${user.id}`}>
-                    <p className='hover:text-blue-600 hover:underline cursor-pointer'>{user.first_name} {user.last_name}</p>
-                  </Link>
-                </div>
-              )
-            }>
-              <MessageList key={data.id} {...data} />
-              {/* COMPOSE MESSAGE */}
-              <div className='block fixed inset-x-0 sm:left-32 bottom-16 z-10 bg-white'>
-                <div className='flex w-full sm:w-11/12 justify-between'>
-                  <textarea
-                    className='flex-grow focus:bg-white m-2 py-2 px-4 mr-1 rounded-xl border border-gray-300 bg-gray-200 text-lg resize-none'
-                    rows='1'
-                    placeholder='Message...'
-                    onChange={(event) => setText(event.target.value)}
-                    value={text}></textarea>
-                  <button
-                    className='py-5 pr-3 pl-2'
-                    disabled={text === ''}
-                    onClick={handleSubmit}>
-                    <ArrowUpCircle color='#0067ff' size={48} />
-                  </button>
-                </div>
-              </div>
-            </Container>
-          )
-        }
+				<Container title='Message'>
+					{data && <MessageList key={data.id} {...data} />}
+					{/* COMPOSE MESSAGE */}
+					<form className='w-full flex justify-between mt-2'>
+						<input
+							className='flex-grow focus:bg-white m-2 py-2 px-4 mr-1 rounded-full border border-gray-300 bg-gray-200 text-lg resize-none'
+							rows='1'
+							placeholder='Message...'
+							onChange={(event) => setText(event.target.value)}
+							onKeyPress={handleKeypress}
+							value={text}></input>
+						<button
+							className='p-5 hover:text-yellow-500 hover:font-semibold'
+							disabled={text === ''}
+							onClick={handleSubmit}>
+							<ArrowUpCircle color='#0067ff' size={48} />
+						</button>
+					</form>
+				</Container>
 			</NavBar>
 			<button ref={refreshButton} className='invisible' onClick={refetch}>
 				{' '}
