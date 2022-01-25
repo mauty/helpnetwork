@@ -21,10 +21,10 @@ const CommentList = ({ commentsData }) => {
 
   return (
     <>
-      <div className="flex mx-auto items-center border rounded-lg px-4 py-2 sm:px-6 sm:py-4 leading-relaxed">
+      <div className="flex items-center border rounded-lg px-4 py-2 sm:px-6 sm:py-4 leading-relaxed">
         {/* comment post */}
       </div>
-      <footer className="mx-auto max-w-screen-sm pb-5">
+      <footer className="max-w-screen-sm pb-5">
         <h3 className="mb-4 text-lg font-semibold text-gray-900">Comments</h3>
         <div className="space-y-4 flex flex-col-reverse gap-3">
           {commentsData && listOfComments}
