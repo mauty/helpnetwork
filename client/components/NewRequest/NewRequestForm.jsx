@@ -161,9 +161,9 @@ const NewRequestForm = (props) => {
 
   return (
     
-      <div className="pb-14">
+      <div id="new-request-form">
         {/* <form className=""  autoComplete="off"> */}
-          <h2 className="text-xl font-bold">What kind of help do you need?</h2>
+          <h2 className="text-2xl font-extrabold font-sans my-4">What kind of help do you need?</h2>
           {categoryData && <CategoryList categoryData={categoryData} register={register} errors={errors} />}
           <FormDetails register={register} errors={errors}/>
           {resourceData && <ResourceList resourceData={resourceData}/>}

@@ -15,10 +15,10 @@ const CategoryList = (props) => {
     return (
       <li key={category.id} className="mb-1 w-full">
         <button 
-          className={clsx("btn btn-sm w-full text-left justify-start", {"btn-primary": category.id === state.categoryId})} 
+          className={clsx("btn btn-sm w-full text-left justify-start capitalize", {"btn-secondary": category.id === state.categoryId})} 
           onClick={() => clickHandler(category.id)} 
         >
-          <img src={category.image} />
+          <img src={category.image} className="ml-4 fill-white"/>
           <div className="ml-4">
             {category.name}
           </div>
