@@ -33,6 +33,7 @@ const person_data = [
 		postal_code: 'M5A T8E',
 		lat: 43.65818641884621,
 		long: -79.4805399308699,
+		safety_details: `[]`,
 	},
 	{
 		email: 'amir@email.com',

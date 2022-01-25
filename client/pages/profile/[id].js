@@ -5,6 +5,7 @@ import useAxios from "../../hooks/useAxios";
 import { useQuery } from "react-query";
 import ErrorMessage from "../../components/ui/ErrorMessage";
 import Header from "../../components/Header";
+import DesktopNav from '../../components/ui/DesktopNav';
 
 export const getServerSideProps = async (ctx) => {
   // TODO: Get the data from the server here using ctx.params.id
@@ -22,6 +23,7 @@ function ProfileId({ id }) {
       <Head>
         <title>helpnetwork | profile</title>
       </Head>
+      <DesktopNav />
       <Header pageName="Profile" />
       <ProfileView data={data}/>
     </>

@@ -13,6 +13,7 @@ import ErrorMessage from '../../components/ui/ErrorMessage';
 import Link from 'next/link';
 import Header from '../../components/Header';
 import useAuth from '../../hooks/useAuth';
+import DesktopNav from '../../components/ui/DesktopNav';
 
 export const getServerSideProps = async (ctx) => {
 	// TODO: Get the data from the server here using ctx.params.id
@@ -69,7 +70,10 @@ function Conversation(props) {
 			<Head>
 				<title>helpnetwork | message</title>
 			</Head>
+      <DesktopNav current={"messages"}/>
+      <Header pageName={"Messages"}/>
 			<NavBar>
+        <Header pageName="Messages" />
         {
           data && (
             <Container title={
@@ -110,7 +114,7 @@ function Conversation(props) {
           )
         }
 			</NavBar>
-			<button ref={refreshButton} onClick={refetch}>
+			<button ref={refreshButton} className='invisible' onClick={refetch}>
 				{' '}
 				Do refetch NOW{' '}
 			</button>

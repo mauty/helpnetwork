@@ -2,16 +2,16 @@ import CommentListItem from "./CommentListItem";
 import { useContext } from "react";
 import { UserContext } from "../../../pages/_app";
 
-const CommentList = ( {commentsData}) => {
+const CommentList = ({ commentsData }) => {
   const { currentUser } = useContext(UserContext);
 
-	const listOfComments = commentsData?.map((comment, index) => {
+  const listOfComments = commentsData?.map((comment, index) => {
     return (
       <div className="mb-20 mt-4"> 
       <CommentListItem
         key={index}
         avatar={comment.person.imgURL}
-				body={comment.body}
+        body={comment.body}
         first_name={comment.person.first_name}
         last_name={comment.person.last_name}
         timestamp={comment.timestamp}
@@ -20,10 +20,6 @@ const CommentList = ( {commentsData}) => {
       </div>
     );
   });
-
-
-
-
 
 return (
   <>
@@ -41,5 +37,5 @@ return (
 
   
 }
-export default CommentList;
 
+export default CommentList;

@@ -51,19 +51,19 @@ const NavBar = ({
   ];
 
   return (
-    <div className="w-full h-screen">
+    <div className="w-full">
       {children}
       <section
         id="bottom-navigation"
         className="md:hidden block fixed inset-x-0 bottom-0 z-10 bg-white"
       >
-        <div id="tabs" className="flex justify-between cursor-pointer">
+        <div id="tabs" className="flex justify-between cursor-pointer pt-4">
           {navigations.map((navigation, index) => (
             <Link key={index} href={navigation.link}>
               <div
                 className={clsx(
-                  "w-full flex flex-col items-center justify-center text-center hover:text-yellow-500 hover:font-semibold",
-                  navigation.active && "text-indigo-600 font-semibold"
+                  "w-full flex flex-col items-center justify-center text-center hover:text-yellow-500 hover:font-semibold pt-4",
+                  navigation.active && "text-indigo-600 font-semibold bg-stone-100"
                 )}
               >
                 <navigation.icon />

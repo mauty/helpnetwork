@@ -14,6 +14,7 @@ import Container from '../../components/ui/Container';
 import { UserContext } from '../_app';
 import NavBar from '../../components/NavBar';
 import Header from '../../components/Header';
+import DesktopNav from '../../components/ui/DesktopNav';
 
 /*******
  * WE KNOW THIS IS A MANY TO MANY SOLUTION
@@ -70,9 +71,10 @@ function EditProfile() {
       <Head>
         <title>helpnetwork | edit profile</title>
       </Head>
+      <DesktopNav />
+      <Header pageName="Edit Profile" />
       <NavBar currentNav={'profile'}>
         <Container>
-          <Header pageName="Edit Profile" />
           { isLoading && <Shimmer/> }
           { isError && <ErrorMessage title="Error" error="Something unexpected... Try again"/> }
           { data && (

@@ -127,22 +127,23 @@ function RequestId({ id }) {
 						/>
 					)}
 					{data && (
-						<div className='flex flex-col p-2 space-between'>
-							<h1 className='font-medium text-xl'>{`${data.requester.first_name} ${data.requester.last_name}`}</h1>
-							<div className='flex items-start'>
+						<div className='flex flex-col p-2 space-between gap-10'>
+							<div className='flex items-center gap-2'>
+                <h1 className='font-medium text-2xl'>{`${data.requester.first_name} ${data.requester.last_name}`}</h1>
 								<Link href={`/profile/${data.requester.id}`}>
-									<button className='btn btn-sm btn-primary'>
+									<button className='btn btn-xs btn-primary'>
 										<File className='h-4 w-4 mr-1' />
 										View Profile
 									</button>
 								</Link>
 							</div>
 							<div className='my-6'>
-								<h2 className='font-medium text-lg'>{data.category.name}</h2>
+                <h2 className='font-semibold text-lg text-black'>Kind of help</h2>
+								<h2 className=''>{data.category.name}</h2>
 							</div>
 							<div className='flex flex-col gap-5'>
 								<div className='p-2'>
-									<h2 className='text-lg font-bold text-gray-900 dark:text-gray-100'>
+									<h2 className='text-lg font-bold text-gray-900 dark:text-gray-100 break-words'>
 										Details
 									</h2>
 									<p className='text-sm'>{data.request_details}</p>
@@ -151,7 +152,7 @@ function RequestId({ id }) {
 									data.requested_resources.length > 0 && (
 										<div className='p-2'>
 											<h2 className='text-lg font-bold text-gray-900 dark:text-gray-100'>
-												Resources
+												Resources needed
 											</h2>
 											<div className='flex flex-col gap-1 sm:w-96'>
 												{data.requested_resources.map((resource) => (
@@ -251,11 +252,12 @@ function RequestId({ id }) {
 										ref={refreshButton}
 										onClick={refetch}></button>
 								</div>
+
 							</div>
 						</form>{' '}
 					</div>
-
 					<CommentList commentsData={commentData} />
+        </div>
 				</Container>
 			</NavBar>
 		</>
