@@ -553,7 +553,7 @@ const request_data = [
     lat: 43.6693,
     long: -79.3897,
     category_id: 3,
-    requester_id: 30,
+    requester_id: 29,
     points_value: 420,
   },
   {
@@ -588,7 +588,7 @@ const request_data = [
     lat: 43.6477,
     long: -79.3915,
     category_id: 11,
-    requester_id: 31,
+    requester_id: 28,
     time_sensitive: false,
     points_value: 250,
   },
@@ -621,12 +621,31 @@ const request_data = [
   },
   {
     request_details:
+      'feeding my cat Floofer. He needs wet food put out around dinner time.',
+    lat: 43.686464,
+    long: -79.424809,
+    category_id: 3,
+    requester_id: 14,
+    points_value: 75,
+  },
+  {
+    request_details:
       'clearing the snow on my sidewalk and my driveway so I can use my car to get to work.',
     lat: 43.683379,
     long: -79.423598,
     category_id: 4,
     requester_id: 5,
     points_value: 75,
+  },
+  {
+    request_details:
+      'picking up groceries from No Frills. Just need milk, eggs and bread.',
+    lat: 43.683689,
+    long: -79.420926,
+    category_id: 1,
+    requester_id: 13,
+    points_value: 75,
+    start_time: new Date('25 Jan 2022 14:12:00 GMT'),
   },
   {
     request_details:
@@ -654,6 +673,33 @@ const request_data = [
     category_id: 4,
     requester_id: 9,
     points_value: 50,
+  },
+  {
+    request_details:
+      'clearing the snow on my sidewalk and my back laneway so I can use my car to get groceries.',
+    lat: 43.691722,
+    long: -79.415720,
+    category_id: 4,
+    requester_id: 10,
+    points_value: 75,
+  },
+  {
+    request_details:
+      'clearing the snow on my sidewalk and my front porch.',
+    lat: 43.687654,
+    long: -79.413525,
+    category_id: 4,
+    requester_id: 11,
+    points_value: 75,
+  },
+  {
+    request_details:
+      'clearing the snow on my sidewalk and my back laneway so I can use my car to get groceries.',
+    lat: 43.690748,
+    long: -79.417176,
+    category_id: 4,
+    requester_id: 12,
+    points_value: 75,
   },
 ];
 
@@ -886,6 +932,18 @@ const requested_resource_data = [
   {
     request_id: 5,
     resource_id: 4,
+  },
+  {
+    request_id: 37,
+    resource_id: 1,
+  },
+  {
+    request_id: 39,
+    resource_id: 1,
+  },
+  {
+    request_id: 42,
+    resource_id: 1,
   },
 ];
 
