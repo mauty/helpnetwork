@@ -1,8 +1,7 @@
-import timeAgo from "../../../utils/timeAgo";
+import formatAMPM from "../../../utils/formatAMPM";
 import clsx from "clsx";
 
 const MessageListItem = ({ body, timestamp, id, sender_id, currentUser }) => {
-  const ago = timeAgo(new Date(timestamp));
   return (
     <div
       key={id}
@@ -25,7 +24,7 @@ const MessageListItem = ({ body, timestamp, id, sender_id, currentUser }) => {
               sender_id !== currentUser.id ? "text-left" : "text-right"
             )}
           >
-            {ago} ago
+            {formatAMPM(new Date(timestamp))}
           </p>
         </div>
       </div>

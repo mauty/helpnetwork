@@ -1,4 +1,4 @@
-import timeAgo from "../../../utils/timeAgo";
+import formatAMPM from "../../../utils/formatAMPM";
 
 const CommentListItem = ({
   key,
@@ -8,7 +8,6 @@ const CommentListItem = ({
   timestamp,
   body,
 }) => {
-  const ago = timeAgo(new Date(timestamp));
   return (
     <div key={key} className="flex">
       <div className="flex-shrink-0 mr-3">
@@ -24,7 +23,7 @@ const CommentListItem = ({
             {first_name} {last_name}
           </strong>{" "}
           <span className="text-xs text-gray-400">
-            {timeAgo(new Date(timestamp)) + " ago"}
+            {formatAMPM(new Date(timestamp))}
           </span>
         </div>
         <p className="text-sm break-words">{body}</p>
