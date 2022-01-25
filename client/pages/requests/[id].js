@@ -13,6 +13,7 @@ import NavBar from '../../components/NavBar';
 import Message from '../../components/ui/Message';
 import timeAgo from '../../utils/timeAgo';
 import Header from '../../components/Header';
+import CommentList from '../../components/Messaging/Comments';
 
 export const getServerSideProps = async (ctx) => {
 	// TODO: Get the data from the server here using ctx.params.id
@@ -44,6 +45,32 @@ function RequestId({ id }) {
 	} = useQuery('comments', () =>
 		useAxios({ url: `/comments/${id}`, method: 'get' }),
 	);
+
+	const refreshButton = useRef(null);
+
+	const [commentText, setText] = useState('');
+
+	const commentMutation = useMutation((newComment) =>
+		useAxios({
+			url: `/comments/${id}`,
+			method: 'post',
+			params: newComment,
+		}),
+	);
+
+	function postComment() {
+		commentMutation.mutate({
+			// avatar:
+			commentBody: commentText,
+			sender_id: currentUser.id,
+			request_id: id,
+		});
+		setText('');
+		setTimeout(() => {
+			refreshButton.current.click();
+			console.log('Refresh comments ', refreshButton.current);
+		}, 1500);
+	}
 
 	function offerHelp() {
 		mutation.mutate(
@@ -78,55 +105,7 @@ function RequestId({ id }) {
 	}
 
 	/************ Comments logic Begin  **************/
-	const refreshButton = useRef(null);
 
-	const [commentText, setText] = useState('');
-
-	const commentMutation = useMutation((newComment) =>
-		useAxios({
-			url: `/comments/${id}`,
-			method: 'post',
-			params: newComment,
-		}),
-	);
-
-	function postComment() {
-		commentMutation.mutate({
-			// avatar:
-			commentBody: commentText,
-			sender_id: currentUser.id,
-			request_id: id,
-		});
-		setText('');
-		setTimeout(() => {
-			refreshButton.current.click();
-			console.log('Refresh comments ', refreshButton.current);
-		}, 1500);
-	}
-	/************ Comments logic End  **************/
-
-	const comments = commentData?.map((comment, index) => {
-		return (
-			<div key={index} className='flex'>
-				<div className='flex-shrink-0 mr-3'>
-					<img
-						className='mt-2 rounded-full w-8 h-8 sm:w-10 sm:h-10'
-						src={comment.person.imgURL}
-						alt=''
-					/>
-				</div>
-				<div className='flex-1 border rounded-lg px-4 py-2 sm:px-6 sm:py-4 leading-relaxed'>
-					<strong>
-						{comment.person.first_name} {comment.person.last_name}
-					</strong>{' '}
-					<span className='text-xs text-gray-400'>
-						{timeAgo(new Date(comment.timestamp)) + ' ago'}
-					</span>
-					<p className='text-sm'>{comment.body}</p>
-				</div>
-			</div>
-		);
-	});
 	return (
 		<>
 			<NavBar currentNav={'help'}>
@@ -242,46 +221,40 @@ function RequestId({ id }) {
 								)}
 						</div>
 					)}
-					<div className='flex mx-auto items-center border rounded-lg px-4 py-2 sm:px-6 sm:py-4 leading-relaxed'>
-						<form className='w-full max-w-xl bg-white rounded-lg px-4 pt-2'>
-							<div className='flex flex-col -mx-3 mb-6'>
-								<strong className='px-4 pt-3 pb-2 text-gray-800 text-lg'>
-									Add a new comment
-								</strong>
-								<div className='flex flex-col'>
-									<div className='w-full md:w-full px-3 mb-2 mt-2'>
-										<textarea
-											className='bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full h-20 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white'
-											name='body'
-											placeholder='Write something...'
-											onChange={(event) => setText(event.target.value)}
-											value={commentText}
-											required></textarea>
-									</div>
-									{/* <!-- comment form --> */}
-									<button
-										type='submit'
-										className='float-right bg-white text-gray-700 font-medium py-1 px-4 border border-gray-400 rounded-lg mr-2 hover:bg-gray-100'
-										value='Post Comment'
-										disabled={commentText === ''}
-										onClick={postComment}>
-										Post Comment
-									</button>
+					<form className='w-full max-w-xl bg-white rounded-lg px-4 pt-2'>
+						<div className='flex flex-col -mx-3 mb-6'>
+							<strong className='px-4 pt-3 pb-2 text-gray-800 text-lg'>
+								Add a new comment
+							</strong>
+							<div className='flex flex-col'>
+								<div className='w-full md:w-full px-3 mb-2 mt-2'>
+									<textarea
+										className='bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full h-20 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white'
+										name='body'
+										placeholder='Write something...'
+										onChange={(event) => setText(event.target.value)}
+										value={commentText}
+										required></textarea>
 								</div>
+								{/* <!-- comment form --> */}
+								<button
+									type='submit'
+									className='float-right bg-white text-gray-700 font-medium py-1 px-4 border border-gray-400 rounded-lg mr-2 hover:bg-gray-100'
+									value='Post Comment'
+									disabled={commentText === ''}
+									onClick={postComment}>
+									Post Comment
+								</button>
+								<button
+									className='-z-2'
+									ref={refreshButton}
+									onClick={refetch}></button>
 							</div>
-						</form>
-					</div>
-					<footer className='mx-auto max-w-screen-sm pb-5'>
-						<h3 className='mb-4 text-lg font-semibold text-gray-900'>
-							Comments
-						</h3>
-						<div className='space-y-4 flex flex-col-reverse gap-3'>
-							{commentData && comments}
 						</div>
-					</footer>
+					</form>
+					<CommentList commentsData={commentData} />
 				</Container>
 			</NavBar>
-			<button className='-z-2' ref={refreshButton} onClick={refetch}></button>
 		</>
 	);
 }
