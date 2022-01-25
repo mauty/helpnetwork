@@ -41,6 +41,13 @@ function Conversation(props) {
 
 	const [text, setText] = useState('');
 
+	const handleKeypress = (e) => {
+		//it triggers by pressing the enter key
+		if (e.keyCode === 13) {
+			handleSubmit();
+		}
+	};
+
 	const mutation = useMutation((newMessage) =>
 		useAxios({
 			url: `/conversations/${props.id}`,
@@ -84,20 +91,21 @@ function Conversation(props) {
 				<Container title='Message'>
 					{data && <MessageList key={data.id} {...data} />}
 					{/* COMPOSE MESSAGE */}
-					<div className='w-full flex justify-between mt-2'>
-						<textarea
+					<form className='w-full flex justify-between mt-2'>
+						<input
 							className='flex-grow focus:bg-white m-2 py-2 px-4 mr-1 rounded-full border border-gray-300 bg-gray-200 text-lg resize-none'
 							rows='1'
 							placeholder='Message...'
 							onChange={(event) => setText(event.target.value)}
-							value={text}></textarea>
+							onKeyPress={handleKeypress}
+							value={text}></input>
 						<button
 							className='p-5'
 							disabled={text === ''}
 							onClick={handleSubmit}>
 							<ArrowUpCircle color='#0067ff' size={48} />
 						</button>
-					</div>
+					</form>
 				</Container>
 			</NavBar>
 			<button ref={refreshButton} className='invisible' onClick={refetch}>
