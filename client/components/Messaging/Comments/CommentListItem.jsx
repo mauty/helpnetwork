@@ -1,4 +1,4 @@
-import timeAgo from "../../../utils/timeAgo";
+import formatAMPM from "../../../utils/formatAMPM";
 
 const CommentListItem = ({
   key,
@@ -8,22 +8,6 @@ const CommentListItem = ({
   timestamp,
   body,
 }) => {
-
-  const formatAMPM = (date) => {
-    let day = date.getDay();
-    let month = date.getMonth();
-    let hours = date.getHours();
-    let minutes = date.getMinutes();
-    let ampm = hours >= 12 ? 'pm' : 'am';
-    hours = hours % 12;
-    hours = hours ? hours : 12;
-    minutes = minutes.toString().padStart(2, '0');
-    const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"
-    ];
-    let strTime = monthNames[month] + ' ' + day + ', ' + hours + ':' + minutes + ' ' + ampm;
-    return strTime;
-  }
-  
   return (
     <div key={key} className="flex">
       <div className="flex-shrink-0 mr-3">
@@ -39,7 +23,7 @@ const CommentListItem = ({
             {first_name} {last_name}
           </strong>{" "}
           <span className="text-xs text-gray-400">
-          {formatAMPM(new Date(timestamp))}
+            {formatAMPM(new Date(timestamp))}
           </span>
         </div>
         <p className="text-sm break-words">{body}</p>
