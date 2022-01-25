@@ -12,6 +12,7 @@ import Container from '../../components/ui/Container';
 import ConversationList from '../../components/Messaging/Conversations';
 import useAuth from '../../hooks/useAuth';
 import { UserContext } from '../_app';
+import DesktopNav from '../../components/ui/DesktopNav';
 
 export default function Messages() {
   useAuth();
@@ -29,8 +30,9 @@ export default function Messages() {
         <Head>
           <title>helpnetwork | messages</title>
         </Head>
+        <DesktopNav current={"messages"}/>
+        <Header pageName="Messages" />
         <NavBar currentNav={'messages'}>
-					<Header pageName="Messages" />
           <Container>
             { data && data.length > 0 ?
               <ConversationList

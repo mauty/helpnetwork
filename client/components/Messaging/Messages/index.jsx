@@ -23,7 +23,7 @@ const MessageList = ({ messages = [], request, request_id }) => {
   return (
     <>
       {request && (
-        <header className="flex items-start justify-between px-2 bg-stone-200 p-4">
+        <header className="flex items-start justify-between px-2 bg-stone-200 rounded-md p-4">
           <div className="flex-col">
             <h3 className="text-lg">Regarding Request:</h3>
             <div className="flex gap-2">

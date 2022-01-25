@@ -8,7 +8,7 @@ import ConversationListItem from "./ConversationListItem";
 
 function ConversationList({ convos, currentUser }) {
   return (
-    <div className="overflow-x-auto flex flex-col">
+    <div className="overflow-x-auto flex flex-col mb-40">
       {convos &&
         convos.map((conversation) => {
           const user =

@@ -51,7 +51,7 @@ const NavBar = ({
   ];
 
   return (
-    <div className="w-full h-screen">
+    <div className="w-full">
       {children}
       <section
         id="bottom-navigation"
