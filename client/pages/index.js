@@ -61,69 +61,69 @@ export default function Home() {
       <DesktopNav current={'home'}/>
       <NavBar currentNav={"help"}>
         <Container size='full'>
-          <Map setViewport={setViewport} viewport={viewport}>
-            <div className='flex justify-start gap-2 m-2'>
-              <div className="dropdown">
-                <button className="btn btn-sm btn-ghost px-1"><Filter/></button>
-                <ul tabIndex="0" className="p-1 bg-opacity-95 shadow menu dropdown-content bg-base-100 rounded-box w-80 my-1">
-                  <MapCollapseTab name="Category">
-                    <FilterButton type='categories' currentData={currentCategories} setData={setCurrentCategories}  />
-                  </MapCollapseTab>
-                  <MapCollapseTab name="Resources">
-                    <FilterButton type='resources' currentData={currentResources} setData={setCurrentResources}  />
-                  </MapCollapseTab>
-
-                  <MapCollapseTab name="Time">
-                    <div className="flex flex-col gap-2">
-                      <div className="flex gap-2">
-                        <TimeInput name="from" value={time.from} setValue={handleTimeChange}/>
-                        <TimeInput name="to" value={time.to} setValue={handleTimeChange}/>
+          <div className='lg:flex lg:flex-row'>
+            <Map setViewport={setViewport} viewport={viewport}>
+              <div className='flex justify-start gap-2 m-2'>
+                <div className="dropdown">
+                  <button className="btn btn-sm btn-ghost px-1"><Filter/></button>
+                  <ul tabIndex="0" className="p-1 bg-opacity-95 shadow menu dropdown-content bg-base-100 rounded-box w-80 my-1">
+                    <MapCollapseTab name="Category">
+                      <FilterButton type='categories' currentData={currentCategories} setData={setCurrentCategories}  />
+                    </MapCollapseTab>
+                    <MapCollapseTab name="Resources">
+                      <FilterButton type='resources' currentData={currentResources} setData={setCurrentResources}  />
+                    </MapCollapseTab>
+                    <MapCollapseTab name="Time">
+                      <div className="flex flex-col gap-2">
+                        <div className="flex gap-2">
+                          <TimeInput name="from" value={time.from} setValue={handleTimeChange}/>
+                          <TimeInput name="to" value={time.to} setValue={handleTimeChange}/>
+                        </div>
+                        <button
+                          onClick={() => setIsTimeFiltering(prevState => !prevState)}
+                          className={clsx('btn btn-primary btn-sm', isTimeFiltering && 'btn-error')}>
+                            <Filter className='w-4 h-4 mr-2'/>
+                            { isTimeFiltering ? "Remove time filter" : "Filter Time" }
+                        </button>
                       </div>
-                      <button
-                        onClick={() => setIsTimeFiltering(prevState => !prevState)}
-                        className={clsx('btn btn-primary btn-sm', isTimeFiltering && 'btn-error')}>
-                          <Filter className='w-4 h-4 mr-2'/>
-                          { isTimeFiltering ? "Remove time filter" : "Filter Time" }
-                      </button>
-                    </div>
-                </MapCollapseTab>
-                </ul>
+                    </MapCollapseTab>
+                  </ul>
+                </div>
               </div>
-            </div>
-            { data && data.map((request, index) =>
-              <Mark
-                key={request.id}
-                longitude={request.long}
-                latitude={request.lat}
-                index={index + 1}
-                description={request.request_details}
-                id={request.id}
-                isHovered={currentHoverId === request.id}
-                setHover={() => setCurrentHoverId(request.id)}
-                setLeave={() => setCurrentHoverId(-1)}
-                />
-            ) }
-          </Map>
-          <div className='flex flex-col w-full h-72 sm:shadow overflow-y-scroll pt-2'>
-            <ul className="p-4 pt-0 divide-y w-full">
-
-              { isError && <ErrorMessage title="Error" error="Something unexpected... Try again"/> }
-              { (isLoading || isViewportLoading) ? (<Shimmer />) : (
-                data?.length? (
-                data.map((request, index) =>
-                  <ListItem
+              { data && data.map((request, index) =>
+                <Mark
                   key={request.id}
+                  longitude={request.long}
+                  latitude={request.lat}
+                  index={index + 1}
+                  description={request.request_details}
                   id={request.id}
-                  index={index}
-                  data={request}
                   isHovered={currentHoverId === request.id}
                   setHover={() => setCurrentHoverId(request.id)}
                   setLeave={() => setCurrentHoverId(-1)}
                   />
-                )) : (<Empty/>)
-              )}
-            </ul>
-        </div>
+              ) }
+            </Map>
+            <div className='flex flex-col w-full h-72 lg:h-full sm:shadow overflow-y-scroll pt-2'>
+              <ul className="p-4 pt-0 divide-y w-full">
+                { isError && <ErrorMessage title="Error" error="Something unexpected... Try again"/> }
+                { (isLoading || isViewportLoading) ? (<Shimmer />) : (
+                  data?.length? (
+                  data.map((request, index) =>
+                    <ListItem
+                    key={request.id}
+                    id={request.id}
+                    index={index}
+                    data={request}
+                    isHovered={currentHoverId === request.id}
+                    setHover={() => setCurrentHoverId(request.id)}
+                    setLeave={() => setCurrentHoverId(-1)}
+                    />
+                  )) : (<Empty/>)
+                )}
+              </ul>
+            </div>
+          </div>
         </Container>
       </NavBar>
     </>

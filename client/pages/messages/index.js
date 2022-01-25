@@ -33,6 +33,7 @@ export default function Messages() {
         <DesktopNav current={"messages"}/>
         <Header pageName="Messages" />
         <NavBar currentNav={'messages'}>
+					<Header pageName="Conversations" />
           <Container>
             { data && data.length > 0 ?
               <ConversationList
