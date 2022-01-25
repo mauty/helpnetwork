@@ -7,6 +7,7 @@ const CommentList = ( {commentsData}) => {
 
 	const listOfComments = commentsData?.map((comment, index) => {
     return (
+      <div className="mb-20 mt-4"> 
       <CommentListItem
         key={index}
         avatar={comment.person.imgURL}
@@ -16,6 +17,7 @@ const CommentList = ( {commentsData}) => {
         timestamp={comment.timestamp}
         currentUser={currentUser}
       />
+      </div>
     );
   });
 
@@ -24,16 +26,15 @@ const CommentList = ( {commentsData}) => {
 
 
 return (
-  <><div className='flex mx-auto items-center border rounded-lg px-4 py-2 sm:px-6 sm:py-4 leading-relaxed'>
-  </div>
-	<footer className='mx-auto max-w-screen-sm mb-5'>
-      <h3 className='mb-4 text-lg font-semibold text-gray-900'>
+  <>
+	<div className='mx-auto max-w-screen-sm h-auto overflow-y-auto'>
+      <h3 className='mb-2 text-lg font-semibold text-gray-900'>
         Comments
       </h3>
-      <div className='space-y-4 flex flex-col-reverse gap-3'>
+      <div className='space-y-4 flex flex-col-reverse'>
         {commentsData && listOfComments}
       </div>
-    </footer>
+    </div>
 		</>
 
 );
