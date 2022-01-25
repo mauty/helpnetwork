@@ -100,7 +100,7 @@ function Conversation(props) {
 							onKeyPress={handleKeypress}
 							value={text}></input>
 						<button
-							className='p-5'
+							className='p-5 hover:text-yellow-500 hover:font-semibold'
 							disabled={text === ''}
 							onClick={handleSubmit}>
 							<ArrowUpCircle color='#0067ff' size={48} />
