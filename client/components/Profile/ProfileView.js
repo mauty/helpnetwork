@@ -128,9 +128,11 @@ export default function ProfileView({ data }) {
                   data.Helper.map(request =>
                     <div key={request.id} className="alert-sm alert-success rounded m-1 sm:w-96">
                         <div className="flex flex-col">
-                          <p className='text-lg font-semibold'>{request.category.name}</p>
-                          <Link href={`profile/${request.requester.id} `} >
-                          <p className='text-md hover:text-blue-600 hover:underline cursor-pointer'>{request.requester.first_name} {request.requester.last_name}</p>
+                          <Link href={`/requests/${request.id}`} >
+                            <p className='text-lg font-semibold'>{request.category.name}</p>
+                          </Link>
+                          <Link href={`/profile/${request.requester.id} `} >
+                            <p className='text-md hover:text-blue-600 hover:underline cursor-pointer'>{request.requester.first_name} {request.requester.last_name}</p>
                           </Link>
                           <p className='text-md mt-2'>Points received: <span className="text-lg text-yellow-500 font-semibold">{request.points_value}</span></p>
                         </div>

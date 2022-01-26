@@ -3,7 +3,6 @@ import clsx from "clsx";
 import Link from "next/link";
 
 export default function ListItem({ data, setHover, setLeave, isHovered }) {
-  console.log(data);
   return (
     <tr onMouseMoveCapture={setHover} onMouseLeave={setLeave}>
       <td>
