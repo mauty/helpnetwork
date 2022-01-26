@@ -104,7 +104,7 @@ export default function Home() {
                   />
               ) }
             </Map>
-            <div className='flex flex-col w-full h-72 lg:h-full sm:shadow overflow-y-scroll pt-2'>
+            <div className='flex flex-col w-full h-96 lg:h-full sm:shadow overflow-y-scroll pt-2'>
               <ul className="p-4 pt-0 divide-y w-full">
                 { isError && <ErrorMessage title="Error" error="Something unexpected... Try again"/> }
                 { (isLoading || isViewportLoading) ? (<Shimmer />) : (

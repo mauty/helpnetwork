@@ -43,7 +43,7 @@ export default function ListItem({
             requested_resources.map((resource) => (
               <div
                 key={resource.id}
-                className="text-2xs badge badge-primary badge-outline m-2"
+                className="text-2xs badge badge-primary badge-outline my-2"
               >
                 {resource.resource.name}
               </div>
