@@ -26,9 +26,7 @@ const CommentList = ({ commentsData }) => {
     <>
       <div className="mx-auto max-w-screen-sm h-auto overflow-y-auto">
         <h3 className="mb-2 text-lg font-semibold text-gray-900">Comments</h3>
-        <div className="space-y-4 flex flex-col-reverse">
-          {commentsData && listOfComments}
-        </div>
+        <div className="space-y-4 flex flex-col-reverse">{listOfComments}</div>
       </div>
     </>
   );
