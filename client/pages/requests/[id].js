@@ -14,6 +14,7 @@ import Message from '../../components/ui/Message';
 import Header from '../../components/Header';
 import Comments from '../../components/Request/Comments';
 import RequestMap from '../../components/Request/RequestMap';
+import DesktopNav from '../../components/ui/DesktopNav';
 
 export const getServerSideProps = async (ctx) => {
   // TODO: Get the data from the server here using ctx.params.id
@@ -41,8 +42,8 @@ function RequestId({ id }) {
     mutation.mutate(
       { helper_id: currentUser.id },
       {
-        onSuccess: (data) => {
-          router.push(`/messages/${data.id}`);
+        onSuccess: () => {
+          router.reload(window.location.pathname);
         },
       },
     );
@@ -72,6 +73,7 @@ function RequestId({ id }) {
 
   return (
     <>
+      <DesktopNav currentNav={'home'}/>
       <NavBar currentNav={'help'}>
         <Header pageName="Help For" />
         <Container>
@@ -82,7 +84,7 @@ function RequestId({ id }) {
               error='Something unexpected... Try again'
             />
           )}
-          {data && data.request_claimed && (
+          {data && data.request_claimed && data.request_completed === false ? (
             <Message
               message={`${
                 currentUser && data.helper.id === currentUser.id
@@ -90,7 +92,15 @@ function RequestId({ id }) {
                   : 'Someone is'
               } already helping with this request.`}
             />
-          )}
+          ): (data
+          && data.request_completed
+          && <Message
+            message={<p className='font-bold'>This request has been completed.
+              <Link href="/">
+                <span className='text-blue-500 pl-2 font-medium'>go back to main</span>
+              </Link>
+              </p>}
+            />)}
           {data && (
             <div className='flex flex-col p-2 space-between gap-10'>
               <div className='flex items-center gap-2'>
