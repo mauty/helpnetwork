@@ -16,7 +16,7 @@ const person_data = [
   {
     email: 'sender@email.com',
     first_name: 'Joyce',
-    last_name: 'Smith',
+    last_name: 'Chen',
     imgURL: 'https://randomuser.me/api/portraits/women/85.jpg',
     bio: 'Gray, coily hair hangs over a strong, friendly face. Clear hazel eyes, set charmingly with in their sockets, watch anxiously over the deserts theyve defended for so long. A moustache gracefully compliments his eyes and hair and leaves a gracious memory of his reckless luck. This is the face of Orlando Davenport, a true defender among humans. He stands towering among others, despite his fragile frame. Theres something puzzling about him, perhaps its his decency or perhaps its simply a feeling of shame. But nonetheless, people tend to flock towards him, while secretly dispising him.',
     lat: 43.671488,
@@ -233,8 +233,8 @@ const person_data = [
     last_name: 'Tarren',
     imgURL: 'https://randomuser.me/api/portraits/men/16.jpg',
     bio: 'Revision of Internal Fixation Device in Left Finger Phalanx, Percutaneous Endoscopic Approach',
-    lat: 43.6664,
-    long: -79.3861,
+    lat: 43.683485,
+    long: -79.417272,
   },
   {
     email: 'cprisleyl@narod.ru',
@@ -242,8 +242,8 @@ const person_data = [
     last_name: 'Prisley',
     imgURL: 'https://randomuser.me/api/portraits/men/17.jpg',
     bio: 'Revision of Drainage Device in Penis, Via Natural or Artificial Opening Endoscopic',
-    lat: 43.6574,
-    long: -79.3925,
+    lat: 43.685463,
+    long: -79.418892,
   },
   {
     email: 'pdoalem@stanford.edu',
@@ -251,8 +251,8 @@ const person_data = [
     last_name: 'Doale',
     imgURL: 'https://randomuser.me/api/portraits/women/17.jpg',
     bio: 'Release Right Parotid Gland, Percutaneous Approach',
-    lat: 43.6458,
-    long: -79.3821,
+    lat: 43.682150,
+    long: -79.421456,
   },
   {
     email: 'jduckern@upenn.edu',
@@ -260,8 +260,8 @@ const person_data = [
     last_name: 'Ducker',
     imgURL: 'https://randomuser.me/api/portraits/women/18.jpg',
     bio: 'Drainage of Left Lower Lobe Bronchus with  Drainage Device, Percutaneous Approach',
-    lat: 43.6624,
-    long: -79.3812,
+    lat: 43.684082,
+    long: -79.421263,
   },
   {
     email: 'lfearneleyo@pagesperso-orange.fr',
@@ -269,8 +269,8 @@ const person_data = [
     last_name: 'Fearneley',
     imgURL: 'https://randomuser.me/api/portraits/men/18.jpg',
     bio: 'Performance of Biliary Filtration, Multiple',
-    lat: 43.6404,
-    long: -79.3855,
+    lat: 43.684648,
+    long: -79.422872,
   },
   {
     email: 'atommenp@cpanel.net',
@@ -278,8 +278,8 @@ const person_data = [
     last_name: 'Tommen',
     imgURL: 'https://randomuser.me/api/portraits/women/19.jpg',
     bio: 'Removal of Infusion Device from Peritoneal Cavity, Open Approach',
-    lat: 43.6682,
-    long: -79.3995,
+    lat: 43.683779,
+    long: -79.421939,
   },
 ];
 
@@ -536,7 +536,10 @@ const request_data = [
     long: -79.3962,
     category_id: 6,
     requester_id: 6,
-    points_value: 220,
+    points_value: 150,
+    helper_id: 25,
+    request_claimed: true,
+    request_completed: true,
   },
   {
     request_details:
@@ -545,7 +548,10 @@ const request_data = [
     long: -79.386,
     category_id: 5,
     requester_id: 28,
-    points_value: 120,
+    points_value: 100,
+    helper_id: 26,
+    request_claimed: true,
+    request_completed: true,
   },
   {
     request_details:
@@ -554,7 +560,10 @@ const request_data = [
     long: -79.3897,
     category_id: 3,
     requester_id: 29,
-    points_value: 420,
+    points_value: 125,
+    helper_id: 27,
+    request_claimed: true,
+    request_completed: true,
   },
   {
     request_details: 'I need help with primary syphilis of other sites',
@@ -562,7 +571,10 @@ const request_data = [
     long: -79.389,
     category_id: 10,
     requester_id: 18,
-    points_value: 520,
+    points_value: 75,
+    helper_id: 28,
+    request_claimed: true,
+    request_completed: true,
   },
   {
     request_details:
@@ -571,7 +583,10 @@ const request_data = [
     long: -79.3896,
     category_id: 11,
     requester_id: 23,
-    points_value: 320,
+    points_value: 50,
+    helper_id: 29,
+    request_claimed: true,
+    request_completed: true,
   },
   {
     request_details:
@@ -580,7 +595,10 @@ const request_data = [
     long: -79.3942,
     category_id: 4,
     requester_id: 22,
-    points_value: 620,
+    points_value: 100,
+    helper_id: 29,
+    request_claimed: true,
+    request_completed: true,
   },
   {
     request_details:
@@ -589,8 +607,10 @@ const request_data = [
     long: -79.3915,
     category_id: 11,
     requester_id: 28,
-    time_sensitive: false,
-    points_value: 250,
+    points_value: 50,
+    helper_id: 30,
+    request_claimed: true,
+    request_completed: true,
   },
   {
     request_details:
@@ -599,7 +619,10 @@ const request_data = [
     long: -79.3835,
     category_id: 8,
     requester_id: 1,
-    points_value: 270,
+    points_value: 75,
+    helper_id: 30,
+    request_claimed: true,
+    request_completed: true,
   },
   {
     request_details:
@@ -609,6 +632,9 @@ const request_data = [
     category_id: 4,
     requester_id: 3,
     points_value: 50,
+    helper_id: 25,
+    request_claimed: true,
+    request_completed: true,
   },
   {
     request_details:
@@ -618,6 +644,9 @@ const request_data = [
     category_id: 4,
     requester_id: 4,
     points_value: 50,
+    helper_id: 25,
+    request_claimed: true,
+    request_completed: true,
   },
   {
     request_details:
@@ -627,6 +656,9 @@ const request_data = [
     category_id: 3,
     requester_id: 14,
     points_value: 75,
+    helper_id: 25,
+    request_claimed: true,
+    request_completed: true,
   },
   {
     request_details:
@@ -636,6 +668,9 @@ const request_data = [
     category_id: 4,
     requester_id: 5,
     points_value: 75,
+    helper_id: 26,
+    request_claimed: true,
+    request_completed: true,
   },
   {
     request_details:
