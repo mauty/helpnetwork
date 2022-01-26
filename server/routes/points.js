@@ -22,15 +22,12 @@ router.get('/points', async function (req, res) {
   })
 
   const requests = await prisma.request.groupBy({
-    by: ['helper_id', 'points_value'],
+    by: ['helper_id'],
     where: {
       request_completed: true,
       helper_id: {
         in: people.map(person => person.id)
       }
-    },
-    orderBy: {
-      points_value: 'desc'
     },
     _sum: {
       points_value: true
@@ -41,16 +38,13 @@ router.get('/points', async function (req, res) {
   const returnArray = [];
     for(const point of requests) {
       for(const person of people) {
-      if(person.id === point.helper_id) {
-        returnArray.push({ ...person, points: point._sum.points_value })
-      } else {
-        returnArray.push(person);
-      }
-      break;
+        if(person.id === point.helper_id) {
+          returnArray.push({ ...person, points: point._sum.points_value })
+        }
     }
   }
 
-	res.status(200).json(returnArray);
+	res.status(200).json(returnArray.sort((person1, person2) => person2.points - person1.points));
 });
 
 module.exports = router;
