@@ -101,6 +101,9 @@ router.get('/requests', async function (req, res) {
 			},
 		},
 		take: 15,
+    orderBy: {
+      createdAt: 'desc'
+    }
 	});
 
 	res.status(200).json(requests);
