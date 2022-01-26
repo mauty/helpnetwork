@@ -73,7 +73,7 @@ function RequestId({ id }) {
   return (
     <>
       <NavBar currentNav={'help'}>
-        <Header pageName="Help For" />
+        <Header pageName="Help Request For" />
         <Container>
           {isLoading && <Shimmer />}
           {isError && (
@@ -92,28 +92,41 @@ function RequestId({ id }) {
             />
           )}
           {data && (
-            <div className='flex flex-col p-2 space-between gap-10'>
-              <div className='flex items-center gap-2'>
-                <h1 className='font-medium text-2xl'>{`${data.requester.first_name} ${data.requester.last_name}`}</h1>
-                <Link href={`/profile/${data.requester.id}`}>
-                  <button className='btn btn-xs btn-primary'>
-                    <File className='h-4 w-4 mr-1' />
-                    View Profile
-                  </button>
-                </Link>
-              </div>
+            <div className='flex flex-col p-2 space-between'>
 
-              <div className="div flex flex-col sm:flex sm:flex-row gap-4">
+              <div className="div flex flex-row-reverse items-start justify-between sm:flex sm:flex-row-reverse">
                 <RequestMap lat={data.lat} long={data.long}/>
-                <div className='my-6 flex flex-col gap-6'>
+                <div className='mb-6 flex flex-col gap-6 pr-6'>
+                  <div className='flex flex-col items-start gap-2'>
+                    <div class="avatar flex-row items-center">
+                      <div class="w-12 h-12 rounded-full">
+                        <img src={data.requester.imgURL}/>
+                      </div>
+                      <h1 className='font-bold text-2xl ml-4'>{`${data.requester.first_name} ${data.requester.last_name}`}</h1>
+                    </div>
+                    <Link href={`/profile/${data.requester.id}`}>
+                      <button className='btn btn-xs btn-primary'>
+                        <File className='h-4 w-4 mr-1' />
+                        View Profile
+                      </button>
+                    </Link>
+                  </div>
                   <div>
-                    <h2 className='font-semibold text-lg text-black'>Kind of help</h2>
-                    <h2 className=''>{data.category.name}</h2>
+                    <h2 className='font-semibold text-lg text-black mb-2'>Help Category</h2>
+                    <button 
+                      className="btn btn-sm w-full text-left justify-start capitalize mr-6" 
+                    >
+                      <img src={data.category.image}/>
+                      <div className="ml-2">
+                        {data.category.name}
+                      </div>
+                    </button>
+                    {/* <h2 className=''>{data.category.name}</h2> */}
                   </div>
 
                   <div>
                     <h2 className='text-lg font-bold text-gray-900 dark:text-gray-100'>
-                      Details
+                      I need help with...
                     </h2>
                     <p className='text-sm break-words'>{data.request_details}</p>
                   </div>
@@ -122,7 +135,7 @@ function RequestId({ id }) {
 
                 {data.requested_resources &&
                   data.requested_resources.length > 0 && (
-                    <div id="resources" className=''>
+                    <div id="resources" className='mb-6'>
                       <h2 className='text-lg font-bold text-gray-900 dark:text-gray-100'>
                         Resources needed
                       </h2>
