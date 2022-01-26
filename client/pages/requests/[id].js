@@ -54,7 +54,8 @@ function RequestId({ id }) {
       {},
       {
         onSuccess: () => {
-          router.reload(window.location.pathname);
+          router.push(`/profile/${data.helper_id}`)
+          // router.reload(window.location.pathname);
         },
       },
     );
@@ -123,8 +124,8 @@ function RequestId({ id }) {
                   </div>
                   <div>
                     <h2 className='font-semibold text-lg text-black mb-2'>Help Category</h2>
-                    <button 
-                      className="btn btn-sm w-full text-left justify-start capitalize mr-6" 
+                    <button
+                      className="btn btn-sm w-full text-left justify-start capitalize mr-6"
                     >
                       <img src={data.category.image}/>
                       <div className="ml-2">
