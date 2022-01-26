@@ -92,33 +92,36 @@ function RequestId({ id }) {
             />
           )}
           {data && (
-            <div className='flex flex-col p-2 space-between gap-10'>
-              <div className='flex items-center gap-2'>
-                <h1 className='font-medium text-2xl'>{`${data.requester.first_name} ${data.requester.last_name}`}</h1>
-                <Link href={`/profile/${data.requester.id}`}>
-                  <button className='btn btn-xs btn-primary'>
-                    <File className='h-4 w-4 mr-1' />
-                    View Profile
-                  </button>
-                </Link>
-              </div>
-
-              <div className="div flex flex-col sm:flex sm:flex-row gap-4">
-                <RequestMap lat={data.lat} long={data.long}/>
-                <div className='my-6 flex flex-col gap-6'>
-                  <div>
-                    <h2 className='font-semibold text-lg text-black'>Kind of help</h2>
-                    <h2 className=''>{data.category.name}</h2>
+            <div id="request-container" className='flex flex-col p-2 space-between gap-10'>
+              {/* <div id="abc"className="flex flex-col sm:flex sm:flex-row gap-4"> */}
+                <div id="grid" className="flex flex-row items-start">
+                  <div id="left-col w-1/2">
+                    <div id="name" className='flex flex-col items-left gap-2'>
+                      <h1 className='font-medium text-2xl'>{`${data.requester.first_name} ${data.requester.last_name}`}</h1>
+                      <Link href={`/profile/${data.requester.id}`}>
+                        <button className='btn btn-xs btn-primary'>
+                          View Profile
+                        </button>
+                      </Link>
+                    </div>
+                    <div id="category-details" className='my-6 flex flex-col gap-6'>
+                      <div>
+                        <h2 className='font-semibold text-lg text-black'>Kind of help</h2>
+                        <h2 className=''>{data.category.name}</h2>
+                      </div>
+                      <div>
+                        <h2 className='text-lg font-bold text-gray-900 dark:text-gray-100'>
+                          I need help with...
+                        </h2>
+                        <p className='text-sm break-words'>{data.request_details}</p>
+                      </div>
+                    </div>
                   </div>
-
-                  <div>
-                    <h2 className='text-lg font-bold text-gray-900 dark:text-gray-100'>
-                      Details
-                    </h2>
-                    <p className='text-sm break-words'>{data.request_details}</p>
+                  <div id="right-col w-1/2">
+                    <RequestMap lat={data.lat} long={data.long}/>
                   </div>
                 </div>
-              </div>
+              {/* </div> */}
 
                 {data.requested_resources &&
                   data.requested_resources.length > 0 && (
