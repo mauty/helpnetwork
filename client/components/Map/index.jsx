@@ -1,7 +1,12 @@
 import { useRef } from "react";
 import ReactMapGL, { GeolocateControl, NavigationControl } from "react-map-gl";
 
-export default function Map({ children, viewport, setViewport }) {
+export default function Map({
+  children,
+  viewport,
+  setViewport,
+  isGeoLocate = true,
+}) {
   const mapRef = useRef(null);
 
   return (
@@ -15,12 +20,14 @@ export default function Map({ children, viewport, setViewport }) {
       mapStyle={"mapbox://styles/mapbox/streets-v11"}
       ref={(instance) => (mapRef.current = instance)}
     >
-      <GeolocateControl
-        style={{ right: 10, top: 10 }}
-        positionOptions={{ enableHighAccuracy: true }}
-        trackUserLocation={true}
-        auto
-      />
+      {isGeoLocate && (
+        <GeolocateControl
+          style={{ right: 10, top: 10 }}
+          positionOptions={{ enableHighAccuracy: true }}
+          trackUserLocation={true}
+          auto
+        />
+      )}
       <NavigationControl style={{ right: 10, bottom: 40 }} />
       {children}
     </ReactMapGL>

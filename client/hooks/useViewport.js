@@ -1,5 +1,9 @@
 import { useState, useEffect } from "react";
 
+/***************************************************************************
+ * TODO: IN THE FUTURE
+ * useViewport should have props to set default to
+ ***************************************************************************/
 export default function useViewport() {
   const [viewport, setViewport] = useState({
     longitude: -79.3871,
