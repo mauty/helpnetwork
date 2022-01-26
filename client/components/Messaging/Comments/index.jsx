@@ -5,7 +5,6 @@ import { UserContext } from "../../../pages/_app";
 const CommentList = ({ commentsData }) => {
   const { currentUser } = useContext(UserContext);
 
-  console.log(commentsData);
   const listOfComments = commentsData?.map((comment) => {
     return (
       <div className="mb-20 mt-4">
