@@ -33,7 +33,22 @@ router.get('/conversations', async function (req, res) {
 		},
 	});
 
-	res.json(conversations);
+  const conversationsWithMessages = conversations.filter(conversation => conversation.messages.length > 0);
+
+  if(conversationsWithMessages.length) {
+    const result = conversationsWithMessages.sort((c1, c2) => {
+      if(c2.messages.length > 0 && c1.messages.length > 0) {
+        return c2.messages[0].timestamp - c1.messages[0].timestamp
+      }
+
+      return true;
+    });
+
+    res.json(result);
+    return;
+  }
+
+	res.json(conversationsWithMessages);
 });
 
 //Get a specific conversation that the user has
