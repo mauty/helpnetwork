@@ -14,10 +14,11 @@ const FormDetails = (props) => {
     <div className="mx">
       <div className='flex flex-col p-2'>
         <label className="label">
-          <span className="label-text">Details</span>
+          <span className="label-text">I need help with...</span>
         </label>
         <textarea
           label="details"
+          placeholder="Please be specific about your needs :) "
           className="textarea h-24 textarea-bordered"
           {...register('details', { required: true, maxLength: 280 })}
           onChange={(event)=>updateDetailsState(event.target.value)}
