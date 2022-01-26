@@ -11,9 +11,11 @@ import Shimmer from '../../components/ui/Shimmer';
 import ErrorMessage from '../../components/ui/ErrorMessage';
 import NavBar from '../../components/NavBar';
 import Message from '../../components/ui/Message';
-import timeAgo from '../../utils/timeAgo';
 import Header from '../../components/Header';
 import CommentList from '../../components/Messaging/Comments';
+import Map from '../../components/Map';
+import useViewport from '../../hooks/useViewport';
+import Mark from '../../components/Map/Mark';
 
 export const getServerSideProps = async (ctx) => {
   // TODO: Get the data from the server here using ctx.params.id
@@ -24,6 +26,7 @@ export const getServerSideProps = async (ctx) => {
 function RequestId({ id }) {
   const router = useRouter();
   const { currentUser } = useContext(UserContext);
+  const { viewport, setViewport} = useViewport();
 
   const mutation = useMutation((newHelp) =>
     useAxios({ url: `/request/help/${id}`, method: 'post', params: newHelp }),
@@ -34,8 +37,13 @@ function RequestId({ id }) {
   );
 
   const { isLoading, isError, data } = useQuery('request', () =>
-    useAxios({ url: `/request/${id}`, method: 'get' }),
+    useAxios({ url: `/request/${id}`, method: 'get' }), {
+      onSuccess: (data) => {
+        setViewport({ longitude: data.long, latitude: data.lat, zoom: 16 });
+      }
+    }
   );
+
   /*Comments query */
   const {
     isLoading: commentLoading,
@@ -82,7 +90,6 @@ function RequestId({ id }) {
       },
     );
   }
-  console.log('Comment Data >>> ', commentData);
 
   function markComplete() {
     mutationComplete.mutate(
@@ -138,14 +145,26 @@ function RequestId({ id }) {
                   </button>
                 </Link>
               </div>
-              <div className='my-6'>
-                <h2 className='font-semibold text-lg text-black'>Kind of help</h2>
-                <h2 className=''>{data.category.name}</h2>
+
+              <div className="div flex flex-col sm:flex sm:flex-row gap-4">
+                <Map viewport={viewport} setViewport={setViewport} isGeoLocate={false}>
+                  <Mark longitude={data.long} latitude={data.lat}/>
+                </Map>
+                <div className='my-6 flex flex-col gap-6'>
+                  <div>
+                    <h2 className='font-semibold text-lg text-black'>Kind of help</h2>
+                    <h2 className=''>{data.category.name}</h2>
+                  </div>
+
+                  <div>
+                    <h2 className='text-lg font-bold text-gray-900 dark:text-gray-100'>
+                      Details
+                    </h2>
+                    <p className='text-sm break-words'>{data.request_details}</p>
+                  </div>
+                </div>
               </div>
-                <h2 className='text-lg font-bold text-gray-900 dark:text-gray-100 break-words'>
-                  Details
-                </h2>
-                <p className='text-sm'>{data.request_details}</p>
+
                 {data.requested_resources &&
                   data.requested_resources.length > 0 && (
                     <div id="resources" className=''>
@@ -184,7 +203,7 @@ function RequestId({ id }) {
                     </div>
                   </div>
                 )}
-              
+
 
               {!data.request_completed &&
                 currentUser &&
