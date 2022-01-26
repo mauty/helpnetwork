@@ -9,9 +9,9 @@ const MessageListItem = ({ body, timestamp, id, sender_id, currentUser }) => {
       className={clsx(
         "max-w-sm sm:max-w-xl mx-1 rounded-3xl shadow-sm px-2 text-md mb-2",
         {
-          "self-end bg-gradient-to-bl from-blue-600 to-blue-500 text-gray-100 border ml-2":
+          "self-end bg-gradient-to-bl from-blue-600 to-blue-500 text-gray-100 border ml-2 rounded-br-none":
             currentUser.id === sender_id,
-          "self-start bg-slate-200 text-black border border-grey-600 mr-2":
+          "self-start bg-slate-200 text-black border border-grey-600 mr-2 rounded-bl-none":
             currentUser.id !== sender_id,
         }
       )}
@@ -25,7 +25,7 @@ const MessageListItem = ({ body, timestamp, id, sender_id, currentUser }) => {
               sender_id !== currentUser.id ? "text-left" : "text-right"
             )}
           >
-            {ago + ' ago'}
+            {ago + " ago"}
           </p>
         </div>
       </div>
