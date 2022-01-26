@@ -14,6 +14,7 @@ import Message from '../../components/ui/Message';
 import Header from '../../components/Header';
 import Comments from '../../components/Request/Comments';
 import RequestMap from '../../components/Request/RequestMap';
+import DesktopNav from '../../components/ui/DesktopNav';
 
 export const getServerSideProps = async (ctx) => {
   // TODO: Get the data from the server here using ctx.params.id
@@ -72,6 +73,7 @@ function RequestId({ id }) {
 
   return (
     <>
+      <DesktopNav currentNav={'home'}/>
       <NavBar currentNav={'help'}>
         <Header pageName="Help For" />
         <Container>
