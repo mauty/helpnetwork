@@ -14,7 +14,7 @@ export default function Comments({ id }) {
     isError: commentError,
     data: commentData,
     refetch,
-  } = useQuery('comments', () =>
+  } = useQuery(['comments', id], () =>
     useAxios({ url: `/comments/${id}`, method: 'get' }),
   );
 
