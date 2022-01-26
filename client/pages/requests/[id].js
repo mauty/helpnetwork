@@ -42,8 +42,8 @@ function RequestId({ id }) {
     mutation.mutate(
       { helper_id: currentUser.id },
       {
-        onSuccess: () => {
-          router.reload(window.location.pathname);
+        onSuccess: (data) => {
+          router.push(`/messages/${data.id}`);
         },
       },
     );
@@ -54,7 +54,7 @@ function RequestId({ id }) {
       {},
       {
         onSuccess: () => {
-          router.push(`/`);
+          router.reload(window.location.pathname);
         },
       },
     );
