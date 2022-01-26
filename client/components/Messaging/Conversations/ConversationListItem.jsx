@@ -19,7 +19,7 @@ const ConversationListItem = (props) => {
             <p className="text-sm opacity-50 text-left break-words">{body}</p>
           </div>
           <div className="text-xs text-gray-400 text-right mx-2 w-1/5">
-            {ago} ago
+            {ago + ' ago'}
           </div>
         </button>
       </div>
