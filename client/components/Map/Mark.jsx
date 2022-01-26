@@ -37,7 +37,7 @@ export default function Mark({
         >
           {index}
         </button>
-        {isOpen && (
+        {isOpen && description != "" && (
           <div
             onMouseLeave={() => setIsOpen(false)}
             className="z-20 flex flex-col items-center w-40 h-48 bg-white rounded p-1 justify-between"
