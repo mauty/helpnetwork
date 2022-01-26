@@ -12,10 +12,8 @@ import ErrorMessage from '../../components/ui/ErrorMessage';
 import NavBar from '../../components/NavBar';
 import Message from '../../components/ui/Message';
 import Header from '../../components/Header';
-import Map from '../../components/Map';
-import useViewport from '../../hooks/useViewport';
-import Mark from '../../components/Map/Mark';
 import Comments from '../../components/Request/Comments';
+import RequestMap from '../../components/Request/RequestMap';
 
 export const getServerSideProps = async (ctx) => {
   // TODO: Get the data from the server here using ctx.params.id
@@ -26,7 +24,6 @@ export const getServerSideProps = async (ctx) => {
 function RequestId({ id }) {
   const router = useRouter();
   const { currentUser } = useContext(UserContext);
-  const { viewport, setViewport} = useViewport();
 
   const mutation = useMutation((newHelp) =>
     useAxios({ url: `/request/help/${id}`, method: 'post', params: newHelp }),
@@ -37,11 +34,7 @@ function RequestId({ id }) {
   );
 
   const { isLoading, isError, data } = useQuery('request', () =>
-    useAxios({ url: `/request/${id}`, method: 'get' }), {
-      onSuccess: (data) => {
-        setViewport({ longitude: data.long, latitude: data.lat, zoom: 16, maxZoom: 16, minZoom: 13 });
-      }
-    }
+    useAxios({ url: `/request/${id}`, method: 'get' }),
   );
 
   function offerHelp() {
@@ -111,9 +104,7 @@ function RequestId({ id }) {
               </div>
 
               <div className="div flex flex-col sm:flex sm:flex-row gap-4">
-                <Map viewport={viewport} setViewport={setViewport} isGeoLocate={false}>
-                  <Mark longitude={data.long} latitude={data.lat}/>
-                </Map>
+                <RequestMap lat={data.lat} long={data.long}/>
                 <div className='my-6 flex flex-col gap-6'>
                   <div>
                     <h2 className='font-semibold text-lg text-black'>Kind of help</h2>
