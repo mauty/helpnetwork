@@ -17,7 +17,7 @@ export default function RequestMap({ long, lat }) {
   }, [long, lat])
 
   return (
-    <Map viewport={viewport} setViewport={setViewport} isGeoLocate={false}>
+    <Map viewport={viewport} setViewport={setViewport} isGeoLocate={false} height="30vh" width="50vw">
       <Mark longitude={long} latitude={lat}/>
     </Map>
   );
