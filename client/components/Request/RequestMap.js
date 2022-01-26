@@ -14,7 +14,7 @@ export default function RequestMap({ long, lat }) {
   const { viewport, setViewport} = useViewport();
   useEffect(() => {
       setViewport({ longitude: long, latitude: lat, zoom: 16, maxZoom: 16, minZoom: 13 });
-  }, [])
+  }, [long, lat])
 
   return (
     <Map viewport={viewport} setViewport={setViewport} isGeoLocate={false}>
