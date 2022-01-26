@@ -1,4 +1,7 @@
-export default function ErrorMessage({ title, error }) {
+export default function ErrorMessage({
+  title = "Error",
+  error = "Something unexpected... Please try again..",
+}) {
   if (!error) return null;
 
   return (
