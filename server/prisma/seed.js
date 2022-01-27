@@ -9,8 +9,8 @@ const person_data = [
     imgURL: 'https://randomuser.me/api/portraits/men/3.jpg',
     bio: 'Blonde, coily hair neatly coiffured to reveal a furrowed, radiant face. Bright hazel eyes, set seductively with in their sockets, watch anxiously over the people theyve defended for so long. A scar stretching from just under the right eyebrow , running towards his left nostril and ending under his left eye leaves an aching burden of innocence long lost. This is the face of Brodie Wakelin, a true warrior among halflings. He stands ordinary among others, despite his big frame. Theres something bewildering about him, perhaps its his kindness or perhaps its simply a feeling of indifference. But nonetheless, people tend to pretend to be his friend, while secretly training to become more like him.',
     postal_code: 'M6B 1L9',
-    lat: 43.649744918000685,
-    long: -79.46447462733938,
+    lat: 43.688773,
+    long: -79.425699,
     safety_details: `["vaccinated", "will wear a mask", "willing to socially distance"]`
   },
   {
@@ -233,8 +233,8 @@ const person_data = [
     last_name: 'Tarren',
     imgURL: 'https://randomuser.me/api/portraits/men/16.jpg',
     bio: 'Revision of Internal Fixation Device in Left Finger Phalanx, Percutaneous Endoscopic Approach',
-    lat: 43.683485,
-    long: -79.417272,
+    lat: 43.686295,
+    long: -79.408048,
   },
   {
     email: 'cprisleyl@narod.ru',
@@ -260,8 +260,8 @@ const person_data = [
     last_name: 'Ducker',
     imgURL: 'https://randomuser.me/api/portraits/women/18.jpg',
     bio: 'Drainage of Left Lower Lobe Bronchus with  Drainage Device, Percutaneous Approach',
-    lat: 43.684082,
-    long: -79.421263,
+    lat: 43.694456,
+    long: -79.429720,
   },
   {
     email: 'lfearneleyo@pagesperso-orange.fr',
@@ -269,8 +269,8 @@ const person_data = [
     last_name: 'Fearneley',
     imgURL: 'https://randomuser.me/api/portraits/men/18.jpg',
     bio: 'Performance of Biliary Filtration, Multiple',
-    lat: 43.684648,
-    long: -79.422872,
+    lat: 43.68433,
+    long: -79.435214,
   },
   {
     email: 'atommenp@cpanel.net',
@@ -278,8 +278,8 @@ const person_data = [
     last_name: 'Tommen',
     imgURL: 'https://randomuser.me/api/portraits/women/19.jpg',
     bio: 'Removal of Infusion Device from Peritoneal Cavity, Open Approach',
-    lat: 43.683779,
-    long: -79.421939,
+    lat: 43.701810,
+    long: -79.420150,
   },
 ];
 
@@ -475,7 +475,7 @@ const request_data = [
     long: -79.3907,
     category_id: 1,
     requester_id: 28,
-    points_value: 450,
+    points_value: 75,
   },
   {
     request_details: 'I need help with recurrent dislocation, unspecified hand',
@@ -632,7 +632,7 @@ const request_data = [
     category_id: 4,
     requester_id: 3,
     points_value: 50,
-    helper_id: 25,
+    helper_id: 1,
     request_claimed: true,
     request_completed: true,
   },
@@ -679,8 +679,10 @@ const request_data = [
     long: -79.420926,
     category_id: 1,
     requester_id: 13,
+    helper_id: 1,
     points_value: 75,
-    start_time: new Date('25 Jan 2022 14:12:00 GMT'),
+    request_claimed: true,
+    request_completed: true,
   },
   {
     request_details:
@@ -734,6 +736,33 @@ const request_data = [
     long: -79.417176,
     category_id: 4,
     requester_id: 12,
+    points_value: 75,
+  },
+  {
+    request_details:
+      'feeding my cat floofer. She needs wet food put out once a day.',
+    lat: 43.693233,
+    long: -79.414281,
+    category_id: 3,
+    requester_id: 16,
+    points_value: 50,
+  },
+  {
+    request_details:
+      'getting my Mac hooked up to Wifi.',
+    lat: 43.688442,
+    long: -79.419303,
+    category_id: 7,
+    requester_id: 18,
+    points_value: 100,
+  },
+  {
+    request_details:
+      'picking up groceries while I am isolating.',
+    lat: 43.694394,
+    long: -79.420492,
+    category_id: 1,
+    requester_id: 19,
     points_value: 75,
   },
 ];
@@ -1204,12 +1233,12 @@ const conversation_data = [
 
 const message_data = [
   {
-    body: 'Hey I would love to help you with  your request',
+    body: 'Hey I would love to help you with your request',
     conversation_id: 1,
     sender_id: 9,
   },
   {
-    body: 'Hey I would love to help you with  your request',
+    body: 'Hey I would love to help you with your request',
     conversation_id: 2,
     sender_id: 1,
   },
@@ -1219,7 +1248,7 @@ const message_data = [
     sender_id: 2,
   },
   {
-    body: 'Hey I would love to help you with  your request',
+    body: 'Hey I would love to help you with your request',
     conversation_id: 3,
     sender_id: 1,
   },
@@ -1234,6 +1263,20 @@ const comment_data = [
   { body: 'Helloooo', request_id: 1, sender_id: 1 },
   { body: 'How are you?', request_id: 1, sender_id: 2 },
 ];
+
+const review_data = [
+  { body: 'Bob was super helpful clearing the snow from my sidewalk after I broke my ankle.',
+    rating: 5,
+    reviewerId: 3,
+    personId: 1
+  },
+  { body: 'Thank you Bob for helping me get groceries when I was isolating.',
+    rating: 5,
+    reviewerId: 13,
+    personId: 1
+  }
+]
+
 const main = async () => {
   console.log('Start seeding');
 
@@ -1271,6 +1314,10 @@ const main = async () => {
 
   await prisma.comment.createMany({
     data: comment_data,
+  });
+
+  await prisma.review.createMany({
+    data: review_data,
   });
 
   console.log(`Seeding finished.`);
