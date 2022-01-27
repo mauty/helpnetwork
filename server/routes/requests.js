@@ -77,7 +77,7 @@ router.get('/requests', async function (req, res) {
 			latitude,
 			longitude,
 		},
-		500,
+		1000,
 	);
 
 	const requests = await prisma.request.findMany({
