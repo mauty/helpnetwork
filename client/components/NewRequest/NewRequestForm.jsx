@@ -107,10 +107,10 @@ const NewRequestForm = (props) => {
 
   const calculatePointValue = () => {
     const basePoints = 50
-    const resourcePoints = requestedResourcesArray.length * 10
+    const resourcePoints = requestedResourcesArray.length * 25
     let timePoints = 0
     if (state.timeSensitive === true) {
-      timePoints = 30
+      timePoints = 50
     } else {
       timePoints = 0
     }    
