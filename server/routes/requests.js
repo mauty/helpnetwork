@@ -77,7 +77,7 @@ router.get('/requests', async function (req, res) {
 			latitude,
 			longitude,
 		},
-		00,
+		700,
 	);
 
 	const requests = await prisma.request.findMany({
@@ -199,7 +199,7 @@ router.post('/request/help/:id', async (req, res) => {
 			messages: {
 				create: [
 					{
-						body: `Hi. I'm willing to help with ${request.request_details}`,
+						body: `Hi. I am willing to help with ${request.request_details}`,
 						sender_id: helper_id,
 					},
 				],
