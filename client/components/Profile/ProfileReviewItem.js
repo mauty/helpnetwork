@@ -21,7 +21,7 @@ export default function ProfileReviewItem({ data }) {
               ))
             }
           </div>
-          <p className='text-xs break-all pt-2 w-5/6'>{data.body}</p>
+          <p className='text-xs pt-2 w-5/6'>{data.body}</p>
       </div>
     </div>
   );

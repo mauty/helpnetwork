@@ -31,8 +31,9 @@ export default function ProfileView({ data }) {
 
   return (
     <NavBar currentNav={"profile"}>
-      <Container title={`${data.first_name} ${data.last_name}`}>
-        <div className="flex flex-col gap-16 mx-2 pb-20">
+      <Container>
+        <div className="flex flex-col gap-6 mx-2">
+          <h2 className="text-3xl font-bold mx-2 mt-4">{`${data.first_name} ${data.last_name}`}</h2>
           <div className='flex justify-between p-2'>
               <p className="w-3/4">{data.bio}</p>
               <div className="flex flex-col px-2 items-center">
