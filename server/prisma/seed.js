@@ -738,6 +738,33 @@ const request_data = [
     requester_id: 12,
     points_value: 75,
   },
+  {
+    request_details:
+      'feeding my cat floofer. She needs wet food put out once a day.',
+    lat: 43.693233,
+    long: -79.414281,
+    category_id: 3,
+    requester_id: 16,
+    points_value: 50,
+  },
+  {
+    request_details:
+      'getting my Mac hooked up to Wifi.',
+    lat: 43.688442,
+    long: -79.419303,
+    category_id: 7,
+    requester_id: 18,
+    points_value: 100,
+  },
+  {
+    request_details:
+      'picking up groceries while I am isolating.',
+    lat: 43.694394,
+    long: -79.420492,
+    category_id: 1,
+    requester_id: 19,
+    points_value: 75,
+  },
 ];
 
 const category_data = [
