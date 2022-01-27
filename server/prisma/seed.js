@@ -695,7 +695,7 @@ const request_data = [
   },
   {
     request_details:
-      'clearing my sidewalk.',
+      'clearing the snow on my sidewalk and my back laneway so I can use my car to get groceries.',
     lat: 43.685536,
     long: -79.420483,
     category_id: 4,
@@ -764,6 +764,24 @@ const request_data = [
     category_id: 1,
     requester_id: 19,
     points_value: 75,
+  },
+  {
+    request_details:
+      'feeding my cat floofer. She needs wet food put out once a day.',
+    lat: 43.686691,
+    long: -79.423562,
+    category_id: 3,
+    requester_id: 16,
+    points_value: 50,
+  },
+  {
+    request_details:
+      'cooking meals for my grandmother who is having trouble with her stove.',
+    lat: 43.682780,
+    long: -79.423584,
+    category_id: 6,
+    requester_id: 20,
+    points_value: 100,
   },
 ];
 
