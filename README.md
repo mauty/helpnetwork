@@ -1,11 +1,8 @@
-
 ![Component 1](https://user-images.githubusercontent.com/8416681/150858810-9f1b3441-6218-4efb-b056-b5b1c2c072df.png)
-
-
 
 ---
 
-## HELPNETWORK is an app that allows those who need help to match with community volunteers who are nearby and have the time and resources to help them. 
+## HELPNETWORK is an app that allows those who need help to match with community volunteers who are nearby and have the time and resources to help them.
 
 - Post a help request by categories with resources you need
 - Contribute to your community by helping a request
@@ -19,10 +16,21 @@
 
 - **Helpnetwork is not** for people who are looking to make money out of the requests
 
+# TECH STACK
+
+- NextJS
+- TailwindCSS + DaisyUI
+- Prisma
+- React-Query, react-hook-form
+- Postgres
+- Node
+- Express
+- MapBox
+- Google Places
 
 # Contributing
 
-###  Thanks goes to these wonderful people 👋
+### Thanks goes to these wonderful people 👋
 
 <table>
   <tr>
