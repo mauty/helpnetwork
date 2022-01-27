@@ -1218,9 +1218,9 @@ const personal_resource_data = [
 ];
 
 const conversation_data = [
-  { helper_id: 2, requester_id: 1, request_id: 1 },
-  { helper_id: 3, requester_id: 2, request_id: 1 },
-  { helper_id: 4, requester_id: 3, request_id: 1 },
+  { helper_id: 2, requester_id: 9, request_id: 1 },
+  { helper_id: 3, requester_id: 1, request_id: 1 },
+  { helper_id: 4, requester_id: 1, request_id: 1 },
   { helper_id: 3, requester_id: 2, request_id: 2 },
   { helper_id: 1, requester_id: 2, request_id: 2 },
   { helper_id: 4, requester_id: 2, request_id: 2 },
@@ -1235,12 +1235,7 @@ const message_data = [
   {
     body: 'Hey I would love to help you with your request',
     conversation_id: 1,
-    sender_id: 1,
-  },
-  {
-    body: 'Hi, thank you for excepting my request',
-    conversation_id: 1,
-    sender_id: 2,
+    sender_id: 9,
   },
   {
     body: 'Hey I would love to help you with your request',
